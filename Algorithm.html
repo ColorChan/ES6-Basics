@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
+    <script type="text/babel">
+      var arr = [3, 1, 2, 5, 8, 7, 6, 4]
+      let bubbleSort = (arr) => {
+        for (let i in arr) {
+          for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j+1]) {
+              [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+            }
+          }
+        }
+        console.log('1.bubbleSort  ' + arr)
+      }
+      bubbleSort (arr)
+    </script>
+</head>
+<body>
+hello world<br>
+Array = [3, 1, 2, 5, 8, 7, 6, 4]<br>
+<br>
+<br>
+1.bubbleSort<br>
+2.
+</body>
+</html>

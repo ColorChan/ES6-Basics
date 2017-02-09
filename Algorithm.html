@@ -6,7 +6,6 @@
   <script src="http://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
   <script type="text/babel">
     var arr = [3, 1, 2, 5, 8, 7, 6, 4]
-    
     /**
      * 1.Bubble Sort 冒泡排序
      */
@@ -25,8 +24,9 @@
     /**
      * 2.Selection Sort 选择排序
      */
+    var arr = [3, 1, 2, 5, 8, 7, 6, 4]
     let selectionSort = (arr) => {
-      for (let i of arr) {
+      for (let i = 0; i < arr.length - 1; i++) {
         let minIndex = null;
         minIndex = i
         for (let j = i + 1; j < arr.length; j++) {
@@ -42,23 +42,13 @@
     /**
      *3.Insertion Sort 插入排序
      */
-    let insertionSort = (arr) => {
-      let preIndex = null
-      for (let i = 1; i < arr.length; i++) {
-        preIndex = i - 1;
-        while(preIndex >= 0 && arr[preIndex] > arr[i]) {
-          arr[preIndex+1] = arr[preIndex];
-          preIndex--;
-        }
-        arr[preIndex+1] = arr[i];
-      }
-      console.log('3.Insertion Sort  ' + arr)
-    }
-    insertionSort(arr)
+    var arr = [3, 1, 2, 5, 8, 7, 6, 4]
+
 
     /**
      * 4.Shell Sort 希尔排序
      */
+    var arr = [3, 1, 2, 5, 8, 7, 6, 4]
     let shellSort = (arr) => {
       let temp = null
       let gap = 1
@@ -78,8 +68,10 @@
     }
     shellSort(arr)
 
-
-
+    /**
+     * 6.Quick Sort 快速排序
+     */
+    var arr = [3, 1, 2, 5, 8, 7, 6, 4]
 
   </script>
 </head>
@@ -103,8 +95,8 @@ Array = [3, 1, 2, 5, 8, 7, 6, 4]<br>
 5.<br>
 归并排序<br>
 <br>
-6.<br>
-快速排序<br>
+6.Quick Sort<br>
+快速排序(Quick Sort)（1）在数据集之中，找一个基准点。（2）建立两个数组，分别存储左边和右边的数组。（3）利用递归进行下次比较<br>
 <br>
 </body>
 </html>

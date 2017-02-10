@@ -43,7 +43,20 @@
      *3.Insertion Sort 插入排序
      */
     var arr = [3, 1, 2, 5, 8, 7, 6, 4]
-
+    let insertionSort = (arr) => {
+      var preIndex, current;
+      for (let i in arr) {
+        preIndex = i - 1;
+        current = arr[i];
+        while(preIndex >= 0 && arr[preIndex] > current) {
+          arr[preIndex + 1] = arr[preIndex];
+          preIndex--;
+        }
+        arr[preIndex + 1] = current;
+      }
+      console.log('3.InsertionSort ' + arr);
+    }
+    insertionSort(arr)
 
     /**
      * 4.Shell Sort 希尔排序
@@ -64,7 +77,7 @@
           arr[j + gap] = temp
         }
       }
-      console.log('4.Shell Sort  ' + arr)
+      console.log('4.ShellSort  ' + arr)
     }
     shellSort(arr)
 
@@ -73,6 +86,24 @@
      */
     var arr = [3, 1, 2, 5, 8, 7, 6, 4]
 
+    /**
+     * 7. Binary Search 二分查找
+     */
+    var arr = [3, 1, 2, 5, 8, 7, 6, 4]
+    let binarySearch = (data,item,start,end) => {
+      var end= end || data.length-1;
+      var start=1;
+      var m=Math.floor((start+end)/2);
+      if(item==data[m]){
+        console.log('在数组的第' + (m + 1) +'位')
+      }else if(item<data[m]){
+        return binarySearch(data,item,start,m-1)
+      }else{
+        return binarySearch(data,item,m+1,end);
+      }
+      return false;
+    }
+   binarySearch(arr,2)
   </script>
 </head>
 <body>

@@ -252,9 +252,6 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
 良好的导航，通过sitemap可以帮助网站主了解网站结构，也方便搜索引擎收录整个站点。<br>
 <br>
 <br>
-##   AJAX
-<br>
-<br>
 ##  Underlying Javascript / Javascript 底层
 **Closure闭包**<br>
 在内层的函数捕获了定义在外层函数中的变量，并把内层函数传递到外层函数的作用域之外执行，则外层函数的context不能销毁，就形成了闭包。<br>
@@ -323,6 +320,7 @@ Back和加入收藏书签功能失效,AJAX的安全问题
 1.属性<br>
 onreadystatechange<br>
 一个JavaScript函数对象，当readyState属性改变时会调用它。回调函数会在user interface线程中调用。<br>
+<br>
 readyState<br>
 HTTP 请求的状态，每次这个属性的值增加的时候，都会触发 onreadystatechange。<br>
 ``` bash
@@ -335,13 +333,16 @@ HTTP 请求的状态，每次这个属性的值增加的时候，都会触发 on
 responseText<br>
 目前为止为服务器接收到的响应体。<br>
 如果readyState<3，这个属性就是一个空字符串。当readyState=3，这个属性返回目前已经接收的响应部分。如果readyState=4，这个属性保存了完整的响应体。<br>
+<br>
 responseXML<br>
 对请求的响应，解析为 XML 并作为 Document 对象返回。<br>
+<br>
 status<br>
 由服务器返回的HTTP状态代码，当 readyState<3的时候读取这一属性会导致一个异常。<br>
 2.方法<br>
 abort()  取消当前响应，关闭连接并且结束任何未决的网络活动。<br>
 这个方法把 XMLHttpRequest 对象重置为 readyState 为 0 的状态，并且取消所有未决的网络活动。<br>
+<br>
 getResponseHeader()  返回指定的 HTTP 响应头部的值。<br>
 其参数是要返回的 HTTP 响应头部的名称。如果没有接收到这个头部或者readyState<3则为空字符串。如果接收到多个有指定名称的头部，这个头部的值被连接起来并返回。<br>
 <br>

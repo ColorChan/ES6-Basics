@@ -274,7 +274,7 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
 创建自定义类型最常见的方式就是组合使用构造函数模式与原型模式。构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性。<br>
 这样每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度的节省了内存。<br>
 另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。<br>
-<code>
+``` bash
     function Person(name, age){
       this.name = name;
       this.age = age;
@@ -293,7 +293,7 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
     console.log(person2.friends); //["乾隆", "康熙"]
     console.log(person1.friends === person2.friends); //false
     console.log(person1.sayName === person2.sayName); //true    
-</code>
+``` 
 在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性constructor和方法sayName()则是在原型中定义的。所以修改了person1.friends并不会改变person2.friends，因为他们分别引用了不同的数组。<br>  
 这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。
 <br>
@@ -309,7 +309,7 @@ if(arguments.callee.length == arguments.length ){ ...do something(形参与实�
 ##   AJAX
 <br>
 <br>
-##   AJAX
+##   事件流
 <br>
 <br>
 

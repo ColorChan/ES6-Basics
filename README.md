@@ -433,10 +433,20 @@ value  给指定的请求头赋的值<br>
 ```
 <br>
 <br>
-##   事件流
+##  DOM 事件流
+**1.冒泡事件流**<br>
+当事件在某一DOM元素被触发时，事件将跟随着该节点继承自的各个父节点冒泡穿过整个的DOM节点层次，如果不停止事件的传播，事件将一直通过DOM冒泡直至到达文档根。<br>
+在冒泡过程中的任何时候都可以终止事件的冒泡，在遵从W3C标准的浏览器里可以通过调用事件对象上的stopPropagation()方法，在Internet Explorer里可以通过设置事件对象的cancelBubble属性为true。<br>
+element.addEventListener(event, function, useCapture)，useCapture为false(默认值)或置空时，事件句柄在冒泡阶段执行。<br>
+<br>
+2.捕获事件流<br>
+事件的处理将从DOM层次的根开始，而不是从触发事件的目标元素开始，事件被从目标元素的所有祖先元素依次往下传递。<br>
+element.addEventListener(event, function, useCapture)，useCapture为true时，为捕获型事件。<br>
+<br>
+3.事件委托<br>
+利用冒泡的原理，把事件加到父级上，触发执行效果。使用事件委托技术能让你避免对特定的每个节点添加事件监听器。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。<br>
 <br>
 <br>
-
 
 
 

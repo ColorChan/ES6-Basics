@@ -256,8 +256,8 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
 <br>
 <br>
 ##  Underlying Javascript / Javascript 底层
-**闭包**<br>
-在内层的函数捕获了定义在外层函数中的变量，并把内层函数传递到外层函数的作用域之外执行，则外层函数的 context 不能销毁，就形成了闭包。<br>
+**Closure闭包**<br>
+在内层的函数捕获了定义在外层函数中的变量，并把内层函数传递到外层函数的作用域之外执行，则外层函数的context不能销毁，就形成了闭包。<br>
 把内层函数传递到外层函数的作用域之外有很多方法，最常见的是使用return。<br>
 其它的方法还有把内层函数赋值给全局对象的属性，或者设置为某个控件的事件处理程序，甚至使用setTimeout和setInterval都可以。<br>
 <br>
@@ -275,27 +275,27 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
 这样每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度的节省了内存。<br>
 另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。<br>
 ``` bash
-    function Person(name, age){
-      this.name = name;
-      this.age = age;
-      this.friends = ["乾隆","康熙"];
+  function Person(name, age){
+    this.name = name;
+    this.age = age;
+    this.friends = ["乾隆","康熙"];
+  }
+  Person.prototype = {
+    constructor:Person,
+    sayName:function(){
+      alert(this.name);
     }
-    Person.prototype = {
-      constructor:Person,
-      sayName:function(){
-        alert(this.name);
-      }
-    }
-    var person1 = new Person("wei",29);
-    var person2 = new Person("bu",25);
-    person1.friends.push("嬴政");
-    console.log(person1.friends); //["乾隆", "康熙", "嬴政"]
-    console.log(person2.friends); //["乾隆", "康熙"]
-    console.log(person1.friends === person2.friends); //false
-    console.log(person1.sayName === person2.sayName); //true    
+  }
+  var person1 = new Person("wei",29);
+  var person2 = new Person("bu",25);
+  person1.friends.push("嬴政");
+  console.log(person1.friends); //["乾隆", "康熙", "嬴政"]
+  console.log(person2.friends); //["乾隆", "康熙"]
+  console.log(person1.friends === person2.friends); //false
+  console.log(person1.sayName === person2.sayName); //true    
 ``` 
 在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性constructor和方法sayName()则是在原型中定义的。所以修改了person1.friends并不会改变person2.friends，因为他们分别引用了不同的数组。<br>  
-这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。
+这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。<br>
 <br>
 **Arguments对象**<br>
 函数内使用，返回函数的实际参数。<br>
@@ -306,7 +306,128 @@ if(arguments.callee.length == arguments.length ){ ...do something(形参与实�
 作用: 扩充函数作用域，并且对象和方法不需要有任何耦合关系。<br>
 <br>
 <br>
-##   AJAX
+##   Ajax(Asynchronous JavaScript and XML)
+**Ajax原理**<br>
+Ajax的工作原理相当于在用户和服务器之间加了一个中间层(ajax引擎),使用户操作与服务器响应异步化。<br>
+并不是所有的用户请求都提交给服务器,像—些数据验证(比如判断用户是否输入了数据)和数据处理(比如判断用户输入数据是否是数字)等都交给Ajax引擎自己来做, 只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求。<br>
+<br>
+**Ajax优缺点**<br>
+1.优点<br>
+无刷新更新数据,异步与服务器通信,前端和后端负载平衡,广泛支持,界面与应用分离
+<br>
+2.缺点<br>
+Back和加入收藏书签功能失效,AJAX的安全问题
+<br>
+**XMLhttpRequest**<br>
+为了使用JavaScript向服务器发出 HTTP 请求，需要一个提供此功能的类的实例。<br>
+1.属性<br>
+onreadystatechange<br>
+一个JavaScript函数对象，当readyState属性改变时会调用它。回调函数会在user interface线程中调用。<br>
+readyState<br>
+HTTP 请求的状态，每次这个属性的值增加的时候，都会触发 onreadystatechange。<br>
+``` bash
+0  Uninitialized   初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置。
+1  Open	           Open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。
+2  Sent	           Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。
+3  Receiving       所有响应头部都已经接收到。响应体开始接收但未完成。
+4  Loaded	       HTTP 响应已经完全接收。
+```
+responseText<br>
+目前为止为服务器接收到的响应体。<br>
+如果readyState<3，这个属性就是一个空字符串。当readyState=3，这个属性返回目前已经接收的响应部分。如果readyState=4，这个属性保存了完整的响应体。<br>
+responseXML<br>
+对请求的响应，解析为 XML 并作为 Document 对象返回。<br>
+status<br>
+由服务器返回的HTTP状态代码，当 readyState<3的时候读取这一属性会导致一个异常。<br>
+2.方法<br>
+abort()  取消当前响应，关闭连接并且结束任何未决的网络活动。<br>
+这个方法把 XMLHttpRequest 对象重置为 readyState 为 0 的状态，并且取消所有未决的网络活动。<br>
+getResponseHeader()  返回指定的 HTTP 响应头部的值。<br>
+其参数是要返回的 HTTP 响应头部的名称。如果没有接收到这个头部或者readyState<3则为空字符串。如果接收到多个有指定名称的头部，这个头部的值被连接起来并返回。<br>
+<br>
+open()初始化一个请求。<br>
+_参数_<br>
+method    请求所使用的HTTP方法。<br>
+url       该请求所要访问的URL<br>
+async     可选布尔值，默认true，意味着是否执行异步操作，如果值为false,则send()方法直到接受到了服务器的返回数据才会返回。如果为值为true，一个对开发者透明的通知会发送到相关的事件监听者。<br>
+user      用户名,可选,默认空String<br>
+password  密码,可选,默认空String<br>
+<br>
+send()  发送 HTTP 请求<br>
+<br>
+setRequestHeader()  向一个打开但未发送的请求设置或添加一个 HTTP 请求(设置请求头)<br>
+_参数_<br>
+header 将要被赋值的请求头名称<br>
+value  给指定的请求头赋的值<br>
+<br>
+**Ajax原生js实现**<br>
+``` bash
+    var ajax = {};
+    ajax.httpRequest = function () {
+      //判断是否支持XMLHttpRequest对象
+      if (window.XMLHttpRequest) {
+        return new XMLHttpRequest()
+      }
+      //兼容IE浏览器
+      var versions = [
+        "MSXML2.XmlHttp.6.0",
+        "MSXML2.XmlHttp.5.0",
+        "MSXML2.XmlHttp.4.0",
+        "MSXML2.XmlHttp.3.0",
+        "MSXML2.XmlHttp.2.0",
+        "Microsoft.XmlHttp"
+      ];
+      //定义局部变量xhr,储存IE浏览器的ActiveXObject对象
+      var xhr;
+      for (var i = 0; i < versions.length; i++) {
+        try {
+          xhr = new ActiveXObject(versions[i])
+          break
+        } catch (e) {
+        }
+      }
+      return xhr
+    }
+    ajax.send = function (url, callback, method, data, async) {
+      //默认异步
+      if (async === undefined) {
+        async = true
+      }
+      var httpRequest = ajax.httpRequest()
+      //初始化HTTP请求
+      httpRequest.open(method, url, async)
+      //onreadystatechange函数对象
+      httpRequest.onreadystatechange = function () {
+        //readyState 的值等于4，从服务器拿到了数据
+        if (httpRequest.readyState == 4) {
+          //回调服务器响应数据
+          callback(httpRequest.responseText)
+        }
+      }
+      if (method == 'POST') {
+        //给指定的HTTP请求头赋值
+        httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      }
+      //发送HTTP请求
+      httpRequest.send(data)
+    };
+    //实现GET请求
+    ajax.get = function (url, data, callback, async) {
+      var query = []
+      for (var key in data) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      }
+      ajax.send(url + (query.length ? '?' + query.join('&') : ''), callback, 'GET', null, async)
+    }
+    //实现POST请求
+    ajax.post = function (url, data, callback, async) {
+      var query = []
+      for (var key in data) {
+        query.push(encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      }
+      ajax.send(url, callback, 'POST', query.join('&'), async)
+    }
+```
 <br>
 <br>
 ##   事件流

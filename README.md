@@ -313,10 +313,11 @@ Ajax的工作原理相当于在用户和服务器之间加了一个中间层(aja
 无刷新更新数据,异步与服务器通信,前端和后端负载平衡,广泛支持,界面与应用分离
 <br>
 2.缺点<br>
-Back和加入收藏书签功能失效,AJAX的安全问题
+Back和加入收藏书签功能失效,AJAX的安全问题<br>
 <br>
 **XMLhttpRequest**<br>
 为了使用JavaScript向服务器发出 HTTP 请求，需要一个提供此功能的类的实例。<br>
+<br>
 1.属性<br>
 onreadystatechange<br>
 一个JavaScript函数对象，当readyState属性改变时会调用它。回调函数会在user interface线程中调用。<br>
@@ -339,6 +340,7 @@ responseXML<br>
 <br>
 status<br>
 由服务器返回的HTTP状态代码，当 readyState<3的时候读取这一属性会导致一个异常。<br>
+<br>
 2.方法<br>
 abort()  取消当前响应，关闭连接并且结束任何未决的网络活动。<br>
 这个方法把 XMLHttpRequest 对象重置为 readyState 为 0 的状态，并且取消所有未决的网络活动。<br>
@@ -347,7 +349,7 @@ getResponseHeader()  返回指定的 HTTP 响应头部的值。<br>
 其参数是要返回的 HTTP 响应头部的名称。如果没有接收到这个头部或者readyState<3则为空字符串。如果接收到多个有指定名称的头部，这个头部的值被连接起来并返回。<br>
 <br>
 open()初始化一个请求。<br>
-_参数_<br>
+参数<br>
 method    请求所使用的HTTP方法。<br>
 url       该请求所要访问的URL<br>
 async     可选布尔值，默认true，意味着是否执行异步操作，如果值为false,则send()方法直到接受到了服务器的返回数据才会返回。如果为值为true，一个对开发者透明的通知会发送到相关的事件监听者。<br>
@@ -357,7 +359,7 @@ password  密码,可选,默认空String<br>
 send()  发送 HTTP 请求<br>
 <br>
 setRequestHeader()  向一个打开但未发送的请求设置或添加一个 HTTP 请求(设置请求头)<br>
-_参数_<br>
+参数<br>
 header 将要被赋值的请求头名称<br>
 value  给指定的请求头赋的值<br>
 <br>

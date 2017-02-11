@@ -128,6 +128,32 @@ SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Ser
 负载均衡
 <br>
 <br>
+##   HTTP Cache / HTTP 缓存
+浏览器是如何知道使用缓存的，浏览器将最后修改时间发送请求给web服务器，web服务器收到请求后跟服务器上的文档最后修改的时间对比，如果web服务器上最新文档修改时间小于或者等于浏览器发送过来的，则发送304给浏览器，使用缓存版本。<br>
+缓存的好处:<br>
+1. 减少了冗余的数据传输<br>
+2. 减少了服务器的负担， 大大提高了网站的性能<br>
+3. 加快了客户端加载网页的速度<br>
+<br>
+<br>
+##   HTTP Status Code / HTTP状态码
+1XX  表示消息<br>
+2XX  表示成功<br>
+3XX  表示重定向<br>
+4XX  表示请求错误<br>
+5XX  表示服务器端错误<br>
+<br>
+100 Continue  初始的请求已经接受，客户应当继续发送请求的其余部分<br>
+200 OK  一切正常，对GET和POST请求的应答文档跟在后面<br>
+300 Multiple Choices  客户请求的文档可以在多个位置找到，这些位置已经在返回的文档内列出。如果服务器要提出优先选择，则应该在Location应答头指明。<br>
+301 Moved Permanently  重定向，客户请求的文档在其他地方，新的URL在Location头中给出，浏览器应该自动地访问新的URL<br>
+304 Not Modified  客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。<br>
+400 Bad Request  请求出现语法错误。<br>
+404 Not Found  无法找到指定位置的资源<br>
+500 Internal Server Error  服务器遇到了意料不到的情况，不能完成客户的请求<br>
+501 Not Implemented  服务器不支持实现请求所需要的功能。<br>
+<br>
+<br>
 ##    Yahoo Rules / Yahoo性能优化
 1、尽量减少HTTP请求个数<br>
 合并图片（如css sprites，base64）、合并CSS、JS，但是要考虑合并后的文件体积。<br>
@@ -185,7 +211,6 @@ HTTP请求时间消耗是很大的，有些站点把404错误响应页面改为�
 28、用<link>代替@import<br>
 在IE中，页面底部@import和使用<link>作用是一样的，因此最好不要使用它。<br>
 29、避免使用滤镜<br>
-完全避免使用AlphaImageLoader的最好方法就是使用PNG8格式来代替，这种格式能在IE中很好地工作。如果你确实需要使用 AlphaImageLoader，请使用下划线_filter又使之对IE7以上版本的用户无效。<br>
 30、优化图像<br>
 尝试把GIF格式转换成PNG格式。<br>
 31、优化CSS Spirite<br>
@@ -202,13 +227,91 @@ Imagemagick可以帮你创建小巧的favicon。<br>
 页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组件（切记：HTTP请求是很奢侈的）。当你使用这条规则时，首先要确定用户代理是否支持（iPhone就不支持）。<br>
 <br>
 <br>
+##   React Virtual DOM / React虚拟DOM
+Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来渲染UI，当组件状态state有更改的时候，React在这个虚拟DOM上实现了一个diff算法，会通过diff寻找到要变更的DOM节点，再把这个修改更新到浏览器实际的DOM节点上(自动调用组件的Render方法)，实际上不是真的渲染整个DOM树。
 <br>
 <br>
-
-
-
-
-
+##   AJAX
+<br>
+<br>
+##   SEO
+**语义化**<br>
+1.标签语义化对搜索引擎友好，良好的结构和语义容易被搜索引擎抓取。<br>
+2.善用标题h1-6，特别是h1和h2，可提升排名。同时设置rel=“nofollow”指定 Google 搜索引擎不要跟踪链接(尽管浏览器不会以任何方式使用rel与rev属性，不过搜索引擎可以利用该属性获得更多有关链接的信息)。<br>
+3.HTML5中使用Microdata对页面上已经存在的数据提供附加的语义。<br>
+<br>
+**衡量站点关键词优化**<br>
+站点内容关键词的选择、描述、分布、替代。<br>
+<br>
+**链接**<br>
+1.优化文件目录结构和URL。URL应该有语义性，简短易懂。<br>
+2.推广<br>
+3.锚文本 ：把关键词做一个链接，指向别的网页，这种形式的链接就叫作锚文本。搜索引擎可以根据指向某一个网页的链接的锚文本描述来判断该网页的内容属性。<br>
+<br>
+**良好的导航和sitemap**<br>
+良好的导航，通过sitemap可以帮助网站主了解网站结构，也方便搜索引擎收录整个站点。<br>
+<br>
+<br>
+##   AJAX
+<br>
+<br>
+##  Underlying Javascript / Javascript 底层
+**闭包**<br>
+在内层的函数捕获了定义在外层函数中的变量，并把内层函数传递到外层函数的作用域之外执行，则外层函数的 context 不能销毁，就形成了闭包。<br>
+把内层函数传递到外层函数的作用域之外有很多方法，最常见的是使用return。<br>
+其它的方法还有把内层函数赋值给全局对象的属性，或者设置为某个控件的事件处理程序，甚至使用setTimeout和setInterval都可以。<br>
+<br>
+**原型、原型链**<br>
+原型对象.constructor == 构造函数<br>
+构造函数.prototype == 原型对象<br>
+<br>
+**面向对象**<br>
+<br>
+**Class**<br>
+<br>
+**继承**<br>
+3.混合继承 - 组合使用构造函数模式和原型模式<br>
+创建自定义类型最常见的方式就是组合使用构造函数模式与原型模式。构造函数模式用于定义实例属性，原型模式用于定义方法和共享的属性。<br>
+这样每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度的节省了内存。<br>
+另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。<br>
+<code>
+    function Person(name, age){
+      this.name = name;
+      this.age = age;
+      this.friends = ["乾隆","康熙"];
+    }
+    Person.prototype = {
+      constructor:Person,
+      sayName:function(){
+        alert(this.name);
+      }
+    }
+    var person1 = new Person("wei",29);
+    var person2 = new Person("bu",25);
+    person1.friends.push("嬴政");
+    console.log(person1.friends); //["乾隆", "康熙", "嬴政"]
+    console.log(person2.friends); //["乾隆", "康熙"]
+    console.log(person1.friends === person2.friends); //false
+    console.log(person1.sayName === person2.sayName); //true    
+</code>
+在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性constructor和方法sayName()则是在原型中定义的。所以修改了person1.friends并不会改变person2.friends，因为他们分别引用了不同的数组。<br>  
+这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。
+<br>
+**Arguments对象**<br>
+函数内使用，返回函数的实际参数。<br>
+arguments.length 返回实参个数（Array）<br>
+if(arguments.callee.length == arguments.length ){ ...do something(形参与实参数量相等) }<br>
+<br>
+**Call,Apply**<br>
+作用: 扩充函数作用域，并且对象和方法不需要有任何耦合关系。<br>
+<br>
+<br>
+##   AJAX
+<br>
+<br>
+##   AJAX
+<br>
+<br>
 
 
 

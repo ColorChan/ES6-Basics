@@ -6,7 +6,7 @@ Basics of EcmaScript 6
 <br>
 1.Bubble Sort<br>
 冒泡排序（Bubble Sort）它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br>
-```bash
+``` bash
 let bubbleSort = (arr) => {
       for (let i in arr) {
         for (let j = 0; j < arr.length - 1 - i; j++) {
@@ -21,18 +21,84 @@ let bubbleSort = (arr) => {
 <br>
 2.Selection Sort<br>
 选择排序(Selection Sort)是表现最稳定的排序算法之一，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。唯一的好处就是不占用额外的内存空间。<br>
+``` bash
+let selectionSort = (arr) => {
+      for (let i = 0; i < arr.length - 1; i++) {
+        let minIndex = null;
+        minIndex = i
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[j] < arr[minIndex]) {
+            [arr[j], arr[minIndex]] = [arr[minIndex], arr[j]]
+          }
+        }
+      }
+      console.log('2.SelectionSort  ' + arr)
+    }
+```
 <br>
 3.Insertion Sort<br>
 插入排序(Insertion Sort)将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列，从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面）。<br>
+``` bash
+ let insertionSort = (arr) => {
+      var preIndex, current;
+      for (let i in arr) {
+        preIndex = i - 1;
+        current = arr[i];
+        while(preIndex >= 0 && arr[preIndex] > current) {
+          arr[preIndex + 1] = arr[preIndex];
+          preIndex--;
+        }
+        arr[preIndex + 1] = current;
+      }
+      console.log('3.InsertionSort ' + arr);
+    }
+```
 <br>
 4.Shell Sort<br>
 希尔排序(Shell Sort)也称递减增量排序算法，是插入排序的一种更高效的改进版本。但希尔排序是非稳定排序算法。基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。<br>
+``` bash
+let shellSort = (arr) => {
+      let temp = null
+      let gap = 1
+      while (gap < arr.length / 3) {
+        gap = gap * 3 + 1
+      }
+      for (gap; gap > 0; gap = Math.floor(gap / 3)) {
+        for (let i = gap; i < arr.length; i++) {
+          temp = arr[i]
+          for (var j = i - gap; j >= 0 && arr[j] > temp; j -= gap) {
+            arr[j + gap] = arr[j]
+          }
+          arr[j + gap] = temp
+        }
+      }
+      console.log('4.ShellSort  ' + arr)
+    }
+```
 <br>
 5.<br>
 归并排序<br>
 <br>
 6.Quick Sort<br>
 快速排序(Quick Sort)（1）在数据集之中，找一个基准点。（2）建立两个数组，分别存储左边和右边的数组。（3）利用递归进行下次比较<br>
+<br>
+7.Binary Search<br>
+二分查找<br>
+``` bash
+    let binarySearch = (arr, item, start, end) => {
+      var end = end || arr.length - 1;
+      var start = 1;
+      var m = Math.floor((start + end) / 2);
+      if(item == arr[m]){
+        console.log('在数组的第' + (m + 1) + '位')
+      }else if(item < arr[m]){
+        return binarySearch(arr, item, start, m - 1)
+      }else{
+        return binarySearch(arr, item, m + 1, end);
+      }
+      return false;
+    }
+```
 <br>
 <br>
 ##   Difference between  Cookie,sessionStorage,localStorage / Cookie,sessionStorage,localStorage的区别

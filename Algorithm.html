@@ -90,16 +90,16 @@
      * 7. Binary Search 二分查找
      */
     var arr = [3, 1, 2, 5, 8, 7, 6, 4]
-    let binarySearch = (data,item,start,end) => {
-      var end= end || data.length-1;
-      var start=1;
-      var m=Math.floor((start+end)/2);
-      if(item==data[m]){
-        console.log('在数组的第' + (m + 1) +'位')
-      }else if(item<data[m]){
-        return binarySearch(data,item,start,m-1)
+    let binarySearch = (arr, item, start, end) => {
+      var end = end || arr.length - 1;
+      var start = 1;
+      var m = Math.floor((start + end) / 2);
+      if(item == arr[m]){
+        console.log('在数组的第' + (m + 1) + '位')
+      }else if(item < arr[m]){
+        return binarySearch(arr, item, start, m - 1)
       }else{
-        return binarySearch(data,item,m+1,end);
+        return binarySearch(arr, item, m + 1, end);
       }
       return false;
     }

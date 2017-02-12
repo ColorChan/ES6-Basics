@@ -6,6 +6,18 @@ Basics of EcmaScript 6
 <br>
 1.Bubble Sort<br>
 冒泡排序（Bubble Sort）它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br>
+```bash
+let bubbleSort = (arr) => {
+      for (let i in arr) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+          if (arr[j] > arr[j+1]) {
+            [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+          }
+        }
+      }
+      console.log('1.BubbleSort  ' + arr)
+    }
+```
 <br>
 2.Selection Sort<br>
 选择排序(Selection Sort)是表现最稳定的排序算法之一，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。唯一的好处就是不占用额外的内存空间。<br>
@@ -229,9 +241,6 @@ Imagemagick可以帮你创建小巧的favicon。<br>
 <br>
 ##   React Virtual DOM / React虚拟DOM
 Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来渲染UI，当组件状态state有更改的时候，React在这个虚拟DOM上实现了一个diff算法，会通过diff寻找到要变更的DOM节点，再把这个修改更新到浏览器实际的DOM节点上(自动调用组件的Render方法)，实际上不是真的渲染整个DOM树。
-<br>
-<br>
-##   AJAX
 <br>
 <br>
 ##   SEO

@@ -24,7 +24,7 @@ let bubbleSort = (arr) => {
 ``` bash
 let selectionSort = (arr) => {
       for (let i = 0; i < arr.length - 1; i++) {
-        let minIndex = null;
+        let minIndex = null
         minIndex = i
         for (let j = i + 1; j < arr.length; j++) {
           if (arr[j] < arr[minIndex]) {
@@ -40,17 +40,17 @@ let selectionSort = (arr) => {
 插入排序(Insertion Sort)将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列，从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面）。<br>
 ``` bash
  let insertionSort = (arr) => {
-      var preIndex, current;
+      var preIndex, current
       for (let i in arr) {
-        preIndex = i - 1;
-        current = arr[i];
+        preIndex = i - 1
+        current = arr[i]
         while(preIndex >= 0 && arr[preIndex] > current) {
-          arr[preIndex + 1] = arr[preIndex];
-          preIndex--;
+          arr[preIndex + 1] = arr[preIndex]
+          preIndex--
         }
-        arr[preIndex + 1] = current;
+        arr[preIndex + 1] = current
       }
-      console.log('3.InsertionSort ' + arr);
+      console.log('3.InsertionSort ' + arr)
     }
 ```
 <br>
@@ -86,17 +86,17 @@ let shellSort = (arr) => {
 二分查找<br>
 ``` bash
     let binarySearch = (arr, item, start, end) => {
-      var end = end || arr.length - 1;
-      var start = 1;
-      var m = Math.floor((start + end) / 2);
+      var end = end || arr.length - 1
+      var start = 1
+      var m = Math.floor((start + end) / 2)
       if(item == arr[m]){
         console.log('在数组的第' + (m + 1) + '位')
       }else if(item < arr[m]){
         return binarySearch(arr, item, start, m - 1)
       }else{
-        return binarySearch(arr, item, m + 1, end);
+        return binarySearch(arr, item, m + 1, end)
       }
-      return false;
+      return false
     }
 ```
 <br>
@@ -114,8 +114,7 @@ let shellSort = (arr) => {
 <br>
 ##   Principle of JSONP / JSONP原理
 是利用<code>&lt;script&gt;</code>标签没有跨域限制的“漏洞”来达到与第三方通讯的目的。当需要通讯时，本站脚本创建一个<code>&lt;script&gt;</code>元素，地址指向第三方的API网址，形如： <br>
-<code>&lt;script&nbsp;src="http://www.example.net/api?param1=1&param2=2"&gt;&lt;/script&gt;</code>
-<script src="http://www.example.net/api?param1=1&param2=2"></script> <br>
+<code>&lt;script&nbsp;src="http://www.example.net/api?param1=1&param2=2"</code><code>&gt;&lt;/script&gt;</code>
 并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。 <br>
 第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如： <br>
 callback({"name":"hax","gender":"Male"}) <br>

@@ -10,8 +10,8 @@ Basics of EcmaScript 6
 let bubbleSort = (arr) => {
       for (let i in arr) {
         for (let j = 0; j < arr.length - 1 - i; j++) {
-          if (arr[j] > arr[j+1]) {
-            [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+          if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
           }
         }
       }
@@ -113,7 +113,8 @@ let shellSort = (arr) => {
 <br>
 <br>
 ##   Principle of JSONP / JSONP原理
-是利用<script>标签没有跨域限制的“漏洞”（历史遗迹啊）来达到与第三方通讯的目的。当需要通讯时，本站脚本创建一个<script>元素，地址指向第三方的API网址，形如： <br>
+是利用<code>&lt;script&gt;</code>标签没有跨域限制的“漏洞”来达到与第三方通讯的目的。当需要通讯时，本站脚本创建一个<code>&lt;script&gt;</code>元素，地址指向第三方的API网址，形如： <br>
+<code>&lt;script&nbsp;src="http://www.example.net/api?param1=1&param2=2"&gt;&lt;/script&gt;</code>
 <script src="http://www.example.net/api?param1=1&param2=2"></script> <br>
 并提供一个回调函数来接收数据（函数名可约定，或通过地址参数传递）。 <br>
 第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如： <br>

@@ -2,6 +2,47 @@
 Basics of EcmaScript 6
 
 ##  Data Structure and Algorithm / 数据结构与算法
+**数据结构**<br>
+<br>
+1.栈(Stack)<br>
+只能在栈顶添加或删除，快，后入先出(LIFO)<br>
+``` bash
+    class Stack{
+      constructor () {
+        this.dataStore = []
+        this.top = 0
+      }
+      push (el) {
+        this.dataStore[this.top++] = el
+      }
+      peek () {
+        return this.dataStore[this.top - 1]
+      }
+      pop () {
+        return this.dataStore[--this.top]
+      }
+      clear () {
+        this.dataStore = []
+        this.top = 0
+      }
+      length () {
+        return this.top
+      }
+    }
+    var stack = new Stack()
+```
+stack.push(el):向栈顶推入一个元素<br>
+stack.peek():返回当前栈顶元素<br>
+stack.pop():删除并返回当前栈顶元素<br>
+stack.clear():清空栈内元素<br>
+stack.length():返回栈内元素个数<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 **算法**<br>
 <br>
 1.Bubble Sort<br>

@@ -144,6 +144,41 @@
       }
     }
     var stack = new Stack()
+
+    /**
+     * 1.队列的实现-FIFO
+     */
+    class Queue {
+      constructor () {
+        this.dataStore = []
+      }
+      enqueue (el) {
+        this.dataStore.push(el)
+      }
+      dequeue () {
+        return this.dataStore.shift()
+      }
+      readfront () {
+        return this.dataStore[0]
+      }
+      readback () {
+        return this.dataStore[this.dataStore.length - 1]
+      }
+      toString () {
+        let str = ''
+        for (let i of this.dataStore) {
+          str += i + '\n'
+        }
+        return str
+      }
+      empty () {
+        if (this.dataStore.length === 0) {
+          return true
+        }
+        return false
+      }
+    }
+    var queue = new Queue()
     
 
   </script>
@@ -175,7 +210,8 @@ Array = [3, 1, 2, 5, 8, 7, 6, 4]<br>
 数据结构<br>
 1.栈(Stack)<br>
 只能在栈顶添加或删除，快，后入先出(LIFO)<br>
-<br>
+2.队列(Queue)<br>
+只能在队首删除，队尾添加，先入先出(FIFO)<br>
 <br>
 <br>
 </body>

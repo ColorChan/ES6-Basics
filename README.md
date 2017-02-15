@@ -37,6 +37,47 @@ stack.pop():删除并返回当前栈顶元素<br>
 stack.clear():清空栈内元素<br>
 stack.length():返回栈内元素个数<br>
 <br>
+2.队列(Queue)<br>
+只能在队首删除，队尾添加，先入先出(FIFO)<br>
+``` bash
+class Queue {
+      constructor () {
+        this.dataStore = []
+      }
+      enqueue (el) {
+        this.dataStore.push(el)
+      }
+      dequeue () {
+        return this.dataStore.shift()
+      }
+      readfront () {
+        return this.dataStore[0]
+      }
+      readback () {
+        return this.dataStore[this.dataStore.length - 1]
+      }
+      toString () {
+        let str = ''
+        for (let i of this.dataStore) {
+          str += i + '\n'
+        }
+        return str
+      }
+      empty () {
+        if (this.dataStore.length === 0) {
+          return true
+        }
+        return false
+      }
+    }
+    var queue = new Queue()
+```
+queue.enqueue(el):向队尾添加一个元素<br>
+queue.dequeue():删除队首元素<br>
+queue.readfront():读取队首元素<br>
+queue.readback():读取队尾元素<br>
+queue.toString():读取队列所有元素<br>
+queue.empty():判断队列是否为空<br>
 <br>
 <br>
 <br>

@@ -86,39 +86,7 @@ queue.empty():判断队列是否为空<br>
 <br>
 **算法**<br>
 <br>
-1.Bubble Sort<br>
-冒泡排序（Bubble Sort）它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。<br>
-``` bash
-let bubbleSort = (arr) => {
-      for (let i in arr) {
-        for (let j = 0; j < arr.length - 1 - i; j++) {
-          if (arr[j] > arr[j + 1]) {
-            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
-          }
-        }
-      }
-      console.log('1.BubbleSort  ' + arr)
-    }
-```
-<br>
-2.Selection Sort<br>
-选择排序(Selection Sort)是表现最稳定的排序算法之一，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。唯一的好处就是不占用额外的内存空间。<br>
-``` bash
-let selectionSort = (arr) => {
-      for (let i = 0; i < arr.length - 1; i++) {
-        let minIndex = null
-        minIndex = i
-        for (let j = i + 1; j < arr.length; j++) {
-          if (arr[j] < arr[minIndex]) {
-            [arr[j], arr[minIndex]] = [arr[minIndex], arr[j]]
-          }
-        }
-      }
-      console.log('2.SelectionSort  ' + arr)
-    }
-```
-<br>
-3.Insertion Sort<br>
+1.Insertion Sort<br>
 插入排序(Insertion Sort)将第一待排序序列第一个元素看做一个有序序列，把第二个元素到最后一个元素当成是未排序序列，从头到尾依次扫描未排序序列，将扫描到的每个元素插入有序序列的适当位置。（如果待插入的元素与有序序列中的某个元素相等，则将待插入元素插入到相等元素的后面）。<br>
 ``` bash
  let insertionSort = (arr) => {
@@ -136,7 +104,7 @@ let selectionSort = (arr) => {
     }
 ```
 <br>
-4.Shell Sort<br>
+2.Shell Sort<br>
 希尔排序(Shell Sort)也称递减增量排序算法，是插入排序的一种更高效的改进版本。但希尔排序是非稳定排序算法。基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。<br>
 ``` bash
 let shellSort = (arr) => {
@@ -158,10 +126,10 @@ let shellSort = (arr) => {
     }
 ```
 <br>
-5.<br>
+3.<br>
 归并排序<br>
 <br>
-6.Quick Sort<br>
+4.Quick Sort<br>
 快速排序(Quick Sort)（1）在数据集之中，找一个基准点。（2）建立两个数组，分别存储左边和右边的数组。（3）利用递归进行下次比较<br>
 <br>
 7.Binary Search<br>

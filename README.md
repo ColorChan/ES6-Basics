@@ -574,4 +574,8 @@ element.addEventListener(event, function, useCapture)，useCapture为true时，�
 <br>
 
 
+Web APP特点：MVC，后端的Model层很简单，随着产品业务的拓展前端View却变得越来越复杂，这个时候如果还在用纯jQuery去写DOM操作将会变得很不直观，代码也会变的很臃肿进而变的越来越难以维护<br>
 
+React DOM diff 算法 : DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，极大提高网页的性能表现。<br>
+react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。<br>
+JSX 的语法，它允许 HTML 与 JavaScript 的混写<br>

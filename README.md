@@ -558,11 +558,48 @@ value  给指定的请求头赋的值<br>
 ```
 <br>
 <br>
-##  DOM 事件流
-**1.冒泡事件流**<br>
-当事件在某一DOM元素被触发时，事件将跟随着该节点继承自的各个父节点冒泡穿过整个的DOM节点层次，如果不停止事件的传播，事件将一直通过DOM冒泡直至到达文档根。<br>
-在冒泡过程中的任何时候都可以终止事件的冒泡，在遵从W3C标准的浏览器里可以通过调用事件对象上的stopPropagation()方法，在Internet Explorer里可以通过设置事件对象的cancelBubble属性为true。<br>
-element.addEventListener(event, function, useCapture)，useCapture为false(默认值)或置空时，事件句柄在冒泡阶段执行。<br>
+##  Flex布局(Flexible Box)
+**1.容器**<br>
+任何一个容器都可以指定为Flex布局 display: flex | inline-flex;<br>
+设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。<br>
+<br>
+以下6个属性设置在容器上<br>
+<br>
+flex-flow: <flex-direction> || <flex-wrap>;是flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap<br>
+flex-direction: row(default) | row-reverse | column | column-reverse;决定主轴的方向（即项目的排列方向）<br>
+flex-wrap: nowrap（default） | wrap | wrap-reverse;决定换行规则<br>
+<br>
+justify-content: flex-start | flex-end | center | space-between | space-around;定义了项目在主轴上的对齐方式。<br>
+flex-start（default）：左对齐<br>
+flex-end：右对齐<br>
+center： 居中<br>
+space-between：两端对齐，项目之间的间隔都相等<br>
+space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍<br>
+align-items: stretch | flex-start | flex-end | center | baseline;定义项目在交叉轴上的对齐规则。<br>
+stretch（default）：如果项目未设置高度或设为auto，将占满整个容器的高度。<br>
+flex-start：交叉轴的起点对齐。<br>
+flex-end：交叉轴的终点对齐。<br>
+center：交叉轴的中点对齐。<br>
+baseline: 项目的第一行文字的基线对齐。<br>
+align-content: stretch | flex-start | flex-end | center | space-between | space-around;<br>
+stretch（default）：轴线占满整个交叉轴。<br>
+flex-start：与交叉轴的起点对齐。<br>
+flex-end：与交叉轴的终点对齐。<br>
+center：与交叉轴的中点对齐。<br>
+space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。<br>
+space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。<br>
+<br>
+**2.项目**<br>
+以下6个属性设置在项目上<br>
+<br>
+flex: none | [ <'flex-grow'> <'flex-shrink'> || <'flex-basis'> ];是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br>
+flex-grow: <number>/* default 0 */;定义项目的放大比例，默认不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间,如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。<br>
+flex-shrink: <number>; /* default 1 */定义了项目的缩小比例，默认空间不足，该项目将缩小。<br>
+<br>
+order: <integer>/* default 0 */;定义项目的排列顺序。数值越小，排列越靠前。<br>
+flex-basis: <length> | auto; /* default auto */设置或检索弹性盒伸缩基准值。<br>
+align-self: auto（default） | flex-start | flex-end | center | baseline | stretch;允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。<br>
+<br>
 <br>
 2.捕获事件流<br>
 事件的处理将从DOM层次的根开始，而不是从触发事件的目标元素开始，事件被从目标元素的所有祖先元素依次往下传递。<br>
@@ -572,10 +609,26 @@ element.addEventListener(event, function, useCapture)，useCapture为true时，�
 利用冒泡的原理，把事件加到父级上，触发执行效果。使用事件委托技术能让你避免对特定的每个节点添加事件监听器。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。<br>
 <br>
 <br>
-
+##  DOM 事件流
+**1.冒泡事件流**<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 Web APP特点：MVC，后端的Model层很简单，随着产品业务的拓展前端View却变得越来越复杂，这个时候如果还在用纯jQuery去写DOM操作将会变得很不直观，代码也会变的很臃肿进而变的越来越难以维护<br>
 
 React DOM diff 算法 : DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，极大提高网页的性能表现。<br>
 react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。<br>
 JSX 的语法，它允许 HTML 与 JavaScript 的混写<br>
+<br>
+<br>

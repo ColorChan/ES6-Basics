@@ -135,18 +135,13 @@ let shellSort = (arr) => {
 7.Binary Search<br>
 二分查找<br>
 ``` bash
-    let binarySearch = (arr, item, start, end) => {
-      var end = end || arr.length - 1
-      var start = 1
-      var m = Math.floor((start + end) / 2)
-      if(item == arr[m]){
-        console.log('在数组的第' + (m + 1) + '位')
-      }else if(item < arr[m]){
-        return binarySearch(arr, item, start, m - 1)
-      }else{
-        return binarySearch(arr, item, m + 1, end)
+    let binarySearch = (arr, data) => {
+      var upperBound = arr.length - 1
+      var lowerBound = 0
+      let mid = null
+      while (lowerBound <= upperBound) {
+        
       }
-      return false
     }
 ```
 <br>

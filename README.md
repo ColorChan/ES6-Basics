@@ -126,15 +126,30 @@ let shellSort = (arr) => {
     }
 ```
 <br>
-3.<br>
-归并排序<br>
-<br>
-4.Quick Sort<br>
+3.Quick Sort<br>
 快速排序(Quick Sort)（1）在数据集之中，找一个基准点。（2）建立两个数组，分别存储左边和右边的数组。（3）利用递归进行下次比较<br>
+``` bash
+
+    let quickSort = (arr) => {
+      let lesser = []
+      let greater = []
+      let pivot = arr[0]
+      for (let i in arr) {
+        if (arr[i] < pivot) {
+          lesser.push(arr[i])
+        } else {
+          greater.push(arr[i])
+        }
+      }
+      return quickSort(lesser).concat(pivot, quickSort(greater))
+    }
+
+```
 <br>
 7.Binary Search<br>
 二分查找<br>
 ``` bash
+
     let binarySearch = (arr, data) => {
       var upperBound = arr.length - 1
       var lowerBound = 0
@@ -143,6 +158,7 @@ let shellSort = (arr) => {
         
       }
     }
+    
 ```
 <br>
 <br>
@@ -392,6 +408,7 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
 这样每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度的节省了内存。<br>
 另外，这种混成模式还支持向构造函数传递参数；可谓是集两种模式之长。<br>
 ``` bash
+
   function Person(name, age){
     this.name = name;
     this.age = age;
@@ -410,7 +427,8 @@ Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来�
   console.log(person2.friends); //["乾隆", "康熙"]
   console.log(person1.friends === person2.friends); //false
   console.log(person1.sayName === person2.sayName); //true    
-``` 
+  
+```
 在这个例子中，实例属性都是在构造函数中定义的，而由所有实例共享的属性constructor和方法sayName()则是在原型中定义的。所以修改了person1.friends并不会改变person2.friends，因为他们分别引用了不同的数组。<br>  
 这种构造函数与原型模式混成的模式，是目前在ECMAScript中使用最广泛、认同度最高的一种创建自定义类型的方法。<br>
 <br>
@@ -445,11 +463,13 @@ onreadystatechange<br>
 readyState<br>
 HTTP 请求的状态，每次这个属性的值增加的时候，都会触发 onreadystatechange。<br>
 ``` bash
+
 0  Uninitialized   初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置。
 1  Open	           Open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。
 2  Sent	           Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。
 3  Receiving       所有响应头部都已经接收到。响应体开始接收但未完成。
 4  Loaded	       HTTP 响应已经完全接收。
+
 ```
 responseText<br>
 目前为止为服务器接收到的响应体。<br>
@@ -485,6 +505,7 @@ value  给指定的请求头赋的值<br>
 <br>
 **Ajax原生js实现**<br>
 ``` bash
+
     var ajax = {};
     ajax.httpRequest = function () {
       //判断是否支持XMLHttpRequest对象
@@ -550,6 +571,7 @@ value  给指定的请求头赋的值<br>
       }
       ajax.send(url, callback, 'POST', query.join('&'), async)
     }
+    
 ```
 <br>
 <br>

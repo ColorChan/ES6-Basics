@@ -90,6 +90,25 @@
     /**
      * 6.Quick Sort 快速排序
      */
+    var arr = []
+    for (let i = 0; i < 9; i++) {
+      arr[i] = Math.floor((Math.random() * 10) + 1)
+    }
+    console.log(arr)
+    let quickSort = (arr) => {
+      let lesser = []
+      let greater = []
+      let pivot = arr[0]
+      for (let i in arr) {
+        if (arr[i] < pivot) {
+          lesser.push(arr[i])
+        } else {
+          greater.push(arr[i])
+        }
+      }
+      return quickSort(lesser).concat(pivot, quickSort(greater))
+    }
+    console.log(quickSort(arr))
 
     /**
      * 7. Binary Search 二分查找

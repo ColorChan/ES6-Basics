@@ -609,7 +609,7 @@ space-around：每根轴线两侧的间隔都相等。所以，轴线之间的�
 **2.项目**<br>
 以下6个属性设置在项目上<br>
 <br>
-flex: none | [ <'flex-grow'> <'flex-shrink'> || <'flex-basis'> ];是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br>
+flex: none | [ <flex-grow> <flex-shrink> || <flex-basis> ];是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br>
 flex-grow: <number>/* default 0 */;定义项目的放大比例，默认不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间,如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。<br>
 flex-shrink: <number>; /* default 1 */定义了项目的缩小比例，默认空间不足，该项目将缩小。<br>
 <br>

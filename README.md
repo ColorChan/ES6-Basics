@@ -618,16 +618,15 @@ flex-basis: <length> | auto; /* default auto */设置或检索弹性盒伸缩基
 align-self: auto（default） | flex-start | flex-end | center | baseline | stretch;允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。<br>
 <br>
 <br>
-2.捕获事件流<br>
+##  DOM 事件流
+**1.冒泡事件流**<br>
+<br>
+**2.捕获事件流**<br>
 事件的处理将从DOM层次的根开始，而不是从触发事件的目标元素开始，事件被从目标元素的所有祖先元素依次往下传递。<br>
 element.addEventListener(event, function, useCapture)，useCapture为true时，为捕获型事件。<br>
 <br>
-3.事件委托<br>
+**3.事件委托**<br>
 利用冒泡的原理，把事件加到父级上，触发执行效果。使用事件委托技术能让你避免对特定的每个节点添加事件监听器。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。<br>
-<br>
-<br>
-##  DOM 事件流
-**1.冒泡事件流**<br>
 <br>
 <br>
 <br>

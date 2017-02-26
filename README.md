@@ -1,5 +1,5 @@
 # ES6---Basics
-Basics of EcmaScript 6
+Basics of EcmaScript 6  
 
 ##  Data Structure and Algorithm / 数据结构与算法
 **数据结构**<br>

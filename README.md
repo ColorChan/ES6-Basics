@@ -647,4 +647,4 @@ React DOM diff 算法 : DOM 变动，都先在虚拟 DOM 上发生，然后再�
 react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。<br>
 JSX 的语法，它允许 HTML 与 JavaScript 的混写<br>
 <br>
-<br><br>
+<br><br><br><br>

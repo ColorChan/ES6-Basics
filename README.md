@@ -582,7 +582,7 @@ value  给指定的请求头赋的值<br>
 <br>
 以下6个属性设置在容器上<br>
 <br>
-flex-flow: <flex-direction> || <flex-wrap>;是flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap<br>
+flex-flow: &lt;flex-direction> || &lt;flex-wrap>;是flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap<br>
 flex-direction: row(default) | row-reverse | column | column-reverse;决定主轴的方向（即项目的排列方向）<br>
 flex-wrap: nowrap（default） | wrap | wrap-reverse;决定换行规则<br>
 <br>

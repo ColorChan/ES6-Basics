@@ -582,7 +582,7 @@ value  给指定的请求头赋的值<br>
 <br>
 以下6个属性设置在容器上<br>
 <br>
-flex-flow: &lt;flex-direction> || &lt;flex-wrap>;是flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap<br>
+flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap>;是flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap<br>
 flex-direction: row(default) | row-reverse | column | column-reverse;决定主轴的方向（即项目的排列方向）<br>
 flex-wrap: nowrap（default） | wrap | wrap-reverse;决定换行规则<br>
 <br>
@@ -609,12 +609,12 @@ space-around：每根轴线两侧的间隔都相等。所以，轴线之间的�
 **2.项目**<br>
 以下6个属性设置在项目上<br>
 <br>
-flex: none | [ <flex-grow> <flex-shrink> || <flex-basis> ];是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br>
-flex-grow: <number>/* default 0 */;定义项目的放大比例，默认不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间,如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。<br>
-flex-shrink: <number>; /* default 1 */定义了项目的缩小比例，默认空间不足，该项目将缩小。<br>
+flex: none | [ &lt;flex-grow&gt; &lt;flex-shrink&gt; || &lt;flex-basis&gt; ];是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。<br>
+flex-grow: &lt;number&gt; /* default 0 */;定义项目的放大比例，默认不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间,如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。<br>
+flex-shrink: &lt;number&gt; /* default 1 */定义了项目的缩小比例，默认空间不足，该项目将缩小。<br>
 <br>
-order: <integer>/* default 0 */;定义项目的排列顺序。数值越小，排列越靠前。<br>
-flex-basis: <length> | auto; /* default auto */设置或检索弹性盒伸缩基准值。<br>
+order: &lt;integer&gt; /* default 0 */;定义项目的排列顺序。数值越小，排列越靠前。<br>
+flex-basis: &lt;length&gt; | auto; /* default auto */设置或检索弹性盒伸缩基准值。<br>
 align-self: auto（default） | flex-start | flex-end | center | baseline | stretch;允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。<br>
 <br>
 <br>

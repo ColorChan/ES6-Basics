@@ -637,9 +637,7 @@ element.addEventListener(event, function, useCapture)，useCapture为true时，�
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
+
 
 Web APP特点：MVC，后端的Model层很简单，随着产品业务的拓展前端View却变得越来越复杂，这个时候如果还在用纯jQuery去写DOM操作将会变得很不直观，代码也会变的很臃肿进而变的越来越难以维护<br>
 

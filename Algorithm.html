@@ -90,7 +90,7 @@
     /**
      * 6.Quick Sort 快速排序
      */
-    var arr = []
+    /*var arr = []
     for (let i = 0; i < 9; i++) {
       arr[i] = Math.floor((Math.random() * 10) + 1)
     }
@@ -108,7 +108,7 @@
       }
       return quickSort(lesser).concat(pivot, quickSort(greater))
     }
-    console.log(quickSort(arr))
+    console.log(quickSort(arr))*/
 
     /**
      * 7. Binary Search 二分查找
@@ -200,8 +200,109 @@
       }
     }
     var queue = new Queue()
+
+    /**
+     * 好未来秋招
+     */
+    console.log('*********好未来秋招*********')
+    /**
+     * 1.读入一个字符串str，输出字符串str中的连续最长的数字串
+     */
+    var LongNum = (str) => {
+      let numArr = str.match(/[0-9]+/g)
+      let j = 0
+      for (let i = 0; i < numArr.length - 1; i++) {
+        if (numArr[i].length < numArr[i + 1].length) {
+          j = i + 1
+        }
+      }
+      return numArr[j]
+    }
+    console.log(LongNum('aa11bb222cc3333'))
+
+    /**
+     * 2.输入n个整数，输出出现次数大于等于数组长度一半的数
+     */
+    var arr = [1,2,2,3,5,5,5,5,5,5,5,6]
+    var numCount = (arr) => {
+      let info = arr.reduce((x, y) => (x[y] ++ || (x[y] = 1), x), {})
+      let infoArr = Object.keys(info)
+      for (let i = 0; i < infoArr.length; i++) {
+        if (info[infoArr[i]] >= arr.length / 2) {
+          console.log(infoArr[i])
+        }
+      }
+    }
+    numCount(arr)
+    
     
 
+    /**
+     * 剑指offer
+     */
+    console.log('*********剑指offer*********')
+    /**
+     * 2.单例模式Singleton
+     */
+    var Singleton = (() => {
+      let instantiated
+      let init = () => {
+        return {
+          publicMethod: () => {
+            console.log('this is a Singleton, created by Singleton.getInstance()')
+          },
+          publicProperty: 'Singleton test'
+        }
+      }
+      return {
+        getInstance: () => {
+          if (!instantiated) {
+            instantiated = init()
+          }
+          return instantiated
+        }
+      }
+    })()
+
+    /**
+     * 3.二维数组查找Two dimensional array search
+     */
+    var TwoDimensionalSearch = (twoDimensionalArray, target) => {
+      let result = false
+      if (twoDimensionalArray !== null) {
+        let [row, column] = [0, twoDimensionalArray[0].length - 1]
+        while (row < twoDimensionalArray.length && column >= 0) {
+          if (twoDimensionalArray[row][column] == target) {
+            result = true
+            break
+          } else if (twoDimensionalArray[row][column] > target) {
+            column --
+          } else {
+            row ++
+          }
+        }
+      }
+      return result
+    }
+    let array = [[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]]
+    console.log(TwoDimensionalSearch(array, 7))
+
+
+    /**
+     * 4.替换空格replace black
+     */
+    var replaceBlank = (str) => {
+      return str.replace(/\s/g, '%20')
+    }
+    console.log(replaceBlank('we are happy.'))
+
+    /**
+     * 5.替换空格replace black
+     */
+    
+    
+    
+    
   </script>
 </head>
 <body>

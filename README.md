@@ -646,3 +646,4 @@ react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能�
 JSX 的语法，它允许 HTML 与 JavaScript 的混写<br>
 <br>
 <br><br><br><br>
+NaN != NaN

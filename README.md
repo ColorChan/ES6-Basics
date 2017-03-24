@@ -1,6 +1,49 @@
 # ES6---Basics
 Basics of EcmaScript 6  
 
+
+##   网易笔试
+    如果一个数字序列逆置之后跟原序列是一样的就称这样的数字序列为回文序列。例如：
+    {1, 2, 1}, {15, 78, 78, 15} , {112} 是回文序列,
+      {1, 2, 2}, {15, 78, 87, 51} ,{112, 2, 11} 不是回文序列。
+    现在给出一个数字序列，允许使用一种转换操作：
+    选择任意两个相邻的数，然后从序列移除这两个数，并用这两个数字的和插入到这两个数之前的位置(只插入一个和)。
+    现在对于所给序列要求出最少需要多少次操作可以将其变成回文序列。
+    ``` bash
+        function test(arr){    
+          var len = arr.length ;    
+          var start=0 ;
+          end = len - 1;    
+          while(start > end && arr[start] == arr[end]){        
+            start ++ ;        
+            end -- ;    
+          }    
+          var rest = arr.splice(start, end -start +1) ;
+          // 去除两端已经符合回文条件的元素     
+          start = 0 ;    
+          end = rest.length -1;      
+          var count = 0 ; // 计数
+           while (rest.length >=2 && start < end) {
+             if(rest[start] < rest[end]){
+               // 首部数字较小则合并首部            
+                var tmp = rest.shift() + rest.shift() ;            
+                rest.unshift(tmp) ;            
+                count ++ ;        
+             }else if(rest[start] > rest[end]){
+               // 尾部数字较小则合并尾部
+                var tmp = rest.pop() + rest.pop() ;            
+                rest.push(tmp)            
+               count ++ ;        
+             } else{
+               // 符合条件的跳过
+                start ++ ;            
+                end -- ;        
+             }    
+           }     
+           return count;
+        }
+    ```
+
 ##  Data Structure and Algorithm / 数据结构与算法
 **数据结构**<br>
 <br>

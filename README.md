@@ -82,6 +82,120 @@ B=(Y3-Y1)/2=(Y2+Y4)/2;
 C=(Y4-Y2)/2;
 ```
 
+小易来到了一条石板路前，每块石板上从1挨着编号为：1、2、3.......
+这条石板路要根据特殊的规则才能前进：对于小易当前所在的编号为K的 石板，小易单次只能往前跳K的一个约数(不含1和K)步，即跳到K+X(X为K的一个非1和本身的约数)的位置。 小易当前处在编号为N的石板，他想跳到编号恰好为M的石板去，小易想知道最少需要跳跃几次可以到达。
+``` bash
+   public static int leastJumpTime(int n, int m) {
+        if (m == n) {
+            return 0;
+        }
+        int steps = m - n + 1;// 算上了起点和终点
+        int[] dp = new int[steps];// 规划的量：到达 每个位置需要的最小步数
+        dp[0] = 0; // 起点
+        for (int i = 1; i < steps; i++) {
+            dp[i] = Integer.MAX_VALUE; // 初始化 表示后续位置都不能到达
+        }
+        for (int i = 0; i < steps; i++) {
+            // 0对应n石板 ；steps - 1 = m-n对应m石板
+            if (dp[i] == Integer.MAX_VALUE) { // 该位置不能像前走
+                dp[i] = 0;
+                continue;
+            }
+            ArrayList<Integer> list = getAppNums(i + n); // i+n才是石板号
+            for (int j = 0; j < list.size(); j++) {
+                int x = list.get(j);
+                if (i + n + x <= m) {
+                    dp[i + x] = Math.min(dp[i + x], dp[i] + 1);
+                }
+            }
+        }
+        if (dp[steps - 1] == 0) {
+            return -1;
+        } else {
+            return dp[steps - 1];
+        }
+    }
+ 
+    // 求因数 时间复杂度较低
+    public static ArrayList<Integer> getAppNums(int n) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                list.add(i);
+                if (n / i != i) {
+                    list.add(n / i);
+                }
+            }
+        }
+        return list;
+    }
+   ```
+   
+   一个只包含'A'、'B'和'C'的字符串，如果存在某一段长度为3的连续子串中恰好'A'、'B'和'C'各有一个，那么这个字符串就是纯净的，否则这个字符串就是暗黑的。例如：
+   BAACAACCBAAA 连续子串"CBA"中包含了'A','B','C'各一个，所以是纯净的字符串
+   AABBCCAABB 不存在一个长度为3的连续子串包含'A','B','C',所以是暗黑的字符串
+   你的任务就是计算出长度为n的字符串(只包含'A'、'B'和'C')，有多少个是暗黑的字符串。
+   ``` bash
+   public class Main {
+       public static void main(String args[]){
+           Scanner sc = new Scanner(System.in);
+           int input = sc.nextInt();
+           long[] num = new long[input+1];
+           num[1] = 3;
+           num[2] = 9;
+           for(int i=3; i<=input; i++){
+               num[i] = 2*num[i-1] + num[i-2];
+           }
+           System.out.print(num[input]);
+       }
+   }
+   ```
+   
+ 小易是一个数论爱好者，并且对于一个数的奇数约数十分感兴趣。一天小易遇到这样一个问题： 定义函数f(x)为x最大的奇数约数，x为正整数。 例如:f(44) = 11.
+ 现在给出一个N，需要求出 f(1) + f(2) + f(3).......f(N)
+ 例如： N = 7 
+ f(1) + f(2) + f(3) + f(4) + f(5) + f(6) + f(7) = 1 + 1 + 3 + 1 + 5 + 3 + 7 = 21
+ 小易计算这个问题遇到了困难，需要你来设计一个算法帮助他。
+   
+   ``` bash
+   
+
+import java.util.Scanner;
+ 
+ 
+public class Main{
+     
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        long num=s.nextInt();
+        long sum=0;
+        for(long i=num;i>0;i=i/2){
+            long temp=(i+1)/2;
+            sum+=temp*temp;
+        }
+        System.out.println(sum);
+    }
+}
+ 
+ 
+总体思路：
+因为奇数的最大奇数约数就是自己啊，对于偶数我们只能一直除2直到得到一个奇数即为最大奇数约数
+ 
+比如1 2 3 4 5 6 7 8 9 10
+即n=10 ，此时奇数有1 3 5 7 9 我们把这几个奇数相加然后n/2
+得到第二轮序列序列 1 2 3 4 5 分别对应上次的2 4 6 8 10 五个偶数，这是我们再加1 3 5
+依次类推
+ 
+细节问题：
+当n为偶数，就有n/2个奇数，根据等差数列求和公式 即(（首项+末项）*项数)/2,我们知道n/2个奇数和为((1+n-1)*n/2)/2,
+即为(n/2) * (n/2),此时n为偶数，因此 (n/2) * (n/2) = ((n+1)/2)  *  ((n+1)/2)
+ 
+当n为奇数，有(n+1)/2个奇数，此时奇数和为((n+1)/2)  *  ((n+1)/2)
+因此两种情况可以用一个等式来总结
+
+```
+   
+
 
 
 ##  Data Structure and Algorithm / 数据结构与算法

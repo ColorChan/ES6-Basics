@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>versionCompare</title>
+  <script src="http://cdn.bootcss.com/babel-standalone/6.22.1/babel.js"></script>
+  <script type="text/babel">
+    var versionCompare = (ver1, ver2) => {
+      
+      // 正则匹配两个版本号，匹配结果存于两个变量中
+      let [check1, check2] = [ver1.match(/^\d+[\.*\d*]*[a-zA-z]?$/g), ver2.match(/^\d+[\.*\d*]*[a-zA-z]?$/g)]
+      
+      // 以点号(.)为分隔，切分连个字符串，并存入数组
+      let [arr1, arr2] = [ver1.split('.'), ver2.split('.')]
+      
+      // if 判断两个版本号格式是否正确, 若不正确返回 format error
+      if (!(check1&&check2)) {
+        console.log('format error: check the version')
+        return
+      }
+      
+      // if 判断两个版本号格式是否相等, 若相等返回 equal
+      if (arr1.toString() == arr2.toString()) {
+        console.log('version1 is equal to version2')
+      }
+      
+      // for 循环判断2个点:
+      //      第1点: 版本号格式是否出现两个点号(.)相邻的情况, 比如1.1..0   如果出现该情况，返回 format error
+      //      第2点: 版本号从左往右遍历，若两个版本号有区别，则根据大小，返回 greater 或 less
+      for (let i in arr1) {
+        if (arr1[i] == '' || arr2[i] == '') {
+          console.log('format error: check the number of "."')
+          return
+        }
+      }
+      for (let i in arr1) {
+        if (arr1[i] > arr2[i]) {
+          console.log('version1 is greater than version2')
+          return
+        }
+        if (arr1[i] < arr2[i]) {
+          console.log('version1 is less than version2')
+          return
+        }
+        
+      }
+      
+    }
+    
+    // 测试
+    versionCompare('1.1', '1.1')  // version1 is equal to version2
+    versionCompare('1.0.1b', '1.1.1a')  // version1 is less than version2
+    versionCompare('1.0.1c', '1.0.1b')  // version1 is greater than version2
+    versionCompare('1.0...1', '1.0.1')  // format error
+    versionCompare('...1.0.1', '1.0.1')  // format error
+    versionCompare('1.0.1aaa', '1.0.1')  // format error
+   
+    
+  </script>
+    
+    
+</head>
+<body>
+
+</body>
+</html>

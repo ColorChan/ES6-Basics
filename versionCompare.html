@@ -32,15 +32,17 @@
         arr2.push(0);
       }
     
-      // for 循环判断2个点:
-      //      第1点: 版本号格式是否出现两个点号(.)相邻的情况, 比如1.1..0   如果出现该情况，返回 format error
-      //      第2点: 版本号从左往右遍历，若两个版本号有区别，则根据大小，返回 greater 或 less
+      // for 循环判断点(.)的数量是否符合格式规范，若不符合，返回 format error:
       for (let i in arr1) {
         if (arr1[i] === '' || arr2[i] === '') {
           console.log('format error: check the number of "."')
           return
         }
       }
+      
+      // for 循环判断2个点:
+      //      第1点: 版本号格式是否出现两个点号(.)相邻的情况, 比如1.1..0   如果出现该情况，返回 format error
+      //      第2点: 版本号从左往右遍历，若两个版本号有区别，则根据大小，返回 greater 或 less
       for (let i in arr1) {
         if (arr1[i] > arr2[i]) {
           console.log('version1 is greater than version2')

@@ -2,7 +2,7 @@
 Basics of EcmaScript 6  
 
 
-##   网易笔试
+##    网易笔试
 ```bash
 var readline = require('readline');
 const rl = readline.createInterface({

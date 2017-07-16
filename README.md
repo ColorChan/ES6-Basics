@@ -772,7 +772,7 @@ value  给指定的请求头赋的值<br>
 ```
 <br>
 <br>
-##  Flex布局(Flexible Box)
+##  Flex布局(Flexible Box)<br>
 **1.容器**<br>
 任何一个容器都可以指定为Flex布局 display: flex | inline-flex;<br>
 设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。<br>

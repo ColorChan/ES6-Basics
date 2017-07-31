@@ -4,15 +4,15 @@ Basics of EcmaScript 6
 
 ##    网易笔试
 ```bash
-var readline = require('readline');
+var readline = require('readline')
 const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
-});
+})
 rl.on('line', function(line){
-   var tokens = line.split(' ');
+   var tokens = line.split(' ')
     console.log(parseInt(tokens[2]));
-});
+})
 ```
 
     如果一个数字序列逆置之后跟原序列是一样的就称这样的数字序列为回文序列。例如：

@@ -1,8 +1,27 @@
 # Basic knowledge
 Basics of EcmaScript 6  
 
+## Catalog
+1. [MarkdownEditing Key Bingding](#MarkdownEditing)
+2. [NetEase 2017 Summer Campus](#NetEase2017)
 
-##    网易2017春季校园招聘笔试
+
+<i id="MarkdownEditing">跳转到的地方</i>
+##  MarkdownEditing Key Bingding
+Windows/Linux的
+CtrlWinV  创建或粘贴剪贴板的内容作为所选文本的内联链接。
+CtrlWinR  创建或粘贴剪贴板的内容作为参考链接。
+ShiftWinK 创建或粘贴剪贴板的内容作为所选文本的内联图像。
+AltB AltI 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。
+Ctrl1...6 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。此命令遵循mde.match_header_hashes偏好设置。
+AltShift6 插入脚注
+ShiftTab  折叠/展开当前部分。
+CtrlShiftTab  折叠一定级别标题下的所有部分。
+CtrlAltShiftPageUp CtrlAltShiftPageDown 转到相同或更高级别的上一个/下一个标题
+CtrlShiftPageUp CtrlShiftPageDown 转到上一个/下一个标题
+
+<i id="NetEase2017">跳转到的地方</i>
+##    NetEase 2017 Summer Campus recruitmen
 ```bash
 var readline = require('readline')
 const rl = readline.createInterface({
@@ -55,6 +74,7 @@ rl.on('line', function(line){
            return count;
         }
 小易去附近的商店买苹果，奸诈的商贩使用了捆绑交易，只提供6个每袋和8个每袋的包装(包装不可拆分)。 可是小易现在只想购买恰好n个苹果，小易想购买尽量少的袋数方便携带。如果不能购买恰好n个苹果，小易将不会购买。 
+
 输入描述:
 输入一个整数n，表示小易想购买n(1 ≤ n ≤ 100)个苹果
 ``` bash
@@ -664,10 +684,10 @@ HTTP 请求的状态，每次这个属性的值增加的时候，都会触发 on
 ``` bash
 
 0  Uninitialized   初始化状态。XMLHttpRequest 对象已创建或已被 abort() 方法重置。
-1  Open	           Open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。
-2  Sent	           Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。
+1  Open            Open() 方法已调用，但是 send() 方法未调用。请求还没有被发送。
+2  Sent            Send() 方法已调用，HTTP 请求已发送到 Web 服务器。未接收到响应。
 3  Receiving       所有响应头部都已经接收到。响应体开始接收但未完成。
-4  Loaded	       HTTP 响应已经完全接收。
+4  Loaded          HTTP 响应已经完全接收。
 
 ```
 responseText<br>

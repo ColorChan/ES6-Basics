@@ -6,21 +6,21 @@ Basics of EcmaScript 6
 2. [NetEase 2017 Summer Campus](#NetEase2017)
 
 
-<i id="MarkdownEditing">跳转到的地方</i>
+<i id="MarkdownEditing"></i>
 ##  MarkdownEditing Key Bingding
-Windows/Linux的
-CtrlWinV  创建或粘贴剪贴板的内容作为所选文本的内联链接。
-CtrlWinR  创建或粘贴剪贴板的内容作为参考链接。
-ShiftWinK 创建或粘贴剪贴板的内容作为所选文本的内联图像。
-AltB AltI 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。
-Ctrl1...6 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。此命令遵循mde.match_header_hashes偏好设置。
-AltShift6 插入脚注
-ShiftTab  折叠/展开当前部分。
-CtrlShiftTab  折叠一定级别标题下的所有部分。
-CtrlAltShiftPageUp CtrlAltShiftPageDown 转到相同或更高级别的上一个/下一个标题
-CtrlShiftPageUp CtrlShiftPageDown 转到上一个/下一个标题
+Windows/Linux的  
+CtrlWinV  创建或粘贴剪贴板的内容作为所选文本的内联链接。  
+CtrlWinR  创建或粘贴剪贴板的内容作为参考链接。  
+ShiftWinK 创建或粘贴剪贴板的内容作为所选文本的内联图像。  
+AltB AltI 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。  
+Ctrl1...6 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。  
+AltShift6 插入脚注  
+ShiftTab  折叠/展开当前部分。  
+CtrlShiftTab  折叠一定级别标题下的所有部分。  
+CtrlAltShiftPageUp CtrlAltShiftPageDown 转到相同或更高级别的上一个/下一个标题  
+CtrlShiftPageUp CtrlShiftPageDown 转到上一个/下一个标题  
 
-<i id="NetEase2017">跳转到的地方</i>
+<i id="NetEase2017"></i>
 ##    NetEase 2017 Summer Campus recruitmen
 ```bash
 var readline = require('readline')

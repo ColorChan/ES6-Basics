@@ -1,4 +1,4 @@
-# ES6---Basics
+# Basic knowledge
 Basics of EcmaScript 6  
 
 

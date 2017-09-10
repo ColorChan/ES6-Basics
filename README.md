@@ -10,9 +10,11 @@ Basics of EcmaScript 6 <br>
 4. &nbsp; [Underlying JavaScript](#underlying)
 5. &nbsp; [Ajax](#ajax)
 6. &nbsp; [Flex](#flex)
-5. &nbsp; [What happens when you navigate to a URL](#input-url)
-6. &nbsp; [HTTP](#http)
-5. &nbsp; [Others Of Web Structure](#others)
+7. &nbsp; [What happens when you navigate to a URL](#input-url)
+8. &nbsp; [HTTP](#http)
+9. &nbsp; [Others Of Web Structure](#others)
+10. &nbsp;&nbsp;[Code Review](#code-review)
+<br>&nbsp;&nbsp;10.1&nbsp;&nbsp;[First](#review01)
 
 <br><br><br><br>
 
@@ -29,9 +31,9 @@ CtrlShiftTab &nbsp;&nbsp; 折叠一定级别标题下的所有部分。 <br>
 CtrlAltShiftPageUp CtrlAltShiftPageDown &nbsp;&nbsp; 转到相同或更高级别的上一个/下一个标题 <br>
 CtrlShiftPageUp CtrlShiftPageDown &nbsp;&nbsp; 转到上一个/下一个标题 <br>
 
-<br><br><br><br>
+<br><br><br>
 
-<i id="NetEase2017">ds</i>
+<i id="NetEase2017"></i>
 ##    NetEase 2017 Summer Campus recruitmen
 
 编辑器使用Nodejs <br>
@@ -47,10 +49,11 @@ rl.on('line', function(line){
 })
 ```
 
-1. 如果一个数字序列逆置之后跟原序列是一样的就称这样的数字序列为回文序列。例如:{1, 2, 1}, {15, 78, 78, 15} , {112} 是回文序列,{1, 2, 2}, {15, 78, 87, 51} ,{112, 2, 11} 不是回文序列。<br>
+1. 如果一个数字序列逆置之后跟原序列是一样的就称这样的数字序列为回文序列。例如:{1, 2, 1}, {15, 78, 78, 15} , {112} 是回文序列,{1, 2, 2}, {15, 78, `7, 51} ,{112, 2, 11} 不是回文序列。<br>
 现在给出一个数字序列，允许使用一种转换操作：<br>
   选择任意两个相邻的数，然后从序列移除这两个数，并用这两个数字的和插入到这两个数之前的位置(只插入一个和)。<br>
   现在对于所给序列要求出最少需要多少次操作可以将其变成回文序列。<br>
+
 ```javascript
 function test(arr){    
   var len = arr.length ;    
@@ -89,6 +92,7 @@ function test(arr){    
 2. 小易去附近的商店买苹果，奸诈的商贩使用了捆绑交易，只提供6个每袋和8个每袋的包装(包装不可拆分)。 可是小易现在只想购买恰好n个苹果，小易想购买尽量少的袋数方便携带。如果不能购买恰好n个苹果，小易将不会购买。<br>
 输入描述:<br>
 输入一个整数n，表示小易想购买n(1 ≤ n ≤ 100)个苹果<br>
+
 ```java
 public static int count(int n){
     if(n%2!=0||n==10||n<6) return -1;//一定是偶数（6，8都是）,最小是6，10以上偶数都可以；
@@ -97,13 +101,13 @@ public static int count(int n){
   }
 ```
 
-3. 
-A,B,C三个人是好朋友,每个人手里都有一些糖果,我们不知道他们每个人手上具体有多少个糖果,但是我们知道以下的信息：<br>
+3. A,B,C三个人是好朋友,每个人手里都有一些糖果,我们不知道他们每个人手上具体有多少个糖果,但是我们知道以下的信息：<br>
 A - B, B - C, A + B, B + C. 这四个数值.每个字母代表每个人所拥有的糖果数.<br>
 现在需要通过这四个数值计算出每个人手里有多少个糖果,即A,B,C。这里保证最多只有一组整数A,B,C满足所有题设条件。  
 输入描述:<br>
 输入为一行，一共4个整数，分别为A - B，B - C，A + B，B + C，用空格隔开。<br>
 范围均在-30到30之间(闭区间)。<br>
+
 ``` bash
 A-B=Y1;
 B-C=Y2;
@@ -116,9 +120,9 @@ B=(Y3-Y1)/2=(Y2+Y4)/2;
 C=(Y4-Y2)/2;
 ```
 
-4. 
-小易来到了一条石板路前，每块石板上从1挨着编号为：1、2、3.......<br>
+4. 小易来到了一条石板路前，每块石板上从1挨着编号为：1、2、3.......<br>
 这条石板路要根据特殊的规则才能前进：对于小易当前所在的编号为K的 石板，小易单次只能往前跳K的一个约数(不含1和K)步，即跳到K+X(X为K的一个非1和本身的约数)的位置。 小易当前处在编号为N的石板，他想跳到编号恰好为M的石板去，小易想知道最少需要跳跃几次可以到达。<br>
+
 ``` java
 public static int leastJumpTime(int n, int m) {
   if (m == n) {
@@ -166,13 +170,12 @@ public static int leastJumpTime(int n, int m) {
     }
 ```
    
-5. 
-一个只包含'A'、'B'和'C'的字符串，如果存在某一段长度为3的连续子串中恰好'A'、'B'和'C'各有一个，那么这个字符串就是纯净的，否则这个字符串就是暗黑的。例如：<br>
+5. 一个只包含'A'、'B'和'C'的字符串，如果存在某一段长度为3的连续子串中恰好'A'、'B'和'C'各有一个，那么这个字符串就是纯净的，否则这个字符串就是暗黑的。例如：<br>
 BAACAACCBAAA 连续子串"CBA"中包含了'A','B','C'各一个，所以是纯净的字符串<br>
 AABBCCAABB 不存在一个长度为3的连续子串包含'A','B','C',所以是暗黑的字符串<br>
 你的任务就是计算出长度为n的字符串(只包含'A'、'B'和'C')，有多少个是暗黑的字符串。
 
-``` bash
+``` java
 public class Main {
    public static void main(String args[]){
        Scanner sc = new Scanner(System.in);
@@ -188,8 +191,7 @@ public class Main {
 }
 ```
    
-6. 
-小易是一个数论爱好者，并且对于一个数的奇数约数十分感兴趣。一天小易遇到这样一个问题： <br>
+6. 小易是一个数论爱好者，并且对于一个数的奇数约数十分感兴趣。一天小易遇到这样一个问题： <br>
 定义函数f(x)为x最大的奇数约数，x为正整数。 例如:f(44) = 11。 <br>
 现在给出一个N，需要求出 f(1) + f(2) + f(3).......f(N) <br>
 例如： N = 7 <br>
@@ -226,7 +228,7 @@ public class Main{
 当n为奇数，有(n+1)/2个奇数，此时奇数和为((n+1)/2)  *  ((n+1)/2) <br>
 因此两种情况可以用一个等式来总结 <br>
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="structure"></i>
 ##  Data Structure and Algorithm / 数据结构与算法
@@ -331,6 +333,7 @@ let insertionSort = (arr) => {
 <br>
 2.Shell Sort<br>
 希尔排序(Shell Sort)也称递减增量排序算法，是插入排序的一种更高效的改进版本。但希尔排序是非稳定排序算法。基本思想是：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序。<br>
+
 ``` javascript
 let shellSort = (arr) => {
   let temp = null
@@ -353,6 +356,7 @@ let shellSort = (arr) => {
 <br>
 3.Quick Sort<br>
 快速排序(Quick Sort)（1）在数据集之中，找一个基准点。（2）建立两个数组，分别存储左边和右边的数组。（3）利用递归进行下次比较<br>
+
 ``` javascript
 let quickSort = (arr) => {
   let lesser = []
@@ -371,6 +375,7 @@ let quickSort = (arr) => {
 <br>
 7.Binary Search<br>
 二分查找<br>
+
 ``` bash
 let binarySearch = (arr, data) => {
   var upperBound = arr.length - 1
@@ -382,7 +387,7 @@ let binarySearch = (arr, data) => {
 }
 ```
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="underlying"></i>
 ##  Underlying Javascript / Javascript 底层
@@ -435,7 +440,7 @@ if(arguments.callee.length == arguments.length ){ ...do something(形参与实�
 ####  Call,Apply
 作用: 扩充函数作用域，并且对象和方法不需要有任何耦合关系。
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="ajax"></i>
 ##   Ajax(Asynchronous JavaScript and XML)
@@ -567,7 +572,7 @@ ajax.post = function (url, data, callback, async) {
 }
 ```
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="flex"></i>
 ##  Flex布局(Flexible Box)
@@ -612,7 +617,7 @@ order: &lt;integer&gt; /* default 0 */;定义项目的排列顺序。数值越�
 flex-basis: &lt;length&gt; | auto; /* default auto */设置或检索弹性盒伸缩基准值。<br>
 align-self: auto（default） | flex-start | flex-end | center | baseline | stretch;允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。
 
-<br><br><br><br>
+<br><br><br>
 <i id="input-url"></i>
 ##   What happens when you navigate to a URL / 输入URL 到页面加载完的过程
 ###  从触屏到 CPU
@@ -653,7 +658,7 @@ SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Ser
 ###  服务器接收到数据后*
 负载均衡
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="http"></i>
 ##   HTTP Cache / HTTP 缓存
@@ -681,7 +686,7 @@ SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Ser
 500 Internal Server Error  服务器遇到了意料不到的情况，不能完成客户的请求<br>
 501 Not Implemented  服务器不支持实现请求所需要的功能。
 
-<br><br><br><br>
+<br><br><br>
 
 <i id="others"></i>
 ##  Difference between  Cookie,sessionStorage,localStorage / Cookie,sessionStorage,localStorage的区别
@@ -821,51 +826,177 @@ Imagemagick可以帮你创建小巧的favicon。<br>
 因为iPhone不能缓存大于25K的文件。注意这里指的是解压缩后的大小。由于单纯gizp压缩可能达不要求，因此精简文件就显得十分重要。<br>
 35、打包组件成复合文本<br>
 页面内容打包成复合文本就如同带有多附件的Email，它能够使你在一个HTTP请求中取得多个组件（切记：HTTP请求是很奢侈的）。当你使用这条规则时，首先要确定用户代理是否支持（iPhone就不支持）。<br>
-<br><br>
-##   React Virtual DOM / React虚拟DOM
-Virtual DOM是一个模拟DOM树的JavaScript对象。React使用Virtual DOM来渲染UI，当组件状态state有更改的时候，React在这个虚拟DOM上实现了一个diff算法，会通过diff寻找到要变更的DOM节点，再把这个修改更新到浏览器实际的DOM节点上(自动调用组件的Render方法)，实际上不是真的渲染整个DOM树。
-<br><br>
-##   SEO
-###  语义化
-1.标签语义化对搜索引擎友好，良好的结构和语义容易被搜索引擎抓取。<br>
-2.善用标题h1-6，特别是h1和h2，可提升排名。同时设置rel=“nofollow”指定 Google 搜索引擎不要跟踪链接(尽管浏览器不会以任何方式使用rel与rev属性，不过搜索引擎可以利用该属性获得更多有关链接的信息)。<br>
-3.HTML5中使用Microdata对页面上已经存在的数据提供附加的语义。<br>
-<br>
-###  衡量站点关键词优化*
-站点内容关键词的选择、描述、分布、替代。<br>
-<br>
-###  链接
-1.优化文件目录结构和URL。URL应该有语义性，简短易懂。<br>
-2.推广<br>
-3.锚文本 ：把关键词做一个链接，指向别的网页，这种形式的链接就叫作锚文本。搜索引擎可以根据指向某一个网页的链接的锚文本描述来判断该网页的内容属性。<br>
-<br>
-###  良好的导航和sitemap
-良好的导航，通过sitemap可以帮助网站主了解网站结构，也方便搜索引擎收录整个站点。<br>
+
 <br><br>
 
-##  DOM 事件流
-**1.冒泡事件流**<br>
+##  DOM Event Flow
+**1.Event Bubble**<br>
 <br>
-**2.捕获事件流**<br>
-事件的处理将从DOM层次的根开始，而不是从触发事件的目标元素开始，事件被从目标元素的所有祖先元素依次往下传递。<br>
-element.addEventListener(event, function, useCapture)，useCapture为true时，为捕获型事件。<br>
+**2.Event capturing**<br>
+Event processing will not start at the target element but the root of the DOM ，event will be deliverd from the parent element down to the target.<br>
+Event type will be capturing when the useCapture is true in element.addEventListener(event, function, useCapture).<br>
 <br>
-**3.事件委托**<br>
-利用冒泡的原理，把事件加到父级上，触发执行效果。使用事件委托技术能让你避免对特定的每个节点添加事件监听器。事件监听器会分析从子元素冒泡上来的事件，找到是哪个子元素的事件。<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+**3.Event delegation**<br>
+Using the event bubble, binding the event to it's parent node.<br>
 
-
-
-<br>
-<br><br><br><br>
-NaN != NaN
 <br><br>
+##  NAN
+not a number<br>
+but typeof NAN is a Number<br>
+NaN != NaN, but except Array.prototype.includes() in Ecma7
+
+<br><br><br>
+
+<i id="code-review"></i>
+## Code Review
+### Principle in code review
+**Kind one：Only technology**<br>
+1. Is what
+2. Resolve what kind of problems
+3. Compare with the same technology
+4. Core principle
+5. Future
+6. Effect of working
+<br>
+**Kind two：Only thought**<br>
+1. Background
+2. Resolve what kind of problems
+3. The root of problems, find the key point
+4. Analyse the solution
+5. How should
+6. Future plan
+
+<br><br>
+
+<i id="review01"></i> 
+### First time
+**ES8 Async** <br>
+1. 背景<br>
+    在qdum-fed-quick-start中有一处通过AJAX获取素材数据，并实时响应到vue data中，然后对对响应到data中筛选部分数据进行处理。<br>    
+    [gitlab地址](http://gitlab.qdum.com/wangyw/qdum-fed-quick-start/blob/master/src/common/components/new/material/all-material.vue)<br> 
+
+    在一开始时，采用的方法如下(关键代码)：<br> 
+    
+   ``` javascript
+     import request from 'superagent'
+     export default {
+       data () {
+         return {
+           dataStore: [],
+           lastItem: {},
+           currentPage: 1
+         }
+       },
+       created () {
+         this.updateData(this.currentPage)
+       },
+       methods: {
+         updateData (page) {
+           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
+             this.dataStore.push(...res.body.data.materialList)
+             this.$nextTick(() => {
+               this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+             })
+           })
+         }
+       }
+     }
+   ```
+   
+   这里就出现一个问题，this.lastItem总是undefined <br>
+   
+   
+   
+   改进后: <br> 
+   
+   ``` javascript
+     import request from 'superagent'
+     export default {
+       data () {
+         return {
+           dataStore: [],
+           lastItem: {},
+           currentPage: 1
+         }
+       },
+       created () {
+         this.updateData(this.currentPage)
+       },
+       methods: {
+         updateData (page) {
+           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
+             this.dataStore.push(...res.body.data.materialList)
+           })
+         },
+       },
+       watch: {
+         dataStore () {
+           this.$nextTick(() => {
+             this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+           })
+         }
+       }
+     }
+   ```   
+   
+   用async重写:<br>
+   
+   ``` javascript
+    import request from 'superagent'
+    export default {
+      data () {
+        return {
+          dataStore: [],
+          lastItem: {},
+          currentPage: 1
+        }
+      },
+      created () {
+        this.updateData(this.currentPage)
+      },
+      methods: {
+        async updateData (page) {
+          .then((res) => {
+            let res = await request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`)
+            this.dataStore.push(...res.body.data.materialList)
+            this.$nextTick(() => {
+              this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+            })
+          })
+        }
+      }
+    }
+   ```
+      
+   
+   
+2. 什么是Async函数<br>
+   async函数是在ES2017加入的，它是目前为止 JS 最佳的异步解决方案。<br>
+   简单地说，它可以起到与promise和generator相同的作用。<br>
+3. 解决了什么问题<br>
+  并没有什么新能力，只是使得异步操作变得更加方便。<br>
+  [demo](https://github.com/ColorChan/Basic/blob/master/rest.html)<br>
+4. 与原先的解决方法有什么区别<br>
+   3.1 &nbsp; callback<br>
+   。。。<br>
+   3.2 &nbsp; promise<br>
+   传统callback hell问题已经被es6的promise解决了<br>
+   但是promise也带来了一定的问题 <br>
+   (1).立即执行、无法取消<br>
+   (2).无法追踪pending<br>
+   (3).语义化差<br>
+   3.2 &nbsp; generator<br>
+   (1).generator 返回Iterator .next()<br>
+   (2).generator 语义化尚可<br>
+   (3).需要执行器
+5. 核心原理<br>
+   async函数返回Promise。当函数执行时，遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。<br>
+   async原理是包装generator和一个自动执行函数。<br>
+   缺点:await异步操作错误处理<br>
+6. 对业务影响<br>
+   基于promise，看起来像同步，且不会阻塞主线程。<br>
+   可读可维护性。<br>
+
+
+
+   <br><br><br><br>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-alpha.20/babel.js"></script>
+  <script src="https://cdn.bootcss.com/fetch-jsonp/1.1.3/fetch-jsonp.js"></script>
+  <script type="text/babel">
+
+
+    let url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
+    let data = {}
+
+
+    //    wrong：
+    !function () {
+      fetchJsonp(url, {
+        method: 'GET',
+        mode: 'cors',
+        jsonpCallback: 'jsonpCallback'
+      }).then((response) => {
+        response.json().then((response) => {
+//          通过Fetch获取的数据将在获取完成后返回
+          data = response.data
+        })
+      })
+//      Sync can not get data，return{}
+      console.log(data)
+    }()
+
+
+    //    use async
+      !function () {
+        let getData = () => {
+          return (fetchJsonp(url, {
+            method: 'GET',
+            mode: 'cors',
+            jsonpCallback: 'jsonpCallback'
+          }).then((response) => {
+            return response.json()
+          }))
+        }
+        let foo = async() => {
+//          function will be paused，and go on after data got
+          data = await getData()
+          console.log(data)
+        }
+        foo()
+      }()
+
+
+
+
+//   async after babel
+
+//    in
+    let foo = async() => {
+//          function will be paused，and go on after data got
+      data = await getData()
+    }
+
+//    out
+    function _asyncToGenerator(fn) {
+      return function() {
+        var gen = fn.apply(this, arguments)
+        return new Promise(function(resolve, reject) {
+          function step(key, arg) {
+            try {
+              var info = gen[key](arg)
+              var value = info.value;
+            } catch (error) {
+              reject(error)
+              return;
+            }
+            if (info.done) {
+              resolve(value)
+            } else {
+              return Promise.resolve(value).then(
+                function(value) {
+                  step("next", value)
+                },
+                function(err) {
+                  step("throw", err)
+                }
+              )
+            }
+          }
+          return step("next")
+        })
+      }
+    }
+
+    var foo = (function() {
+      var _ref = _asyncToGenerator(
+        /*#__PURE__*/ regeneratorRuntime.mark(function _callee() {
+          return regeneratorRuntime.wrap(
+            function _callee$(_context) {
+              while (1) {
+                switch ((_context.prev = _context.next)) {
+                  case 0:
+                    _context.next = 2;
+                    return getData();
+
+                  case 2:
+                    data = _context.sent;
+
+                  case 3:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            },
+            _callee,
+            undefined
+          );
+        })
+      );
+
+      return function foo() {
+        return _ref.apply(this, arguments);
+      };
+    })();
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+test
+</body>
+</html>

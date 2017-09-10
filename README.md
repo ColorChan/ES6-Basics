@@ -975,7 +975,7 @@ NaN != NaN, but except Array.prototype.includes() in Ecma7
    简单地说，它可以起到与promise和generator相同的作用。<br>
 3. 解决了什么问题<br>
   并没有什么新能力，只是使得异步操作变得更加方便。<br>
-  [demo](https://github.com/ColorChan/Basic/blob/master/rest.html)<br>
+  [demo](https://github.com/ColorChan/Basic/blob/master/test.html)<br>
 4. 与原先的解决方法有什么区别<br>
    3.1 &nbsp; callback<br>
    。。。<br>

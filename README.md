@@ -1,5 +1,5 @@
 # Basic knowledge
-Basics of EcmaScript 6 <br>
+Basic knowledge in EcmaScript 6 <br>
 
 <br><br>
 

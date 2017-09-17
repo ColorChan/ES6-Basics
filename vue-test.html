@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue-test</title>
+  <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-alpha.20/babel.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+  <link rel="stylesheet" href="style/reset.css">
+  <link rel="stylesheet" href="style/vue-test-style.css">
+</head>
+<body>
+
+<div id="app">
+
+  <modal :title="'User Login'">
+    <div class="content">
+      <p>Username:</p>
+      <input class="username">
+      <button class="more">see more</button>
+    </div>
+  </modal>
+</div>
+
+
+
+<script type="text/x-template" id="modal-template">
+  <div class="modal">
+    <div class="back-ground">
+      <div class="modal-wrapper">
+        <h1 class="title" v-text="title"></h1>
+        <div class="content-wrapper">
+          <slot></slot>
+        </div>
+        <div class="footer">
+          <button class="sure">sure</button>
+          <button class="cancel">cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script type="text/babel">
+
+  var modal = {
+    template: '#modal-template',
+    props: {
+      title: {
+        type: String
+      }
+    }
+  }
+
+  var app = new Vue({
+    el: '#app',
+    data() {
+      return {}
+    },
+    components: {
+      modal
+    }
+  })
+
+</script>
+</body>
+</html>

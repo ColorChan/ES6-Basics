@@ -3,6 +3,7 @@ Basic knowledge in EcmaScript 6 <br>
 
 <br><br>
 
+<i id="catalog"></i>
 ## Catalog
 1. &nbsp; [MarkdownEditing Key Bingding](#MarkdownEditing)
 2. &nbsp; [NetEase 2017 Summer Campus](#NetEase2017)
@@ -12,9 +13,10 @@ Basic knowledge in EcmaScript 6 <br>
 6. &nbsp; [Flex](#flex)
 7. &nbsp; [What happens when you navigate to a URL](#input-url)
 8. &nbsp; [HTTP](#http)
-9. &nbsp; [Others Of Web Structure](#others)
-10. &nbsp;&nbsp;[Code Review](#code-review)
-<br>&nbsp;&nbsp;10.1&nbsp;&nbsp;[First](#review01)
+9. &nbsp; [Async](#async)
+10. &nbsp; [Others Of Web Structure](#others)
+11. &nbsp;&nbsp;[Code Review](#code-review)
+<br>&nbsp;&nbsp;11.1&nbsp;&nbsp;[First](#review01)
 
 <br><br><br><br>
 
@@ -228,7 +230,10 @@ public class Main{
 当n为奇数，有(n+1)/2个奇数，此时奇数和为((n+1)/2)  *  ((n+1)/2) <br>
 因此两种情况可以用一个等式来总结 <br>
 
+<br>
+[backToCatalog](#catalog)
 <br><br><br>
+
 
 <i id="structure"></i>
 ##  Data Structure and Algorithm / 数据结构与算法
@@ -688,6 +693,138 @@ SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Ser
 
 <br><br><br>
 
+
+<i id="async"></i>
+##  ES8 Async
+1. 背景<br>
+    在qdum-fed-quick-start中有一处通过AJAX获取素材数据，并实时响应到vue data中，然后对对响应到data中筛选部分数据进行处理。<br>    
+    [gitlab地址](http://gitlab.qdum.com/wangyw/qdum-fed-quick-start/blob/master/src/common/components/new/material/all-material.vue)<br> 
+
+    在一开始时，采用的方法如下(关键代码)：<br> 
+    
+   ``` javascript
+     import request from 'superagent'
+     export default {
+       data () {
+         return {
+           dataStore: [],
+           lastItem: {},
+           currentPage: 1
+         }
+       },
+       created () {
+         this.updateData(this.currentPage)
+       },
+       methods: {
+         updateData (page) {
+           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
+             this.dataStore.push(...res.body.data.materialList)
+             this.$nextTick(() => {
+               this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+             })
+           })
+         }
+       }
+     }
+   ```
+   
+   这里就出现一个问题，this.lastItem总是undefined <br>
+   
+   
+   
+   改进后: <br> 
+   
+   ``` javascript
+     import request from 'superagent'
+     export default {
+       data () {
+         return {
+           dataStore: [],
+           lastItem: {},
+           currentPage: 1
+         }
+       },
+       created () {
+         this.updateData(this.currentPage)
+       },
+       methods: {
+         updateData (page) {
+           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
+             this.dataStore.push(...res.body.data.materialList)
+           })
+         },
+       },
+       watch: {
+         dataStore () {
+           this.$nextTick(() => {
+             this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+           })
+         }
+       }
+     }
+   ```   
+   
+   用async重写:<br>
+   
+   ``` javascript
+    import request from 'superagent'
+    export default {
+      data () {
+        return {
+          dataStore: [],
+          lastItem: {},
+          currentPage: 1
+        }
+      },
+      created () {
+        this.updateData(this.currentPage)
+      },
+      methods: {
+        async updateData (page) {
+          .then((res) => {
+            let res = await request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`)
+            this.dataStore.push(...res.body.data.materialList)
+            this.$nextTick(() => {
+              this.lastItem = this.$refs.list[this.$refs.list.length - 1]
+            })
+          })
+        }
+      }
+    }
+   ```
+      
+   
+   
+2. 什么是Async函数<br>
+   async函数是在ES2017加入的，它是目前为止 JS 最佳的异步解决方案。<br>
+   简单地说，它可以起到与promise和generator相同的作用。<br>
+3. 解决了什么问题<br>
+  并没有什么新能力，只是使得异步操作变得更加方便。<br>
+  [demo](https://github.com/ColorChan/Basic/blob/master/test.html)<br>
+4. 与原先的解决方法有什么区别<br>
+   3.1 &nbsp; callback<br>
+   。。。<br>
+   3.2 &nbsp; promise<br>
+   传统callback hell问题已经被es6的promise解决了<br>
+   但是promise也带来了一定的问题 <br>
+   (1).立即执行、无法取消<br>
+   (2).无法追踪pending<br>
+   (3).语义化差<br>
+   3.2 &nbsp; generator<br>
+   (1).generator 返回Iterator .next()<br>
+   (2).generator 语义化尚可<br>
+   (3).需要执行器
+5. 核心原理<br>
+   async函数返回Promise。当函数执行时，遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。<br>
+   async原理是包装generator和一个自动执行函数。<br>
+   缺点:await异步操作错误处理<br>
+6. 对业务影响<br>
+   基于promise，看起来像同步，且不会阻塞主线程。<br>
+   可读可维护性。<br>
+
+
+<br><br><br>
+
 <i id="others"></i>
 ##  Difference between  Cookie,sessionStorage,localStorage / Cookie,sessionStorage,localStorage的区别
 共同点：都是保存在浏览器端，且同源的。<br>
@@ -870,132 +1007,6 @@ NaN != NaN, but except Array.prototype.includes() in Ecma7
 
 <i id="review01"></i> 
 ### First time
-**ES8 Async** <br>
-1. 背景<br>
-    在qdum-fed-quick-start中有一处通过AJAX获取素材数据，并实时响应到vue data中，然后对对响应到data中筛选部分数据进行处理。<br>    
-    [gitlab地址](http://gitlab.qdum.com/wangyw/qdum-fed-quick-start/blob/master/src/common/components/new/material/all-material.vue)<br> 
-
-    在一开始时，采用的方法如下(关键代码)：<br> 
-    
-   ``` javascript
-     import request from 'superagent'
-     export default {
-       data () {
-         return {
-           dataStore: [],
-           lastItem: {},
-           currentPage: 1
-         }
-       },
-       created () {
-         this.updateData(this.currentPage)
-       },
-       methods: {
-         updateData (page) {
-           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
-             this.dataStore.push(...res.body.data.materialList)
-             this.$nextTick(() => {
-               this.lastItem = this.$refs.list[this.$refs.list.length - 1]
-             })
-           })
-         }
-       }
-     }
-   ```
-   
-   这里就出现一个问题，this.lastItem总是undefined <br>
-   
-   
-   
-   改进后: <br> 
-   
-   ``` javascript
-     import request from 'superagent'
-     export default {
-       data () {
-         return {
-           dataStore: [],
-           lastItem: {},
-           currentPage: 1
-         }
-       },
-       created () {
-         this.updateData(this.currentPage)
-       },
-       methods: {
-         updateData (page) {
-           request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`).then((res) => {
-             this.dataStore.push(...res.body.data.materialList)
-           })
-         },
-       },
-       watch: {
-         dataStore () {
-           this.$nextTick(() => {
-             this.lastItem = this.$refs.list[this.$refs.list.length - 1]
-           })
-         }
-       }
-     }
-   ```   
-   
-   用async重写:<br>
-   
-   ``` javascript
-    import request from 'superagent'
-    export default {
-      data () {
-        return {
-          dataStore: [],
-          lastItem: {},
-          currentPage: 1
-        }
-      },
-      created () {
-        this.updateData(this.currentPage)
-      },
-      methods: {
-        async updateData (page) {
-          .then((res) => {
-            let res = await request('get', `http://rap.qdum.com/mockjsdata/17/api/material/v1/material?pageNumber=${page}`)
-            this.dataStore.push(...res.body.data.materialList)
-            this.$nextTick(() => {
-              this.lastItem = this.$refs.list[this.$refs.list.length - 1]
-            })
-          })
-        }
-      }
-    }
-   ```
-      
-   
-   
-2. 什么是Async函数<br>
-   async函数是在ES2017加入的，它是目前为止 JS 最佳的异步解决方案。<br>
-   简单地说，它可以起到与promise和generator相同的作用。<br>
-3. 解决了什么问题<br>
-  并没有什么新能力，只是使得异步操作变得更加方便。<br>
-  [demo](https://github.com/ColorChan/Basic/blob/master/test.html)<br>
-4. 与原先的解决方法有什么区别<br>
-   3.1 &nbsp; callback<br>
-   。。。<br>
-   3.2 &nbsp; promise<br>
-   传统callback hell问题已经被es6的promise解决了<br>
-   但是promise也带来了一定的问题 <br>
-   (1).立即执行、无法取消<br>
-   (2).无法追踪pending<br>
-   (3).语义化差<br>
-   3.2 &nbsp; generator<br>
-   (1).generator 返回Iterator .next()<br>
-   (2).generator 语义化尚可<br>
-   (3).需要执行器
-5. 核心原理<br>
-   async函数返回Promise。当函数执行时，遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。<br>
-   async原理是包装generator和一个自动执行函数。<br>
-   缺点:await异步操作错误处理<br>
-6. 对业务影响<br>
-   基于promise，看起来像同步，且不会阻塞主线程。<br>
-   可读可维护性。<br>
 
 
 

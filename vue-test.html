@@ -12,7 +12,7 @@
 
 <div id="app">
   <input type="button" @click="switchShow = true" value="open">
-  <modal v-if="switchShow" :title="'User Login'" @cancel="switchShow = false">
+  <modal v-if="switchShow" :title="'User Login'" @cancel="switchShow = false" :quick-close="true">
     <div class="content">
       <p>Username:</p>
       <input class="username">
@@ -21,7 +21,7 @@
   </modal>
 
   <modal v-if="moreShow" :title="'see more'" @cancel="moreShow = false">
-    <div class="see-more">see more</div>
+    <div class="see-more">when multi modal exist, black-back should be only one</div>
   </modal>
 
 
@@ -42,7 +42,7 @@
 <script type="text/x-template" id="modal-template">
   <transition name="fade">
     <div class="modal">
-      <div class="back-ground" ref="background"></div>
+      <div class="back-ground" ref="background" @click="cancel(quickClose)"></div>
       <div class="modal-wrapper">
         <h1 class="title" v-text="title"></h1>
         <div class="content-wrapper">
@@ -50,7 +50,7 @@
         </div>
         <div class="footer">
           <button class="sure">sure</button>
-          <button class="cancel" @click="cancel">cancel</button>
+          <button class="cancel" @click="cancel()">cancel</button>
         </div>
       </div>
     </div>
@@ -63,6 +63,10 @@
     props: {
       title: {
         type: String
+      },
+      quickClose: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
@@ -79,7 +83,10 @@
       }
     },
     methods: {
-      cancel() {
+      cancel(confirm = true) {
+        if (confirm === false) {
+          return
+        }
         this.$emit('cancel')
         this.$parent.$emit('modal-count', 'reduce')
       }

@@ -5,35 +5,20 @@ Basic knowledge in EcmaScript 6 <br>
 
 <i id="catalog"></i>
 ## Catalog
-1. &nbsp; [MarkdownEditing Key Bingding](#MarkdownEditing)
-2. &nbsp; [NetEase 2017 Summer Campus](#NetEase2017)
-3. &nbsp; [Data structure & Algorithm](#structure)
-4. &nbsp; [Underlying JavaScript](#underlying)
-5. &nbsp; [Ajax](#ajax)
-6. &nbsp; [Flex](#flex)
-7. &nbsp; [What happens when you navigate to a URL](#input-url)
-8. &nbsp; [HTTP](#http)
-9. &nbsp; [Async](#async)
-10. &nbsp; [Others Of Web Structure](#others)
-11. &nbsp;&nbsp;[Code Review](#code-review)
-<br>&nbsp;&nbsp;11.1&nbsp;&nbsp;[01: Modal](#review01)
+1. &nbsp; [NetEase 2017 Summer Campus](#NetEase2017)
+2. &nbsp; [Data structure & Algorithm](#structure)
+3. &nbsp; [Underlying JavaScript](#underlying)
+4. &nbsp; [Ajax](#ajax)
+5. &nbsp; [Flex](#flex)
+6. &nbsp; [What happens when you navigate to a URL](#input-url)
+7. &nbsp; [HTTP](#http)
+8. &nbsp; [Async](#async)
+9. &nbsp; [Others Of Web Structure](#others)
+10. &nbsp; &nbsp;[Code Review](#code-review)
+           <br>&nbsp;&nbsp;11.1&nbsp;&nbsp;[01: Modal](#review01)
+11. &nbsp;[Sublime MarkdownEditing Key Bingding](#MarkdownEditing)
 
 <br><br><br><br>
-
-<i id="MarkdownEditing"></i>
-##  MarkdownEditing Key Bingding(Windows/Linux)
-CtrlWinV &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联链接。 <br>
-CtrlWinR &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为参考链接。 <br>
-ShiftWinK &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联图像。 <br>
-AltB AltI &nbsp;&nbsp; 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。 <br>
-Ctrl1...6 &nbsp;&nbsp; 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。 <br>
-AltShift6 &nbsp;&nbsp; 插入脚注 <br>
-ShiftTab &nbsp;&nbsp; 折叠/展开当前部分。 <br>
-CtrlShiftTab &nbsp;&nbsp; 折叠一定级别标题下的所有部分。 <br>
-CtrlAltShiftPageUp CtrlAltShiftPageDown &nbsp;&nbsp; 转到相同或更高级别的上一个/下一个标题 <br>
-CtrlShiftPageUp CtrlShiftPageDown &nbsp;&nbsp; 转到上一个/下一个标题 <br>
-
-<br><br><br>
 
 <i id="NetEase2017"></i>
 ##    NetEase 2017 Summer Campus recruitmen
@@ -696,6 +681,8 @@ SYN攻击就是Client在短时间内伪造大量不存在的IP地址，并向Ser
 500 Internal Server Error  服务器遇到了意料不到的情况，不能完成客户的请求<br>
 501 Not Implemented  服务器不支持实现请求所需要的功能。
 
+<br>
+[backToCatalog](#catalog)
 <br><br><br>
 
 
@@ -990,6 +977,8 @@ not a number<br>
 but typeof NAN is a Number<br>
 NaN != NaN, but except Array.prototype.includes() in Ecma7
 
+<br>
+[backToCatalog](#catalog)
 <br><br><br>
 
 
@@ -1013,23 +1002,36 @@ NaN != NaN, but except Array.prototype.includes() in Ecma7
 5. How should
 6. Future plan
 
-<br><br>
+<br>
+
 
 <i id="review01"></i> 
 ### First time
 **模态窗(Modal)** <br>
 Modals 一般用来做一项具体的任务，例如在某些表单中 <br>
+1.从产品角度讲modal与弹窗、提示、浮层之间的区别。 <br>
 弹窗Alert<br>
 ![弹窗Alert](https://github.com/ColorChan/Basic/blob/master/img/alert.png?raw=true)
 <br>
 提示Toast<br>
+![提示Toast](https://github.com/ColorChan/Basic/blob/master/img/toast.png?raw=true)
 <br>
 浮层(popover或popup)<br>
 ![popover](https://github.com/ColorChan/Basic/blob/master/img/popover.png?raw=true)
 <br>
 ![popup](https://github.com/ColorChan/Basic/blob/master/img/popup.png?raw=true)
 <br>
-<br>
+2.一个好的modal应该考虑到哪些情况<br>
+2.1. 模态，阻止滚动
+2.2. 多个弹层同时出现时，共享遮罩层
+2.3. 是否可以自我管理，比如点击遮罩层关闭弹层。
+2.4. 是否单例
+2.5. 
+2.6. 
+2.7. 
+模态框需要支持同步加载和异步加载两种方式
+模态框组件可以自主地选择是否加入过渡动画
+
 <br>
 <br>
 <br>
@@ -1037,3 +1039,22 @@ Modals 一般用来做一项具体的任务，例如在某些表单中 <br>
 [backToCatalog](#catalog)
 
    <br><br><br><br>
+   <br><br><br><br>
+   <br><br><br><br>
+
+
+<i id="MarkdownEditing"></i>
+##  MarkdownEditing Key Bingding(Windows/Linux)
+CtrlWinV &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联链接。 <br>
+CtrlWinR &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为参考链接。 <br>
+ShiftWinK &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联图像。 <br>
+AltB AltI &nbsp;&nbsp; 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。 <br>
+Ctrl1...6 &nbsp;&nbsp; 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。 <br>
+AltShift6 &nbsp;&nbsp; 插入脚注 <br>
+ShiftTab &nbsp;&nbsp; 折叠/展开当前部分。 <br>
+CtrlShiftTab &nbsp;&nbsp; 折叠一定级别标题下的所有部分。 <br>
+CtrlAltShiftPageUp CtrlAltShiftPageDown &nbsp;&nbsp; 转到相同或更高级别的上一个/下一个标题 <br>
+CtrlShiftPageUp CtrlShiftPageDown &nbsp;&nbsp; 转到上一个/下一个标题 <br>
+
+<br><br><br>
+[backToCatalog](#catalog)

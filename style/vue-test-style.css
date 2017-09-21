@@ -6,9 +6,18 @@ html body {
   height: 100%;
 }
 
+html .no-scroll {
+  overflow: hidden;
+}
+
+html .no-scroll .modal {
+  overflow-y: auto;
+}
+
 #app {
   height: 100%;
   background: url("https://github.com/ColorChan/Basic/blob/master/img/vue-modal-background.jpg?raw=true") no-repeat;
+  background-size: cover;
 }
 
 #app .modal {

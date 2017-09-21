@@ -79,8 +79,10 @@
     },
     mounted() {
       if (this.$parent.modalCount > 1) {
+        console.log(this.$parent.modalCount)
         this.$refs.background.style.opacity = 0
       }
+      document.querySelector('body').classList.add('no-scroll')
     },
     methods: {
       cancel(confirm = true) {
@@ -89,6 +91,7 @@
         }
         this.$emit('cancel')
         this.$parent.$emit('modal-count', 'reduce')
+        document.querySelector('body').classList.remove('no-scroll')
       }
     }
   }

@@ -1014,6 +1014,7 @@ modal，用来把 div 的内容识别为模态框。<br>
 1.从产品角度讲modal与弹窗、提示、浮层之间的区别。 <br>
 弹窗Alert<br>
 ![弹窗Alert](https://github.com/ColorChan/Basic/blob/master/img/alert.png?raw=true =100x100)
+<img src="https://github.com/ColorChan/Basic/blob/master/img/alert.png?raw=true"/>
 <br>
 提示Toast<br>
 ![提示Toast](https://github.com/ColorChan/Basic/blob/master/img/toast.png?raw=true)

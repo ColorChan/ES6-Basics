@@ -12,7 +12,7 @@
 
 <div id="app">
   <input type="button" @click="switchShow = true" value="open">
-  <modal v-if="switchShow" :title="'User Login'" @cancel="switchShow = false" :quick-close="true">
+  <modal v-if="switchShow" @cancel="switchShow = false" :title="'User Login'" :quick-close="true">
     <div class="content">
       <p>Username:</p>
       <input class="username">
@@ -70,9 +70,7 @@
       }
     },
     data() {
-      return {
-
-      }
+      return {}
     },
     created() {
       this.$parent.$emit('modal-count', 'add')

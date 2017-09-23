@@ -1009,9 +1009,8 @@ NaN != NaN, but except Array.prototype.includes() in Ecma7
 ### First time
 **模态窗(Modal)** <br>
 Modals 一般用来做一项具体的任务，例如在某些表单中 <br>
-modal，用来把 div 的内容识别为模态框。<br>
-当模态框被切换时，它会引起内容淡入淡出。<br>
-1.从产品角度讲modal与弹窗、提示、浮层之间的区别。 <br>
+
+1.从产品角度讲modal与弹窗、提示、浮层。 <br>
 弹窗Alert<br>
 ![弹窗Alert](https://github.com/ColorChan/Basic/blob/master/img/alert.png?raw=true)
 <br>
@@ -1024,16 +1023,16 @@ modal，用来把 div 的内容识别为模态框。<br>
 ![popup](https://github.com/ColorChan/Basic/blob/master/img/popup.png?raw=true)
 <br><br>
 2.一个好的modal应该考虑到哪些情况<br>
-2.1. 模态，阻止滚动 body over-y=hidden, modal=auto<br>
-2.2. 多个弹层同时出现时，共享遮罩层<br>
-2.3. 是否可以自我管理，比如点击遮罩层关闭弹层。<br>
+2.1. 模态，阻止滚动<br>
+2.2. 多个弹层同时出现时<br>
+2.3. 是否可以自我管理<br>
 2.4. 是否单例<br>
 2.5. 模态框需要支持同步加载和异步加载两种方式<br>
 2.6. 模态框组件可以自主地选择是否加入过渡动画<br>
 
 更多情况<br>
-有些弹层需要保留状态，比如你编辑某篇文章，不小心点叉了，再打开还在<br>
-而有些需要每次打开都是新的，比如后台中创建某个条目的弹出式表单，你创建过一个条目，下一次再开这个弹层，不应该保留上一个条目的信息<br>
+保留状态<br>
+
 
 
 

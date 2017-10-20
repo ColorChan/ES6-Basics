@@ -1007,7 +1007,7 @@ NaN != NaN, but except Array.prototype.includes() in Ecma7
 
 
 <i id="review01"></i> 
-### First time
+### First
 **模态窗(Modal)** <br>
 Modals 一般用来做一项具体的任务，例如在某些表单中 <br>
 
@@ -1046,15 +1046,214 @@ Modals 一般用来做一项具体的任务，例如在某些表单中 <br>
 <br><br>
 
 <i id="review02"></i>
-### Second time
+### Second
 **NPM插件推荐 - BetterScroll** <br>
 better-scroll 是一款重点解决移动端（支持部分PC 端）各种滚动场景的插件。<br>
+包括但不限于滚动列表、选择器、轮播图、索引列表、开屏引导<br>
 它的核心理念是借鉴的 iscroll，它的 API 设计与 iscroll 相似，在 iscroll 的基础上又扩展了一些 feature 以及做了一些性能优化(听说??)。<br>
 better-scroll  基于原生 JS 实现的，无依赖。它编译后的gzip 后仅有 7kb，轻量lib。<br>
 GitHub: https://github.com/ustbhuangyi/better-scroll
-<br>
+<br><br>
+**常用配置**<br>
+普通 --- Boolean<br>
+scrollX, scrollY<br>
+freeScroll<br>
+click(tap)<br>
+bounce<br>
+momentum<br>
+高级 --- Object<br>
+wheel<br>
+snap<br>
+<br><br>
+**原码分析**<br>
+关于冲量(惯性)<br>
+```javascript
+  BScroll.prototype._end = function (e) {
+    // 先检测是否需要惯性。如果better-scroll被禁止、销毁或该时间类型与传入事件类型不符。
+    if (!this.enabled || this.destroyed || eventType[e.type] !== this.initiated) {
+      return
+    }
+    this.initiated = false
 
-<br><br><br>
+    if (this.options.preventDefault && !preventDefaultException(e.target, this.options.preventDefaultException)) {
+      e.preventDefault()
+    }
+
+    this.trigger('touchEnd', {
+      x: this.x,
+      y: this.y
+    })
+
+    // 检测下拉刷线是否启用
+    if (this.options.pullDownRefresh && this._checkPullDown()) {
+      return
+    }
+
+    // 超出范围就reset
+    if (this.resetPosition(this.options.bounceTime, ease.bounce)) {
+      return
+    }
+    this.isInTransition = false
+    let newX = Math.round(this.x)
+    let newY = Math.round(this.y)
+
+    // we scrolled less than 15 pixels
+    if (!this.moved) {
+      if (this.options.wheel) {
+        if (this.target && this.target.className === 'wheel-scroll') {
+          let index = Math.abs(Math.round(newY / this.itemHeight))
+          let _offset = Math.round((this.pointY + offset(this.target).top - this.itemHeight / 2) / this.itemHeight)
+          this.target = this.items[index + _offset]
+        }
+        this.scrollToElement(this.target, this.options.wheel.adjustTime || 400, true, true, ease.swipe)
+      } else {
+        if (this.options.tap) {
+          tap(e, this.options.tap)
+        }
+
+        if (this.options.click) {
+          click(e)
+        }
+      }
+      this.trigger('scrollCancel')
+      return
+    }
+
+    this.scrollTo(newX, newY)
+
+    let deltaX = newX - this.absStartX
+    let deltaY = newY - this.absStartY
+    this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0
+    this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0
+
+    this.endTime = getNow()
+
+    let duration = this.endTime - this.startTime
+    let absDistX = Math.abs(newX - this.startX)
+    let absDistY = Math.abs(newY - this.startY)
+
+    // flick
+    if (this._events.flick && duration < this.options.flickLimitTime && absDistX < this.options.flickLimitDistance && absDistY < this.options.flickLimitDistance) {
+      this.trigger('flick')
+      return
+    }
+
+    let time = 0
+    // start momentum animation if needed
+    if (this.options.momentum && duration < this.options.momentumLimitTime && (absDistY > this.options.momentumLimitDistance || absDistX > this.options.momentumLimitDistance)) {
+      let momentumX = this.hasHorizontalScroll ? momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options)
+        : {destination: newX, duration: 0}
+      let momentumY = this.hasVerticalScroll ? momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options)
+        : {destination: newY, duration: 0}
+      newX = momentumX.destination
+      newY = momentumY.destination
+      time = Math.max(momentumX.duration, momentumY.duration)
+      this.isInTransition = 1
+    } else {
+      if (this.options.wheel) {
+        newY = Math.round(newY / this.itemHeight) * this.itemHeight
+        time = this.options.wheel.adjustTime || 400
+      }
+    }
+
+//    ...
+
+  }
+```
+<br><br>
+关于边缘回弹<br>
+1.减速部分<br>
+```javascript
+  BScroll.prototype._move = function (e) {
+
+// ...
+
+    // Slow down or stop if outside of the boundaries
+    if (newX > 0 || newX < this.maxScrollX) {
+      if (this.options.bounce) {
+        newX = this.x + deltaX / 3
+      } else {
+        newX = newX > 0 ? 0 : this.maxScrollX
+      }
+    }
+    if (newY > 0 || newY < this.maxScrollY) {
+      if (this.options.bounce) {
+        newY = this.y + deltaY / 3
+      } else {
+        newY = newY > 0 ? 0 : this.maxScrollY
+      }
+    }
+
+// ...
+
+  }
+```
+<br>
+2.回弹部分<br>
+```javascript
+  BScroll.prototype.resetPosition = function (time = 0, easeing = ease.bounce) {
+    let x = this.x
+    if (!this.hasHorizontalScroll || x > 0) {
+      x = 0
+    } else if (x < this.maxScrollX) {
+      x = this.maxScrollX
+    }
+
+    let y = this.y
+    if (!this.hasVerticalScroll || y > 0) {
+      y = 0
+    } else if (y < this.maxScrollY) {
+      y = this.maxScrollY
+    }
+
+    if (x === this.x && y === this.y) {
+      return false
+    }
+
+    this.scrollTo(x, y, time, easeing)
+
+    return true
+  }
+```
+
+```javascript
+  BScroll.prototype.scrollTo = function (x, y, time = 0, easing = ease.bounce) {
+    this.isInTransition = this.options.useTransition && time > 0 && (x !== this.x || y !== this.y)
+
+    if (!time || this.options.useTransition) {
+      this._transitionTimingFunction(easing.style)
+      this._transitionTime(time)
+      this._translate(x, y)
+
+      if (time && this.options.probeType === 3) {
+        this._startProbe()
+      }
+
+      if (this.options.wheel) {
+        if (y > 0) {
+          this.selectedIndex = 0
+        } else if (y < this.maxScrollY) {
+          this.selectedIndex = this.items.length - 1
+        } else {
+          this.selectedIndex = Math.abs(y / this.itemHeight) | 0
+        }
+      }
+    } else {
+      this._animate(x, y, time, easing.fn)
+    }
+  }
+```
+// 在 Vue 中，保证列表渲染完成时，初始化 BScroll
+mounted() {
+   setTimeout(() => {
+     this.scroll = new BScroll(this.$refs.wrapper, options)
+   }, 20)
+},
+
+
+
+
+<br><br>
 [backToCatalog](#catalog)
 
 

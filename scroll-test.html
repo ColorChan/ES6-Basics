@@ -10,7 +10,6 @@
     }
     .slider-wrapper .slider {
       overflow: hidden;
-      width: 2890px;
     }
     .slider-wrapper .slider li {
       float: left;
@@ -66,7 +65,7 @@
 
 <script type="text/babel">
   let sliderArray =  document.querySelectorAll('.slider-item')
-  document.querySelector('.slider').style.width = sliderArray.length * document.body.clientWidth + 'px'
+  document.querySelector('.slider').style.width = (sliderArray.length + 2) * document.body.clientWidth + 'px'
   for (let item of sliderArray) {
     item.style.width =  document.body.clientWidth + 'px'
   }
@@ -75,9 +74,13 @@
   let wrapper2 = document.querySelector('.goods-wrapper'  )
 
   let scroll1 = new BScroll(wrapper1, {
-    scrollY: false,
-    scrollX: true,
-    click: true
+      scrollX: true,
+      momentum: false,
+      snap: {
+          loop: true,
+          threshold: 0.3,
+          speed: 400
+      }
   })
   let scroll2 = new BScroll(wrapper2)
 

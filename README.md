@@ -1065,6 +1065,29 @@ momentum<br>
 wheel<br>
 snap<br>
 <br><br>
+**Demo**<br>
+1.slider<br>
+```javascript
+  let wrapper1 = document.querySelector('.slider-wrapper'  )
+
+  let scroll1 = new BScroll(wrapper1, {
+      scrollX: true,
+      momentum: false,
+      snap: {
+          loop: true,
+          threshold: 0.3,
+          speed: 400
+      }
+  })
+```
+<br>
+
+2.list<br>
+```javascript
+  let wrapper2 = document.querySelector('.goods-wrapper'  )
+  let scroll2 = new BScroll(wrapper2)
+```
+<br><br>
 **原码分析**<br>
 关于冲量(惯性)<br>
 ```javascript

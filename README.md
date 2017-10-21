@@ -1092,7 +1092,6 @@ snap<br>
 关于冲量(惯性)<br>
 ```javascript
   BScroll.prototype._end = function (e) {
-    // 先检测是否需要惯性。如果better-scroll被禁止、销毁或该时间类型与传入事件类型不符。
     if (!this.enabled || this.destroyed || eventType[e.type] !== this.initiated) {
       return
     }
@@ -1107,40 +1106,16 @@ snap<br>
       y: this.y
     })
 
-    // 检测下拉刷线是否启用
     if (this.options.pullDownRefresh && this._checkPullDown()) {
       return
     }
 
-    // 超出范围就reset
     if (this.resetPosition(this.options.bounceTime, ease.bounce)) {
       return
     }
     this.isInTransition = false
     let newX = Math.round(this.x)
     let newY = Math.round(this.y)
-
-    // we scrolled less than 15 pixels
-    if (!this.moved) {
-      if (this.options.wheel) {
-        if (this.target && this.target.className === 'wheel-scroll') {
-          let index = Math.abs(Math.round(newY / this.itemHeight))
-          let _offset = Math.round((this.pointY + offset(this.target).top - this.itemHeight / 2) / this.itemHeight)
-          this.target = this.items[index + _offset]
-        }
-        this.scrollToElement(this.target, this.options.wheel.adjustTime || 400, true, true, ease.swipe)
-      } else {
-        if (this.options.tap) {
-          tap(e, this.options.tap)
-        }
-
-        if (this.options.click) {
-          click(e)
-        }
-      }
-      this.trigger('scrollCancel')
-      return
-    }
 
     this.scrollTo(newX, newY)
 
@@ -1154,12 +1129,6 @@ snap<br>
     let duration = this.endTime - this.startTime
     let absDistX = Math.abs(newX - this.startX)
     let absDistY = Math.abs(newY - this.startY)
-
-    // flick
-    if (this._events.flick && duration < this.options.flickLimitTime && absDistX < this.options.flickLimitDistance && absDistY < this.options.flickLimitDistance) {
-      this.trigger('flick')
-      return
-    }
 
     let time = 0
     // start momentum animation if needed
@@ -1212,7 +1181,9 @@ snap<br>
   }
 ```
 <br>
+
 2.回弹部分<br>
+
 ```javascript
   BScroll.prototype.resetPosition = function (time = 0, easeing = ease.bounce) {
     let x = this.x

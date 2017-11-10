@@ -23,15 +23,15 @@ let strategies = {
 
 class Validator {
     constructor() {
-        // validateFuArray用来存储验证函数: [fun, fun, ...]
-        this.validateFuArray = []
+        // validateFunArray用来存储验证函数: [fun, fun, ...]
+        this.validateFunArray = []
     }
     itemRules(rules) {
         // this.validateFuArray = []
         for (let rule of rules) {
             (() => {
                 // strategyArray : [ 需要验证的val, 报错信息 ]
-                this.validateFuArray.push(function (item) {
+                this.validateFunArray.push(function (item) {
                     let strategyArray = []
                     let strategy = rule.strategy.split(':')[0]
                     strategyArray.push(item, rule.errMsg)
@@ -41,7 +41,7 @@ class Validator {
         }
     }
     startValidate(item) {
-        for (let validateFun of this.validateFuArray) {
+        for (let validateFun of this.validateFunArray) {
             if (validateFun(item)) {
                 return validateFun(item)
             }

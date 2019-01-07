@@ -36,7 +36,7 @@ LIFO后进先出<br>
 2.每当发生函数调用时, 会为该函数创建一个新的函数上下文并Push到当前执行栈的栈顶;<br>
 3.当栈顶函数运行完成后, 该函数上下文将会从执行栈中Pop出;<br>
 流程图示<br>
-![执行栈流程](https://github.com/ColorChan/Basic/blob/master/img/68747470733a2f2f7573657221.webp?raw=true)
+![执行栈流程](https://github.com/ColorChan/Basic/blob/master/senior-frontend-interview/source/68747470733a2f2f7573657221.webp?raw=true)
 
 <br><br><br><br>
 

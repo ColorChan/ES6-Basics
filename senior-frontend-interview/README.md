@@ -30,13 +30,27 @@ read senior-frontend-interview <br>
 3.Eval上下文: eval 函数中的代码;
 
 ### 执行栈(调用栈)  
-LIFO后进先出<br>
+(遵守LIFO后进先出)<br>
 执行栈流程:<br>
 1.首次运行JS代码, 创建全局上下文并将其Push到当前的执行栈中;<br>
 2.每当发生函数调用时, 会为该函数创建一个新的函数上下文并Push到当前执行栈的栈顶;<br>
 3.当栈顶函数运行完成后, 该函数上下文将会从执行栈中Pop出;<br>
+<br>
 流程图示<br>
 ![执行栈流程](https://github.com/ColorChan/Basic/blob/master/senior-frontend-interview/source/68747470733a2f2f7573657221.webp?raw=true)
+<br>
+执行上下文分为2个阶段(创建-执行)<br>
+1.创建阶段<br>
+&nbsp;&nbsp;(1)确定this的值;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;全局上下文中，this 的值指向全局对象;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;函数上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显式绑定（硬绑定）、new绑定、箭头函数;<br>
+&nbsp;&nbsp;(2)创建词法环境;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;(3)创建变量环境;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+2.执行阶段<br>
+
+
 
 <br><br><br><br>
 

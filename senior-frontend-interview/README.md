@@ -39,15 +39,18 @@ read senior-frontend-interview <br>
 流程图示<br>
 ![执行栈流程](https://github.com/ColorChan/Basic/blob/master/senior-frontend-interview/source/68747470733a2f2f7573657221.webp?raw=true)
 <br>
-执行上下文分为2个阶段(创建-执行)<br>
+执行上下文分为2个阶段(创建-执行):<br>
 1.创建阶段<br>
 (1)确定this的值;<br>
-&nbsp;&nbsp;全局上下文中，this 的值指向全局对象;<br>
-&nbsp;&nbsp;函数上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显式绑定（硬绑定）、new绑定、箭头函数;<br>
+全局上下文中，this 的值指向全局对象;<br>
+函数上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显式绑定（硬绑定）、new绑定、箭头函数;<br>
+<br>
 (2)创建词法环境;<br>
-&nbsp;&nbsp;<br>
+<br>
+<br>
 (3)创建变量环境;<br>
-&nbsp;&nbsp;<br>
+<br>
+<br>
 2.执行阶段<br>
 
 

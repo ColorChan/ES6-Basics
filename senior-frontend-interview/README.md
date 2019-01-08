@@ -72,7 +72,7 @@ foo(1);
 ```
 <br>
 在函数上下文中，用活动对象(activation object, AO)来表示变量对象。以上代码的AO是:<br>
-```javascript
+```
 AO = {
   arguments: { 0: 1, length: 1 },
   a: 1,
@@ -82,7 +82,7 @@ AO = {
 }
 ```
 然后进入代码执行阶段, 变量值会被修改为应该有的值, AO被更变至如下:<br>
-```javascript
+```
 AO = {
     arguments: { 0: 1, length: 1 },
     a: 1,

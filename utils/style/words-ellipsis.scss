@@ -1,0 +1,15 @@
+@mixin single-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+@mixin muti-ellipsis($line: 3) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+}

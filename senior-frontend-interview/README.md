@@ -6,7 +6,7 @@ read senior-frontend-interview <br>
 <i id="catalog"></i>
 ## Catalog
 1. &nbsp; [JavaScript执行上下文和执行栈](#01)
-2. &nbsp; [Data structure & Algorithm](#structure)
+2. &nbsp; [JavaScript内存空间](#02)
 3. &nbsp; [Underlying JavaScript](#underlying)
 4. &nbsp; [Ajax](#ajax)
 5. &nbsp; [Flex](#flex)
@@ -46,16 +46,61 @@ read senior-frontend-interview <br>
 函数上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显式绑定（硬绑定）、new绑定、箭头函数;<br>
 <br>
 (2)创建词法环境;<br>
-<br>
+记录存储变量和函数声明的实际位置 & 可以访问的外部环境引用<br>
+分为全局环境与函数环境<br>
 <br>
 (3)创建变量环境;<br>
-<br>
+变量环境也是一个词法环境，因此它具有上面定义的词法环境的所有属性<br>
+**变量提升**<br>
+在创建阶段，函数声明存储在环境中，而变量在var的情况下会被设置为undefined(在let和const的情况下保持未初始化)。此时可以在声明之前访问var定义的变量(虽然访问结果是undefined)。但如果在声明之前访问let和const定义的变量就会提示引用错误<br>
+
 <br>
 2.执行阶段<br>
+此阶段，完成对所有变量的分配，最后执行代码<br>
+如果Javascript引擎在源代码中声明的实际位置找不到let变量的值, 那么将为其分配undefined<br>
 
+调用函数时，进入执行上下文,会为其创建一个Arguments对象，并自动初始化局部变量arguments<br>
+```javascript
+function foo(a) {
+  var b = 2;
+  function c() {}
+  var d = function() {};
 
+  b = 3;
+}
+foo(1);
+```
+<br>
+在函数上下文中，用活动对象(activation object, AO)来表示变量对象。以上代码的AO是:<br>
+```javascript
+AO = {
+  arguments: { 0: 1, length: 1 },
+  a: 1,
+  b: undefined,
+  c: reference to function c() {},
+  d: undefined
+}
+```
+然后进入代码执行阶段, 变量值会被修改为应该有的值, AO被更变至如下:<br>
+```javascript
+AO = {
+    arguments: { 0: 1, length: 1 },
+    a: 1,
+    b: 3,
+    c: reference to function c(){},
+    d: reference to FunctionExpression "d"
+}
+```
 
 <br><br><br><br>
+
+<i id="02"></i>
+##  JavaScript内存空间
+1.6种基本数据类型保存在栈内存中, 通过按值来访问(Undefined、Null、Boolean、Number、String、Symbol)<br>
+2.引用类型保存在堆内存中, 在栈内存中存放的只是该对象的访问地址。当查询引用类型的变量时, 先从栈中读取内存地址, 然后再通过地址找到堆中的值<br>
+
+<br><br><br><br>
+
 
 <i id="xx"></i>
 ##    h1

@@ -72,10 +72,7 @@ function foo(a) {
 }
 foo(1);
 ```
-
-<br>
 在函数上下文中，用活动对象(activation object, AO)来表示变量对象。以上代码的AO是:<br>
-
 
 ```javascript
 AO = {
@@ -87,9 +84,7 @@ AO = {
 }
 ```
 
-
 然后进入代码执行阶段, 变量值会被修改为应该有的值, AO被更变至如下:<br>
-
 
 ```javascript
 AO = {
@@ -100,8 +95,6 @@ AO = {
     d: reference to FunctionExpression "d"
 }
 ```
-
-
 
 <br><br><br><br>
 

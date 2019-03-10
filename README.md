@@ -1284,6 +1284,7 @@ template 写法
 
 <br>
 2.在上一级选择完毕之前, 下一级不知道要渲染成什么元素<br>
+
 ![image](https://github.com/ColorChan/Basic/blob/master/src/assets/material-list1.png?raw=true)
 
 ![image](https://github.com/ColorChan/Basic/blob/master/src/assets/material-list2.png?raw=true)
@@ -1302,8 +1303,8 @@ template 写法
     </select>
   </div>
   <div class="第2个">
-    <input v-if="choose.type===名称"></input>
-    <input v-if="choose.type===年龄"></input>
+    <input v-if="choose.type===名称" type="text"></input>
+    <input v-if="choose.type===年龄" type="num"></input>
     <select v-if="choose.type===性别"></select>
     <calendar v-if="choose.type===出生日期"></calendar>
     <calendar v-if="choose.type===注册时间区间" v-model="注册时间区间第1个选择结果"></calendar>

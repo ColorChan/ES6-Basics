@@ -1253,8 +1253,128 @@ mounted() {
 <i id="review03"></i>
 ### Third
 **How to optimize nest v-for/v-if** <br>
+**如何优化业务场景中出现的多层嵌套v-for/v-if** <br>
 应对业务场景:<br>
+1.需要手写table或使用div模拟table<br>
 
+![image](https://github.com/ColorChan/Basic/blob/master/src/assets/material-table.png?raw=true)
+<br>
+后台数据返回格式为:<br>
+
+```javascript
+object: {
+  第1大块双排: [[每一排数据, 2018年11月月中, 12100, 2000 ...]...],
+  第2大块smb: [[每一排数据, 2018年11月月中, 12100, 2000 ...]...],
+  ...
+}
+```
+<br>
+template 写法
+<br>
+
+```javascript
+  <div v-for="(block,index1) of object" class="每一块">
+    <div v-for="(row,index2) of block" class="每一排">
+      <div v-for="(item,index3) of row" class="每一个">
+        内容
+      </div>
+    </div>
+  </div>
+```
+
+<br>
+2.在上一级选择完毕之前, 下一级不知道要渲染成什么元素<br>
+![image](https://github.com/ColorChan/Basic/blob/master/src/assets/material-list1.png?raw=true)
+![image](https://github.com/ColorChan/Basic/blob/master/src/assets/material-list2.png?raw=true)
+<br>
+template 写法
+<br>
+
+```javascript
+  <div class="第1个">
+    <select v-model="choose" class="第1个选择器">
+      名称
+      年龄
+      性别
+      出生日期
+      注册时间区间
+    </select>
+  </div>
+  <div class="第2个">
+    <input v-if="choose.type===名称"></input>
+    <input v-if="choose.type===年龄"></input>
+    <select v-if="choose.type===性别"></select>
+    <calendar v-if="choose.type===出生日期"></calendar>
+    <calendar v-if="choose.type===注册时间区间" v-model="注册时间区间第1个选择结果"></calendar>
+    <calendar v-if="choose.type===注册时间区间" v-model="注册时间区间第2个选择结果"></calendar>
+  </div>
+  <div class="第3个">
+    (...累死算了)
+  </div>
+```
+
+<br>
+解决方法:<br>
+应对第1种场景:
+<br>
+
+```javascript
+tableBodyFactory () {
+    let bolckList = []
+    for (let content in tableData.body) {
+      let style = { height: '', color: '' }
+      bolckList.push(
+        <div class="block">
+          <div style={style}>{content}</div>
+          {tableRowFactory(content)}
+        </div>
+      )
+    }
+    return bolckList
+  },
+  tableRowFactory (content) {
+    let list = content.map((item) => {
+      return <ul>{tableItemFactory(item)}</ul>
+    })
+    return <div class="table-row-wrapper">{list}</div>
+  },
+  tableItemFactory (arr) {
+    let list = arr.map((item) => {
+      return <li>{item}</li>
+    })
+    return list
+  }
+```
+
+<br>
+应对第2种场景:<br>
+
+```javascript
+  let ele = null
+  switch (choose.type) {
+    case '名称': 
+      ele = <input type="text"></input>
+    break
+    case '年龄': 
+      ele = <input type="num"></input>
+    break
+    case '性别': 
+      ele = <select type="性别"></select>
+    break
+    case '出生日期': 
+      ele = <calendar></calendar>
+    break
+    case '注册时间区间': 
+      ele = (
+        <calendar>第一个</calendar>
+        <calendar>第二个</calendar>
+      )
+    break
+  }
+  return ele
+
+```
+<br>
 <br><br>
 [backToCatalog](#catalog)
 

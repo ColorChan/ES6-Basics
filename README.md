@@ -17,6 +17,7 @@ Basic knowledge in EcmaScript 6 <br>
 10. &nbsp; &nbsp;[Code Review](#code-review)
            <br>&nbsp;&nbsp;11.1&nbsp;&nbsp;[01: Modal](#review01)
            <br>&nbsp;&nbsp;11.2&nbsp;&nbsp;[01: Better-Scroll](#review02)
+           <br>&nbsp;&nbsp;11.3&nbsp;&nbsp;[01: How to optimize nest v-for/v-if](#review03)
 11. &nbsp;[Sublime MarkdownEditing Key Bingding](#MarkdownEditing)
 
 <br><br><br><br>
@@ -1236,19 +1237,27 @@ snap<br>
       this._animate(x, y, time, easing.fn)
     }
   }
-```
+
 // 在 Vue 中，保证列表渲染完成时，初始化 BScroll
 mounted() {
    setTimeout(() => {
      this.scroll = new BScroll(this.$refs.wrapper, options)
    }, 20)
-},
+}
+```
+<br><br>
+[backToCatalog](#catalog)
 
+<br><br>
 
-
+<i id="review03"></i>
+### Third
+**How to optimize nest v-for/v-if** <br>
+应对业务场景:<br>
 
 <br><br>
 [backToCatalog](#catalog)
+
 
 
 <br><br><br><br>

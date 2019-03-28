@@ -1,5 +1,15 @@
 // calendar operation methods
 
+// 日期格式化
+export const formatDate = (timestamp) => {
+  const time = new Date(timestamp)
+  const y = time.getFullYear()
+  const m = time.getMonth() + 1
+  const d = time.getDate()
+  return `${y}-${m < 10 ? '0' + m : m}-${d < 10 ? '0' + d : d}`
+}
+
+
 // 获取当月第一天
 export function getFirstDay (year, month) {
   let currentMonth = month - 1

@@ -61,3 +61,15 @@ export const getParams = url => {
   })
   return paramObj
 }
+
+// 获取当前URL的查询参数
+export const getCurrentUrlParams = url => {
+  let q = {}
+  location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v)
+  return q
+}
+
+// 生成随机11位hash值
+export function createHash () {
+  return Math.random().toString(36).substring(2)
+}

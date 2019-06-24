@@ -10,7 +10,7 @@ export function numToChinese (num) {
   let getWan = (temp) => {
     let strArr = temp.toString().split('').reverse();
     let newNum = ''
-    for (var i = 0; i < strArr.length; i++) {
+    for (let i = 0; i < strArr.length; i++) {
       newNum = (i == 0 && strArr[i] == 0 ? '' : (i > 0 && strArr[i] == 0 && strArr[i - 1] == 0 ? '' : changeNum[strArr[i]] + (strArr[i] == 0 ? unit[0] : unit[i]))) + newNum
     }
     return newNum
@@ -55,7 +55,7 @@ export function getScrollingBox(dom) {
   return getScrollingBox(parent);
 }
 
-// 获取输入框光标的位置
+// 获取input/textarea输入框光标的位置
 export default function getCursorPosition(iptDom) {
   let position = 0;
   
@@ -71,4 +71,32 @@ export default function getCursorPosition(iptDom) {
       }
   }
   return position;
+}
+
+// 获取div输入框光标的位置
+export function getCursortPosition (element) {
+  let caretOffset = 0
+  let doc = element.ownerDocument || element.document
+  let win = doc.defaultView || doc.parentWindow
+  let sel = ''
+  //谷歌、火狐
+  if (typeof win.getSelection !== undefined) {
+    sel = win.getSelection()
+    if (sel.rangeCount > 0) {
+      //选中的区域
+      let range = win.getSelection().getRangeAt(0)
+      let preCaretRange = range.cloneRange() //克隆一个选中区域
+      preCaretRange.selectNodeContents(element) //设置选中区域的节点内容为当前节点
+      preCaretRange.setEnd(range.endContainer, range.endOffset)  //重置选中区域的结束位置
+      caretOffset = preCaretRange.toString().length
+    }
+  } else if ((sel = doc.selection) && sel.type !== 'Control') {
+    //IE
+    let textRange = sel.createRange()
+    let preCaretTextRange = doc.body.createTextRange()
+    preCaretTextRange.moveToElementText(element)
+    preCaretTextRange.setEndPoint('EndToEnd', textRange)
+    caretOffset = preCaretTextRange.text.length
+  }
+  return caretOffset
 }

@@ -6,11 +6,105 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script type="module">
-    import { getItem } from '../utils/js/localStorage.js'
-    console.log(getItem)
+    import { getItem, setItem } from '../utils/js/localStorage.js'
+    window.localStorageModule = { getItem, setItem }
   </script>
+  <script>
+    window.onload = () => {
+      // window.addEventListener('onStrogeChange', (e) => {
+      //   window[e.detail.key] = e.detail.value
+      //   console.log('window ' + e.detail.key + ' changed to', e.detail.value)
+      // })
+      if (window.localStorageModule.getItem('friends') === null) {
+        window.localStorageModule.setItem('friends', { maxId: 0, list: [] })
+      }
+      window.friends = window.localStorageModule.getItem('friends')
+      updateDOM()
+    }
+    const updateDOM = () => {
+      const ul = document.querySelector('.friend-list')
+      const p = document.querySelector('.count')
+      const fr = window.friends
+      ul.innerHTML = ''
+      p.innerHTML = fr.list.length + '&nbsp;人'
+      for (let item of fr.list) {
+        let li = document.createElement('li')
+        let html1 = item.id + '&nbsp;&nbsp;'
+        let html2 = item.name + '&nbsp;&nbsp;'
+        let html3 = item.isVip ? '√' : ''
+        li.innerHTML = html1 + html2 + html3
+        ul.appendChild(li)
+      }
+    }
+    const getFriendInfo = () => {
+      const name = document.body.querySelector('#name').value
+      const isVip = document.body.querySelector('#is-vip').checked
+      return { name, isVip }
+    }
+    const infoValidate = ({ name }) => {
+      if (name === '') { return true }
+      let a = window.friends.list.findIndex((e) => {
+        return e.name === name
+      })
+      if (a !== -1) { return true }
+      return false
+    }
+    const deleteFr = () => {
+      const id = Number(document.body.querySelector('#del-id').value)
+      if (id === '') {
+        console.warn('id error')
+        return
+      }
+      let a = window.friends.list.findIndex((e) => {
+        return e.id === id
+      })
+      if (a === -1) {
+        console.warn('id error')
+      } else {
+        window.friends.list.splice(a, 1)
+        window.localStorageModule.setItem('friends', window.friends)
+        document.body.querySelector('#del-id').value = ''
+        updateDOM()
+        console.log('del success')
+      }
+    }
+    const submit = () => {
+      const { name, isVip } = getFriendInfo()
+      if (infoValidate({ name })) {
+        console.warn('name error')
+        return
+      }
+      const id = window.friends.maxId + 1
+      window.friends.maxId = id
+      window.friends.list.push({ id, name, isVip })
+      window.localStorageModule.setItem('friends', window.friends)
+
+      document.body.querySelector('#name').value = ''
+      document.body.querySelector('#is-vip').checked = false
+      updateDOM()
+    }
+  </script>
+
 </head>
 <body>
-  
+  <div class="name-wrapper">
+    name:
+    <input id="name" type="text">
+  </div>
+  <div class="vip-wrapper">
+    VIP:
+    <input id="is-vip" type="checkbox">
+  </div>
+  <button class="submit" onclick="submit()">submit</button>
+  <br><br>
+  <div class="delete-fr">
+    id:
+    <input id="del-id" type="text">
+  </div>
+  <button class="del" onclick="deleteFr()">del</button>
+  <br><br>
+  <p class="count"></p>
+  <ul class="friend-list"></ul>
+
 </body>
 </html>

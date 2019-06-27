@@ -10,6 +10,7 @@
     window.localStorageModule = { getItem, setItem }
   </script>
   <script>
+    //{"maxId":100,"list":[{"id":1,"name":"闰土","isVip":true},{"id":2,"name":"栀榆","isVip":true},{"id":3,"name":"6夜","isVip":true},{"id":4,"name":"Momok","isVip":true},{"id":5,"name":"清妄言","isVip":true},{"id":6,"name":"花少白","isVip":true},{"id":7,"name":"会长","isVip":true},{"id":8,"name":"狐狸仔","isVip":false},{"id":9,"name":"漠漠","isVip":true},{"id":10,"name":"岑","isVip":true},{"id":11,"name":"霜叶","isVip":false},{"id":12,"name":"凉生","isVip":true},{"id":13,"name":"mavis","isVip":true},{"id":14,"name":"彼岸","isVip":true},{"id":15,"name":"小号","isVip":true},{"id":16,"name":"君白","isVip":true},{"id":17,"name":"褚墨","isVip":false},{"id":18,"name":"三水","isVip":false},{"id":19,"name":"山非","isVip":false},{"id":20,"name":"异族","isVip":false},{"id":21,"name":"mavis小","isVip":false},{"id":22,"name":"干拌面","isVip":true},{"id":23,"name":"小桔梗","isVip":true},{"id":24,"name":"月在云贵","isVip":false},{"id":25,"name":"ycy321","isVip":false},{"id":26,"name":"笛笛","isVip":true},{"id":27,"name":"浅浅","isVip":false},{"id":28,"name":"笛笛小","isVip":false},{"id":29,"name":"哟哟","isVip":false},{"id":30,"name":"文东","isVip":false},{"id":31,"name":"小冷","isVip":false},{"id":32,"name":"acc","isVip":false},{"id":33,"name":"鹤炫1","isVip":false},{"id":34,"name":"日何方呢","isVip":false},{"id":35,"name":"摩拉基","isVip":false},{"id":36,"name":"末凉","isVip":false},{"id":37,"name":"妖精快到碗里","isVip":false},{"id":38,"name":"cc一壶酒","isVip":false},{"id":39,"name":"寺井黄","isVip":false},{"id":40,"name":"良西","isVip":false},{"id":41,"name":"可爱小祖宗","isVip":false},{"id":42,"name":"阿仁今天","isVip":false},{"id":43,"name":"未曾","isVip":false},{"id":44,"name":"星野","isVip":false},{"id":45,"name":"肌肉丸","isVip":false},{"id":46,"name":"煜尊者","isVip":false},{"id":47,"name":"深化传说中","isVip":false},{"id":48,"name":"微小的浮梦","isVip":false},{"id":49,"name":"阎魔爱","isVip":false},{"id":50,"name":"舞南","isVip":false},{"id":51,"name":"西南团","isVip":false},{"id":52,"name":"小喵喵","isVip":false},{"id":53,"name":"妖月笑","isVip":false},{"id":54,"name":"高手坟墓","isVip":false},{"id":55,"name":"75min","isVip":false},{"id":56,"name":"栗愿","isVip":false},{"id":57,"name":"呆萌男生","isVip":false},{"id":58,"name":"浮生若梦","isVip":false},{"id":59,"name":"暮然回首","isVip":false},{"id":60,"name":"黑土哥哥","isVip":false},{"id":61,"name":"君为红颜","isVip":false},{"id":62,"name":"我是一只","isVip":false},{"id":63,"name":"仿真","isVip":false},{"id":64,"name":"嗒嗒加特林","isVip":false},{"id":65,"name":"榴莲","isVip":false},{"id":66,"name":"阿离是我","isVip":false},{"id":67,"name":"萌萌哒","isVip":false},{"id":68,"name":"阴晴圆缺","isVip":false},{"id":69,"name":"polar","isVip":false},{"id":70,"name":"冬至","isVip":false},{"id":71,"name":"三岁啦","isVip":false},{"id":72,"name":"点稀","isVip":false},{"id":73,"name":"卷空","isVip":false},{"id":74,"name":"槿木","isVip":false},{"id":75,"name":"王牌","isVip":false},{"id":76,"name":"都督","isVip":false},{"id":77,"name":"千上","isVip":false},{"id":78,"name":"菊刀","isVip":false},{"id":79,"name":"竹影","isVip":false},{"id":80,"name":"梦中","isVip":false},{"id":81,"name":"浪仙","isVip":false},{"id":82,"name":"花起尘","isVip":false},{"id":83,"name":"猫猫呀","isVip":false},{"id":84,"name":"晓烈","isVip":false},{"id":85,"name":"风流倜傥","isVip":false},{"id":86,"name":"evol","isVip":false},{"id":87,"name":"主要是气质","isVip":false},{"id":88,"name":"信石","isVip":false},{"id":89,"name":"萝莎","isVip":false},{"id":90,"name":"我的招财","isVip":false},{"id":91,"name":"醉酒知","isVip":false},{"id":92,"name":"凉土","isVip":false},{"id":93,"name":"雾崖","isVip":false},{"id":94,"name":"骗子","isVip":false},{"id":95,"name":"吴苍","isVip":false},{"id":96,"name":"枕头","isVip":false},{"id":97,"name":"如野","isVip":false},{"id":98,"name":"暗影折扇","isVip":false},{"id":99,"name":"我就是喜欢","isVip":false},{"id":100,"name":"虚无的观天","isVip":false}]}
     window.onload = () => {
       // window.addEventListener('onStrogeChange', (e) => {
       //   window[e.detail.key] = e.detail.value
@@ -18,7 +19,11 @@
       if (window.localStorageModule.getItem('friends') === null) {
         window.localStorageModule.setItem('friends', { maxId: 0, list: [] })
       }
+      if (window.localStorageModule.getItem('okList') === null) {
+        window.localStorageModule.setItem('okList', [])
+      }
       window.friends = window.localStorageModule.getItem('friends')
+      window.okList = window.localStorageModule.getItem('okList')
       updateDOM()
     }
     const updateDOM = () => {
@@ -28,6 +33,18 @@
       ul.innerHTML = ''
       p.innerHTML = fr.list.length + '&nbsp;人'
       for (let item of fr.list) {
+        let li = document.createElement('li')
+        let html1 = item.id + '&nbsp;&nbsp;'
+        let html2 = item.name + '&nbsp;&nbsp;'
+        let html3 = item.isVip ? '√' : ''
+        li.innerHTML = html1 + html2 + html3
+        ul.appendChild(li)
+      }
+    }
+    const updateSearchDOM = (list = []) => {
+      const ul = document.querySelector('.search-list')
+      ul.innerHTML = ''
+      for (let item of list) {
         let li = document.createElement('li')
         let html1 = item.id + '&nbsp;&nbsp;'
         let html2 = item.name + '&nbsp;&nbsp;'
@@ -68,6 +85,21 @@
         console.log('del success')
       }
     }
+    const search = () => {
+      let val = document.body.querySelector('#search').value
+      if (val === '') { 
+        updateSearchDOM([])
+        return
+      }
+      const name = new RegExp(val)
+      let sea = []
+      for (let item of window.friends.list) {
+        if (name.test(item.name)) {
+          sea.push(item)
+        }
+      }
+      updateSearchDOM(sea)
+    }
     const submit = () => {
       const { name, isVip } = getFriendInfo()
       if (infoValidate({ name })) {
@@ -80,6 +112,21 @@
       window.localStorageModule.setItem('friends', window.friends)
 
       document.body.querySelector('#name').value = ''
+      document.body.querySelector('#is-vip').checked = false
+      updateDOM()
+    }
+    const submitOK = () => {
+      let val = document.body.querySelector('#ok').value
+      // if () {
+      //   console.warn('name error')
+      //   return
+      // }
+      const id = window.friends.maxId + 1
+      window.friends.maxId = id
+      window.friends.list.push({ id, name, isVip })
+      window.localStorageModule.setItem('friends', window.friends)
+
+      document.body.querySelector('#ok').value = ''
       document.body.querySelector('#is-vip').checked = false
       updateDOM()
     }
@@ -97,14 +144,29 @@
   </div>
   <button class="submit" onclick="submit()">submit</button>
   <br><br>
+  <div class="ok-wrapper">
+    ok id:
+    <input id="ok" type="text">
+  </div>
+  <button class="submit" onclick="submitOK()">submit OK</button>
+  <br><br>
   <div class="delete-fr">
     id:
     <input id="del-id" type="text">
   </div>
   <button class="del" onclick="deleteFr()">del</button>
   <br><br>
+  search<br>
+  <input id="search" type="text">
+  <button class="search-bt" onclick="search()">search</button>
+  <br><br>
+  search-list<br>
+  <ul class="search-list"></ul>
+  <br><br>
+  friend-list<br>
   <p class="count"></p>
   <ul class="friend-list"></ul>
+  <br><br>
 
 </body>
 </html>

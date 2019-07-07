@@ -63,12 +63,74 @@ a<sub>n</sub> * (n - 1)!, a<sub>n-1</sub> * (n - 2)!, ..., a<sub>1</sub> * 0!
 所以 n2 = 0 时即为0!, 是最后一次运算, 返回已经完成的拼接结果。  
 2.参数解析 
 n1 / factorN2 得出lessCount与surplus:  
-lessCount是该次除法的商， 是str未推算出的剩余(右边)位数中, 数字小于当前数字(n1)的个数。  
+lessCount是该次除法的商， 是str未推算出的剩余(右边)位数中, 数字小于当前数字(n1)的个数。
 surplus是该次除法的余数, 供本函数递归进行下一次计算。  
 根据lessCount可以从连续数组arr中拿出值，该值既符合lessCount的要求。  
-本次计算完成, 传入余数surplus进入递归, 直到满足'1.结束条件'为止。
+本次计算完成, 传入余数surplus进入递归, 直到满足'1.结束条件'为止。  
+    
+## 547.朋友圈 friend-circles(middle)
+班上有 N 名学生。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。   
+给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系。  
+输出所有学生中的已知的朋友圈总数。
 
+思路:  
+[并查集(百度百科)](https://baike.baidu.com/item/%E5%B9%B6%E6%9F%A5%E9%9B%86/9388442?fr=aladdin '百度百科')  
+官方说法:  
+>并查集，在一些有N个元素的集合应用问题中，我们通常是在开始时让每个元素构成一个单元素的集合，然后按一定顺序将属于同一组的元素所在的集合合并，其间要反复查找一个元素在哪个集合中。  
+并查集是一种树型的数据结构，用于处理一些不相交集合（Disjoint Sets）的合并及查询问题。常常在使用中以森林来表示。  
 
+该数据结构的主要操作有：  
+1.初始化  
+2.查找  
+3.合并  
 
+理解：  
+1.初始化：遍历矩阵M，每人先把自己纳入朋友圈，以自己的index作为该朋友圈的根id。  
+2.遍历关系网，相识则合并两个圈子(其中一个圈子的根id会变为另一个圈子的根id)。
+3.步骤1，2完成后，根id没有变(还是初始化时的index)的朋友圈即为没有被吞并的朋友圈，其个数即为所求。  
 
+``` javascript
+/**
+ * @param {number[][]} M
+ * @return {number}
+ */
+let circles = []
+var findCircleNum = function(M) {
+  circles = []
+  for (let index in M) {
+     circles[index] = ~~index
+  }
+  for (let i in M) {
+    for (let j in M[i]) {
+      M[i][j] && union(i, j,)
+    }
+  }
+  let count = 0
+  for (let index in M) {
+    (~~index === circles[index]) && count++
+  }
+  return count
+};
 
+const findFather = (id) => {
+  while (id !== circles[id]) {
+    id = circles[id]
+  }
+  return id
+}
+
+const union = (i, j) => {
+  const fi = findFather(i)
+  if (fi !== findFather(j)) {
+    circles[fi] = ~~j
+  }
+}
+```
+
+**findCircleNum(): 入口函数**  
+该函数依次运行理解中的三部曲  
+**findFather(id): 寻找根id的函数**  
+寻找指定id所在圈子的根id函数
+如果该id不是其所在圈的根id(即被吞并过)，说明是其父id，就替换为父id，并迭代上个步骤，再寻找其父id是不是其所在圈的根id。  
+**union(i, j): 合并圈子函数** 
+如果i和j两个人认识，那么需要合并他俩的圈子，随意选其中一个圈子的根id作为最终圈子的根id。

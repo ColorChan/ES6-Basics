@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const vue = new Vue({
+      template: '<div><div v-for="(value, key, index) of object">{{value}}{{key}}{{index}}</div></div>',
+      el: '#app',
+      data: {
+        hi: 123,
+        firstName: 1,
+        lastName: 2,
+        object: {
+          a: 1,
+          b: 2,
+          c: 3
+        }
+      },
+      computed: {
+        fullName: {
+          get(){
+            const res = this.firstName + ' ' + this.lastName + '  1'
+            console.log('computed getter...', res)
+            return res
+          },
+          set(newValue){
+            let names = newValue.split(' ')
+            this.firstName = names[0]
+            this.lastName = names[names.length - 1]
+            const res = this.firstName + ' ' + this.lastName
+            this.hi = 11111
+            console.log('computed setter...', res)
+            return res
+          }
+        }
+      },
+      updated () {
+        console.log('updated')
+      }
+    })
+    console.log(111, vue.fullName = '3 4')
+  </script>
+</body>
+</html>

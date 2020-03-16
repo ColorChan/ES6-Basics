@@ -10,9 +10,44 @@
   <div id="app"></div>
 
   <script>
+    const componentA = Vue.component('component-a', {
+      props: ['object'],
+      inheritAttrs: false,
+      data () {
+        return {}
+      },
+      template: `
+        <div class="component-a" attr1="attr-a">
+          <b>component: {{ text }}</b>
+          <button @click="btnClick">9000</button>
+        </div>
+      `,
+      methods: {
+        btnClick () {
+          // this.object = {a:9,b:8}
+          // this.object.a = 9000
+          console.log(11, this.$listeners)
+        }
+      },
+      computed: {
+        text () {
+          return `我是自定义组件：component-a, aaa:${this.object.a},bbb:${this.object.b}`
+        }
+      }
+    })
     const vue = new Vue({
-      template: '<div><div v-for="(value, key, index) of object">{{value}}{{key}}{{index}}</div></div>',
+      template: `
+        <div class="page">
+          <div class="for">
+            <div v-for="(value, key, index) of object">{{value}}{{key}}{{index}}</div>
+          </div>
+          <div class="component">
+            <component-a :object="object" attr2="attr-b"></component-a>
+          </div>
+        </div>
+        `,
       el: '#app',
+      components: {},
       data: {
         hi: 123,
         firstName: 1,
@@ -45,7 +80,7 @@
         console.log('updated')
       }
     })
-    console.log(111, vue.fullName = '3 4')
+    
   </script>
 </body>
 </html>

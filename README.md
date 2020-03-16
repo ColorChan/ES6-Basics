@@ -18,7 +18,7 @@ Basic knowledge in EcmaScript 6 <br>
            <br>&nbsp;&nbsp;11.1&nbsp;&nbsp;[01: Modal](#review01)
            <br>&nbsp;&nbsp;11.2&nbsp;&nbsp;[01: Better-Scroll](#review02)
            <br>&nbsp;&nbsp;11.3&nbsp;&nbsp;[01: How to optimize nest v-for/v-if](#review03)
-11. &nbsp;[Sublime MarkdownEditing Key Bingding](#MarkdownEditing)
+11. &nbsp;[EventTarget.addEventListener](#eventListener)
 
 <br><br><br><br>
 
@@ -1386,18 +1386,28 @@ tableBodyFactory () {
 <br><br><br><br>
 
 
-<i id="MarkdownEditing"></i>
-##  MarkdownEditing Key Bingding(Windows/Linux)
-CtrlWinV &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联链接。 <br>
-CtrlWinR &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为参考链接。 <br>
-ShiftWinK &nbsp;&nbsp; 创建或粘贴剪贴板的内容作为所选文本的内联图像。 <br>
-AltB AltI &nbsp;&nbsp; 这些必须是粗体和斜体。他们都有和没有选择。如果没有选择，它们将只是转换光标下的单词。如果这些键绑定已经是粗体/斜体，那么这些键绑定将取消/单位制选择。 <br>
-Ctrl1...6 &nbsp;&nbsp; 这些将为标题添加相应数量的哈希标记。与上述标题工具一起工作在空白行和选定的文本。如果您选择整个现有的标题，当前的哈希标记将被删除，并替换为您请求的标题级别。 <br>
-AltShift6 &nbsp;&nbsp; 插入脚注 <br>
-ShiftTab &nbsp;&nbsp; 折叠/展开当前部分。 <br>
-CtrlShiftTab &nbsp;&nbsp; 折叠一定级别标题下的所有部分。 <br>
-CtrlAltShiftPageUp CtrlAltShiftPageDown &nbsp;&nbsp; 转到相同或更高级别的上一个/下一个标题 <br>
-CtrlShiftPageUp CtrlShiftPageDown &nbsp;&nbsp; 转到上一个/下一个标题 <br>
+
+<i id="eventListener"></i>
+##  EventListener
+** Syntax ** <br>
+new browser: target.addEventListener(type, listener, options)<br>
+old browser: target.addEventListener(type, listener, useCapture)<br>
+type: string representing the event type<br>
+[events string](https://developer.mozilla.org/zh-CN/docs/Web/Events)<br>
+listener: function | { handleEvent: function }<br>
+listener rather than keeping a static function reference<br>
+static function reference can be cleard completely<br>
+options: {<br>
+  capture: boolean = false,<br>
+  once: boolean = false,<br>
+  passive: boolean = false<br>
+}<br>
 
 <br><br><br>
 [backToCatalog](#catalog)
+
+
+<br><br><br><br>
+<br><br><br><br>
+
+

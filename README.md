@@ -4,7 +4,8 @@ Basic knowledge in EcmaScript 6 <br>
 <br><br>
 
 <i id="catalog"></i>
-## Catalog
+
+## Page Catalog
 1. &nbsp; [NetEase 2017 Summer Campus](#NetEase2017)
 2. &nbsp; [Data structure & Algorithm](#structure)
 3. &nbsp; [Underlying JavaScript](#underlying)
@@ -20,12 +21,20 @@ Basic knowledge in EcmaScript 6 <br>
            <br>&nbsp;&nbsp;11.3&nbsp;&nbsp;[01: How to optimize nest v-for/v-if](#review03)
 11. &nbsp;[EventTarget.addEventListener](#eventListener)
 
+
+## Inner Project Links
+1. &nbsp;[Vue Explore](https://github.com/ColorChan/Basic/tree/master/src/vue-explore)
+2. &nbsp;[LeetCode](https://github.com/ColorChan/Basic/blob/master/src/leetcode/leetcode.md)
+3. &nbsp;[Interview](https://github.com/ColorChan/Basic/tree/master/src/senior-frontend-interview)
+
 <br><br><br><br>
 
 <i id="NetEase2017"></i>
-##    NetEase 2017 Summer Campus recruitmen
 
-编辑器使用Nodejs <br>
+## NetEase 2017 Summer Campus recruitmen
+
+编辑器使用Nodejs<br>
+
 ```javascript
 var readline = require('readline')
 const rl = readline.createInterface({

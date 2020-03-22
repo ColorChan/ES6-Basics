@@ -156,3 +156,23 @@ const AsyncComponent = () => ({
 })
 ```
 
+# Vue Router
+
+## HTML5 History 模式
+
+你要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html;<br>
+利用 history.pushState API 完成URL改变而无须重新加载页面;<br>
+``` javascript
+history.pushState({ /* state */ }, title: string, URL: string)
+history.replaceState({ /* state */ }, title: string, URL: string)
+
+```
+1. pushState()不会触发hashchange event，即使新的URL与旧的URL仅哈希不同;<br>
+2. pushState会在浏览器中创建一条新的历史纪录, replaceState为替换将当前地址为指定URL。所以pushState可以执行history.back()或history.forward()并触发 window.onpopstate事件;<br>
+3. state对象： 可以存存放一些数据表示当前状态。当浏览器执行back/forward触发onpopstate event, 可通过event.state获取。state中的属性值不能为引用类型对象;<br>
+
+<br><br>
+
+
+
+

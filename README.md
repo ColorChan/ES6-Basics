@@ -26,6 +26,7 @@ Basic knowledge in EcmaScript 6 <br>
 1. &nbsp;[Vue Explore](https://github.com/ColorChan/Basic/tree/master/src/vue-explore)
 2. &nbsp;[LeetCode](https://github.com/ColorChan/Basic/blob/master/src/leetcode/leetcode.md)
 3. &nbsp;[Interview](https://github.com/ColorChan/Basic/tree/master/src/senior-frontend-interview)
+4. &nbsp;[Project Settings](https://github.com/ColorChan/Basic/tree/master/src/project-settings)
 
 <br><br><br><br>
 

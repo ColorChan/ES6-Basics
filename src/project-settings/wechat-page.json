@@ -1,0 +1,26 @@
+{
+	"wechat-js": {
+		"prefix": "wechat-js",
+		"body": [
+			"\n",
+		  "Page({",
+			"\tdata: {},",
+			"\tonLoad (query) {},",
+			"\tonReady () {},",
+			"\tonShow () {},",
+			"\tonHide () {},",
+			"\tonUnload () {},",
+			"\tonPullDownRefresh () {},",
+			"\tonReachBottom () {},",
+			"\tonShareAppMessage ({ from, target, webViewUrl }) {",
+			"\t\treturn { title, path, imageUrl }",
+			"\t},",
+			"\tonPageScroll ({ scrollTop }) {},",
+			"\tonResize () {},",
+			"\tonTabItemTap ({index, pagePath, text}) {},",
+			"\tonShareAppMessage () {},",
+		  "})\n"
+		],
+		"description": ""
+	}
+}

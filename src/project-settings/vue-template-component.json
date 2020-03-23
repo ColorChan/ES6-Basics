@@ -1,0 +1,29 @@
+{
+  "vue-camelot-common-template": {
+    "prefix": "vue-camelot-template",
+    "body": [
+      "<template>",
+      "\t<div class=\"\"></div>",
+      "</template>\n",
+  
+      "<script>\n",
+    
+      "export default {",
+      "\tcomponents: {},",
+      "\tprops: {},",
+      "\tdata () {",
+        "\t\treturn {}",
+      "\t},",
+      "\tcreated () {},",
+      "\tmounted () {},",
+      "\tbeforeDestroy () {},",
+      "\tmethods: {},",
+      "\tcomputed: {},",
+      "\twatch: {}",
+      "}",
+      "</script>\n",
+      "\n"
+    ],
+    "description": ""
+  }
+}

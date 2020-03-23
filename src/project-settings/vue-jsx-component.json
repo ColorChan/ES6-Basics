@@ -1,0 +1,26 @@
+{
+	"vue-common-jsx": {
+		"prefix": "vue-jsx",
+		"body": [
+			"export default {",
+			"\tcomponents: {},",
+			"\tprops: {},",
+			"\tdata () {",
+			  "\t\treturn {}",
+			"\t},",
+			"\tcreated () {},",
+			"\tmounted () {},",
+			"\tbeforeDestroy () {},",
+			"\tmethods: {},",
+			"\tcomputed: {},",
+			"\twatch: {},",
+			"\trender () {",
+				"\t\treturn (",
+					"\t\t\t<div class=\"\"></div>",
+				"\t\t)",
+			"\t}",
+		  "}\n"
+		],
+		"description": ""
+	  }
+}

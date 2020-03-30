@@ -134,3 +134,60 @@ const union = (i, j) => {
 如果该id不是其所在圈的根id(即被吞并过)，说明是其父id，就替换为父id，并迭代上个步骤，再寻找其父id是不是其所在圈的根id。  
 **union(i, j): 合并圈子函数** 
 如果i和j两个人认识，那么需要合并他俩的圈子，随意选其中一个圈子的根id作为最终圈子的根id。
+
+
+## 15.三数之和 3sum(middle)
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？
+请你找出所有满足条件且不重复的三元组。
+
+例: 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+满足要求的三元组集合为：
+[[-1, 0, 1], [-1, -1, 2]]
+
+思路:
+1. 从sort的index @size(1, length - 2) 之间依次选出一个index;
+2. 设置双指针:
+    j @size(0, index - 1) = 0
+    k @size(index + 1, length - 1) = length - 1;
+3. 设置循环:
+  判断 sum = sort[index] + sort[j] + sort[k]
+    (1). sum > 0:  sort[k]过大 => k - 1
+    (2). sum = 0:  符合要求, push入res[], j + 1, k - 1
+    (3). sum < 0:  sort[j]过小 => j + 1
+  如果碰上相邻相同值, 直接跳过此值(比如sort[j] === sort[j - 1] => j + 1);
+4. 返回res[];
+
+``` javascript
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+var threeSum = function(nums) {
+	let res = []
+	if (nums.length < 3) { return res }
+	const sort = nums.sort((a, b) => a - b)
+  if (sort[0] <= 0 && sort[sort.length] >= 0) {
+    for (let i = 0; i < sort.length - 2; i += 1) {
+      if (i > 0 && sort[i] === sort[i - 1]) { continue }
+
+      for (let j = i + 1, k = sort.length - 1; j < k; ) {
+        let sum = sort[i] + sort[j] + sort[k]
+        if (sum === 0) {
+          res.push([sort[i], sort[j], sort[k]])
+          j += 1
+          k -= 1
+
+          while (j < k && sort[j] === sort[j - 1]) { j += 1 }
+          while (j < k && sort[k] === sort[k + 1]) { k -= 1 }
+        } else if (sum > 0) {
+          k -= 1
+        }	else {
+          j += 1
+        }
+      }
+    }
+  }
+	return res
+}
+```

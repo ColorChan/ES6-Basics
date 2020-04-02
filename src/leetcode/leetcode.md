@@ -147,13 +147,13 @@ const union = (i, j) => {
 思路:
 1. 从sort的index @size(1, length - 2) 之间依次选出一个index;
 2. 设置双指针:
-    j @size(0, index - 1) = 0
-    k @size(index + 1, length - 1) = length - 1;
-3. 设置循环:
-  判断 sum = sort[index] + sort[j] + sort[k]
-    (1). sum > 0:  sort[k]过大 => k - 1
-    (2). sum = 0:  符合要求, push入res[], j + 1, k - 1
-    (3). sum < 0:  sort[j]过小 => j + 1
+    j @size(0, index - 1) = 0; 
+    k @size(index + 1, length - 1) = length - 1; 
+3. 设置循环: 
+  判断 sum = sort[index] + sort[j] + sort[k] 
+    (1). sum > 0:  sort[k]过大 => k - 1; 
+    (2). sum = 0:  符合要求, push入res[], j + 1, k - 1; 
+    (3). sum < 0:  sort[j]过小 => j + 1; 
   如果碰上相邻相同值, 直接跳过此值(比如sort[j] === sort[j - 1] => j + 1);
 4. 返回res[];
 
@@ -191,3 +191,52 @@ var threeSum = function(nums) {
 	return res
 }
 ```
+
+
+
+
+
+## 49.字母异位词分组 group-anagrams(middle)
+给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
+
+示例:
+
+输入: ["eat", "tea", "tan", "ate", "nat", "bat"],
+输出:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+
+说明：1.所有输入均为小写字母; 2.不考虑答案输出的顺序;
+
+思路:
+1. 如果几个单词互为字母异位词, 则它们的字母按Unicode排序后结果一定是相同的；
+2. 遍历strs, 将每个单词按Unicode排序后结果作为key，排序前的值作为value，放入sortedMap做记录；
+3. 经过2的操作，所有的字母异位词就会被筛选出来，return Object.values(sortedMap)即可；
+
+``` javascript
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function(strs) {
+  let sortedMap = Object.create(null)
+  for (const index in strs) {
+    const sortedItem = strs[index].split('').sort((a, b) => {
+      return a.charCodeAt(0) - b.charCodeAt(0)
+    })
+    if (sortedMap[sortedItem]) {
+      sortedMap[sortedItem].push(strs[index])
+    } else {
+      sortedMap[sortedItem] = [strs[index]]
+    }
+  }
+  return Object.values(sortedMap)
+};
+
+```
+
+
+

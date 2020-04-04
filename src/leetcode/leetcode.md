@@ -1,4 +1,21 @@
 # leetcode
+
+<br><br><br><br>
+
+<i id="catalog"></i>
+
+## Page Catalog
+1. &nbsp; [第k个排列 permutation-sequence](#permutation-sequence)
+2. &nbsp; [朋友圈 friend-circles](#friend-circles)
+3. &nbsp; [三数之和 3sum](#3sum)
+4. &nbsp; [字母异位词分组 group-anagrams](#group-anagrams)
+5. &nbsp; [无重复字符的最长子串 longest-substring-without-repeating-characters](#longest-substring-without-repeating-characters)
+
+<br><br><br><br>
+
+
+<i id="permutation-sequence"></i>
+
 ## 60.第k个排列 permutation-sequence(middle)
 给出集合 [1,2,3,…,n]，其所有元素共有 n! 种排列。
 按大小顺序列出所有排列情况，并一一标记，当 n = 3 时, 所有排列如下:  
@@ -67,7 +84,12 @@ lessCount是该次除法的商， 是str未推算出的剩余(右边)位数中, 
 surplus是该次除法的余数, 供本函数递归进行下一次计算。  
 根据lessCount可以从连续数组arr中拿出值，该值既符合lessCount的要求。  
 本次计算完成, 传入余数surplus进入递归, 直到满足'1.结束条件'为止。  
-    
+
+[backToCatalog](#catalog)
+
+
+<i id="friend-circles"></i>
+
 ## 547.朋友圈 friend-circles(middle)
 班上有 N 名学生。他们的友谊具有是传递性。如果已知 A 是 B 的朋友，B 是 C 的朋友，那么我们可以认为 A 也是 C 的朋友。所谓的朋友圈，是指所有朋友的集合。   
 给定一个 N * N 的矩阵 M，表示班级中学生之间的朋友关系。如果M[i][j] = 1，表示已知第 i 个和 j 个学生互为朋友关系。  
@@ -135,6 +157,10 @@ const union = (i, j) => {
 **union(i, j): 合并圈子函数** 
 如果i和j两个人认识，那么需要合并他俩的圈子，随意选其中一个圈子的根id作为最终圈子的根id。
 
+[backToCatalog](#catalog)
+
+
+<i id="3sum"></i>
 
 ## 15.三数之和 3sum(middle)
 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？
@@ -192,9 +218,10 @@ var threeSum = function(nums) {
 }
 ```
 
+[backToCatalog](#catalog)
 
 
-
+<i id="group-anagrams"></i>
 
 ## 49.字母异位词分组 group-anagrams(middle)
 给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。
@@ -237,6 +264,65 @@ var groupAnagrams = function(strs) {
 };
 
 ```
+
+[backToCatalog](#catalog)
+
+
+<i id="longest-substring-without-repeating-characters"></i>
+
+## 3.无重复字符的最长子串 longest-substring-without-repeating-characters(middle)
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+
+示例:
+
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+
+输入: "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+
+思路:
+1. 把字符串s分割成数组strArr，然后设立滑动窗口ans = [i, j) = [0, i + 1]，并将strArr[i]其存储于hashSet;
+2. 向右侧滑动索引j(即j++)，如果strArr[j]不在hashSet中, 把strArr[j]存入hashSet；
+3. 重复2操作， 直到strArr[j]已经存在于hashSet中，此时hashSet的size即为当前i开始的最长无重复字符子串的长度，把size传入数组resMap做记载，然后清空hashSet；
+4. 接3，清空hashSet后，模仿步骤1，设立滑动窗口ans = [i, j) = [i++, i + 1]，并将strArr[i]其存储于hashSet，继续开始步骤2;
+5. 直到滑动窗口i，j都到达了数组strArr的尾部，即字符串搜索完毕。resMap为字符串s中所有最长无重复字符子串的长度的集合，返回max(resMap)即可；
+
+``` javascript
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  if (!s) { return 0 }
+  let strArr = s.split('')
+  let ans = [0, 1]
+  let hashSet = new Set([strArr[0]])
+  let resMap = []
+
+  while (ans[0] < strArr.length && ans[1] < strArr.length) {
+    if (hashSet.has(strArr[ans[1]])) {
+      ans[0] ++
+      ans[1] = ans[0] + 1
+      resMap.push(hashSet.size)
+      hashSet.clear()
+      hashSet.add(strArr[ans[0]])
+    } else {
+      hashSet.add(strArr[ans[1]])
+      ans[1] ++
+    }
+  }
+  resMap.push(hashSet.size)
+ 
+  return Math.max(...resMap)
+};
+
+```
+
+[backToCatalog](#catalog)
 
 
 

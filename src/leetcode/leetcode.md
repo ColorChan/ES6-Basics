@@ -171,7 +171,7 @@ const union = (i, j) => {
 [[-1, 0, 1], [-1, -1, 2]]
 
 思路:
-1. 从sort的index @size(1, length - 2) 之间依次选出一个index;
+1. 把nums排序后数组命名为sort，从sort的index @size(1, length - 2) 之间依次选出一个index;
 2. 设置双指针:
     j @size(0, index - 1) = 0; 
     k @size(index + 1, length - 1) = length - 1; 

@@ -10,6 +10,7 @@
 3. &nbsp; [三数之和 3sum](#3sum)
 4. &nbsp; [字母异位词分组 group-anagrams](#group-anagrams)
 5. &nbsp; [无重复字符的最长子串 longest-substring-without-repeating-characters](#longest-substring-without-repeating-characters)
+6. &nbsp; [最长回文子串 longest-palindromic-substring](#longest-palindromic-substring)
 
 <br><br><br><br>
 
@@ -324,5 +325,62 @@ var lengthOfLongestSubstring = function(s) {
 
 [backToCatalog](#catalog)
 
+
+<i id="longest-palindromic-substring"></i>
+
+## 5.最长回文子串 longest-palindromic-substring(middle)
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+
+示例 1：
+输入: "babad"
+输出: "bab"
+注意: "aba" 也是一个有效答案。
+
+思路:
+双指针中心扩散 + 动态规划（优化）
+1. longestLength: 目前已发现的最长的回文子串的长度；
+   longestStart: 目前已发现的最长的回文子串的开始index；
+   longestEnd: 目前已发现的最长的回文子串的结束index；
+   dp: 动态规划空间，二维数组，注意不能含有引用传递
+2. 设立双指针，使其最近时为相邻关系，最远时距离为s.length
+    l: 左指针，@value[0, r]
+    r: 右指针，@value[1, s.length]
+   然后循环遍历，如果发现s[l] === s[r]，则进行判断：
+    (1) r - 1 <= l + 1 ： l，r相邻（<）或仅相隔1个元素（=）时，该条件成立；
+    (2) dp[l + 1][r - 1] ： l，r内部是个回文串时，该条件成立；
+   若两者至少有一个成立，则认为s[l, r]是一个回文串，在sp中将其标记为true。
+3. 接2，如果当前s[l, r]的长度超过了目前已发现的最长的回文子串的长度(longestLength)，则替换掉原先的longestLength，longestStart，longestEnd；
+4. 最后返回s.substring(longestStart, longestEnd + 1)即可；
+
+``` javascript
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+  if (!s || s.length < 2) { return s }
+  let longestStart = 0
+  let longestEnd = 0
+  let longestLength = 1
+
+  let dp = JSON.parse(JSON.stringify(new Array(s.length).fill(new Array(s.length).fill(false))))
+  
+  for (let r = 1; r < s.length; r++) {
+    for (let l = 0; l < r; l++) {
+      if ((s[l] === s[r]) && ((r - 1 <= l + 1) || dp[l + 1][r - 1])) {
+        dp[l][r] = true
+        if (r - l + 1 > longestLength) {
+          longestLength = r - l + 1
+          longestStart = l
+          longestEnd = r
+        }
+      }
+    }
+  }
+  return s.substring(longestStart, longestEnd + 1)
+}
+```
+
+[backToCatalog](#catalog)
 
 

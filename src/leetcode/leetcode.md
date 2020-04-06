@@ -11,6 +11,7 @@
 4. &nbsp; [字母异位词分组 group-anagrams](#group-anagrams)
 5. &nbsp; [无重复字符的最长子串 longest-substring-without-repeating-characters](#longest-substring-without-repeating-characters)
 6. &nbsp; [最长回文子串 longest-palindromic-substring](#longest-palindromic-substring)
+7. &nbsp; [递增的三元子序列 increasing-triplet-subsequence](#increasing-triplet-subsequence)
 
 <br><br><br><br>
 
@@ -336,21 +337,21 @@ var lengthOfLongestSubstring = function(s) {
 输出: "bab"
 注意: "aba" 也是一个有效答案。
 
-思路:
-双指针中心扩散 + 动态规划（优化）
-1. longestLength: 目前已发现的最长的回文子串的长度；
-   longestStart: 目前已发现的最长的回文子串的开始index；
-   longestEnd: 目前已发现的最长的回文子串的结束index；
-   dp: 动态规划空间，二维数组，注意不能含有引用传递
-2. 设立双指针，使其最近时为相邻关系，最远时距离为s.length
-    l: 左指针，@value[0, r]
-    r: 右指针，@value[1, s.length]
-   然后循环遍历，如果发现s[l] === s[r]，则进行判断：
-    (1) r - 1 <= l + 1 ： l，r相邻（<）或仅相隔1个元素（=）时，该条件成立；
-    (2) dp[l + 1][r - 1] ： l，r内部是个回文串时，该条件成立；
-   若两者至少有一个成立，则认为s[l, r]是一个回文串，在sp中将其标记为true。
-3. 接2，如果当前s[l, r]的长度超过了目前已发现的最长的回文子串的长度(longestLength)，则替换掉原先的longestLength，longestStart，longestEnd；
-4. 最后返回s.substring(longestStart, longestEnd + 1)即可；
+思路: 
+双指针中心扩散 + 动态规划（优化） 
+1. longestLength: 目前已发现的最长的回文子串的长度； 
+   longestStart: 目前已发现的最长的回文子串的开始index； 
+   longestEnd: 目前已发现的最长的回文子串的结束index； 
+   dp: 动态规划空间，二维数组，注意不能含有引用传递 
+2. 设立双指针，使其最近时为相邻关系，最远时距离为s.length 
+    l: 左指针，@value[0, r] 
+    r: 右指针，@value[1, s.length] 
+   然后循环遍历，如果发现s[l] === s[r]，则进行判断： 
+    (1) r - 1 <= l + 1 ： l，r相邻（<）或仅相隔1个元素（=）时，该条件成立； 
+    (2) dp[l + 1][r - 1] ： l，r内部是个回文串时，该条件成立； 
+   若两者至少有一个成立，则认为s[l, r]是一个回文串，在dp中将其标记为true。 
+3. 接2，如果当前s[l, r]的长度超过了目前已发现的最长的回文子串的长度(longestLength)，则替换掉原先的longestLength，longestStart，longestEnd； 
+4. 最后返回s.substring(longestStart, longestEnd + 1)即可； 
 
 ``` javascript
 /**
@@ -383,4 +384,56 @@ var longestPalindrome = function(s) {
 
 [backToCatalog](#catalog)
 
+
+
+
+<i id="increasing-triplet-subsequence"></i>
+
+## 334.递增的三元子序列 increasing-triplet-subsequence(middle)
+给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。
+数学表达式如下:
+
+如果存在这样的 i, j, k,  且满足 0 ≤ i < j < k ≤ n-1，
+使得 arr[i] < arr[j] < arr[k] ，返回 true ; 否则返回 false 。
+说明: 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1) 。
+
+示例 1:
+输入: [1,2,3,4,5]
+输出: true
+
+思路:
+双指针small，middle，只需要找出存在值big，使得 small < middle < big 即可。3个值不必是连续的，任意找到1处成立即可返回true。 
+1. 设立双指针 
+    small: 目前已发现最小值，初始值为最大整数； 
+    middle: 目前已发现最中间值，初始值为最大整数； 
+2. for (item of nums): 
+   (1) item <= small => small = item; 
+   (2) small < item < middle => middle = item : 尽可能在保持small < middle情况下减小middle，以便更好的匹配big; 
+   (3) item > middle : 此处item即为big，即存在small < middle < big，返回true; 
+3. nums遍历结束也未发现2-(3)中的情况，即不存在small < middle < big，返回false; 
+
+
+``` javascript
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var increasingTriplet = function(nums) {
+  if (nums.length < 3) { return false }
+  let small = Number.MAX_SAFE_INTEGER
+  let middle = Number.MAX_SAFE_INTEGER
+  for (const item of nums) {
+    if (item <= small) {
+      small = item
+    } else if (item > small && item <= middle) {
+      middle = item
+    } else if(item > middle) {
+      return true
+    }
+  }
+  return false
+}
+```
+
+[backToCatalog](#catalog)
 

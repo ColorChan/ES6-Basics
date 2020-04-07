@@ -12,6 +12,7 @@
 5. &nbsp; [无重复字符的最长子串 longest-substring-without-repeating-characters](#longest-substring-without-repeating-characters)
 6. &nbsp; [最长回文子串 longest-palindromic-substring](#longest-palindromic-substring)
 7. &nbsp; [递增的三元子序列 increasing-triplet-subsequence](#increasing-triplet-subsequence)
+8. &nbsp; [奇偶链表 odd-even-linked-list](#odd-even-linked-list)
 
 <br><br><br><br>
 
@@ -437,3 +438,47 @@ var increasingTriplet = function(nums) {
 
 [backToCatalog](#catalog)
 
+
+<i id="odd-even-linked-list"></i>
+
+## 328.奇偶链表 odd-even-linked-list(middle)
+给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
+
+请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。
+
+示例 1:
+
+输入: 1->2->3->4->5->NULL
+输出: 1->3->5->2->4->NULL
+
+思路:<br>
+题目理解：把链表第1,3,5...2n+1位(即index+1位)元素连起来作为奇数链表，然后把链表第2,4,6...2n位连载奇数链表后面。
+ , pointOdd, pointEven。 
+设立三指针 
+  even(= head.next): 偶数位的头指针(即第二位元素位置的指针)，仅做记录位置用，不进行操作； <br>
+  pointOdd(= head): 当前奇数元素指针，初始值为head(即头元素位置)，随着循环每次往下行动2步(即指向下一个奇数位)； <br>
+  pointEven(= head.next): 当前偶数元素指针，初始值为head.next，随着循环每次往下行动2步(即指向下一个偶数位)； <br>
+
+
+``` javascript
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var oddEvenList = function(head) {
+  if (head === null) { return null }
+  const even = head.next
+  let pointOdd = head
+  let pointEven = even
+  while (pointOdd.next !== null && pointEven !== null && pointEven.next !== null) {
+    pointOdd.next = pointOdd.next.next
+    pointEven.next = pointEven.next.next
+    pointOdd = pointOdd.next
+    pointEven = pointEven.next
+  }
+  pointOdd.next = even
+  return head
+}
+```
+
+[backToCatalog](#catalog)

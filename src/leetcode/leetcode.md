@@ -13,6 +13,7 @@
 6. &nbsp; [最长回文子串 longest-palindromic-substring](#longest-palindromic-substring)
 7. &nbsp; [递增的三元子序列 increasing-triplet-subsequence](#increasing-triplet-subsequence)
 8. &nbsp; [奇偶链表 odd-even-linked-list](#odd-even-linked-list)
+9. &nbsp; [二叉树的中序遍历 binary-tree-inorder-traversal](#binary-tree-inorder-traversal)
 
 <br><br><br><br>
 
@@ -481,3 +482,43 @@ var oddEvenList = function(head) {
 ```
 
 [backToCatalog](#catalog)
+
+
+<i id="binary-tree-inorder-traversal"></i>
+
+## 94. 二叉树的中序遍历 binary-tree-inorder-traversal(middle)
+给定一个二叉树，返回它的中序 遍历，迭代算法。
+
+思路:<br>
+使用flag标记结点，已访问过设置为 1，未访问过设置为 0。 
+在stack中展开树。
+
+``` javascript
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function(root) {
+  let res = []
+  let stack = [merge(root, 0)]
+  while (stack.length) {
+    const node = stack.pop()
+    if (node === null) { continue }
+    const { flag, val } = node
+    if (flag === 0) {
+      stack.push(merge(node.left, 0))
+      stack.push(merge(node, 1))
+      stack.push(merge(node.right, 0))
+    } else {
+      res.unshift(val)
+    }
+  }
+  return res
+};
+const merge = (node, flag) => {
+  return node ? Object.assign(node, { flag }) : null
+}
+```
+
+[backToCatalog](#catalog)
+

@@ -14,6 +14,7 @@
 7. &nbsp; [递增的三元子序列 increasing-triplet-subsequence](#increasing-triplet-subsequence)
 8. &nbsp; [奇偶链表 odd-even-linked-list](#odd-even-linked-list)
 9. &nbsp; [二叉树的中序遍历 binary-tree-inorder-traversal](#binary-tree-inorder-traversal)
+10. &nbsp; [填充每个节点的下一个右侧节点指针 populating-next-right-pointers-in-each-node](#populating-next-right-pointers-in-each-node)
 
 <br><br><br><br>
 
@@ -522,3 +523,57 @@ const merge = (node, flag) => {
 
 [backToCatalog](#catalog)
 
+<br><br><br><br>
+
+
+<i id="populating-next-right-pointers-in-each-node"></i>
+
+## 116. 填充每个节点的下一个右侧节点指针 populating-next-right-pointers-in-each-node (middle)
+
+给定一个完美二叉树，其所有叶子节点都在同一层，每个父节点都有两个子节点left,right，还有一个next(= null)指针。
+填充它的每个 next 指针，让这个指针指向其下一个右侧节点。如果找不到下一个右侧节点，则将 next 指针设置为 NULL。
+
+思路:<br>
+1.主思路：在第n层搭建n+1层的next：
+(1).node.left.next = node.right
+(2).node.right.next = node.next.left
+2.如何进入下一层(n => n+1):
+``` javascript
+while (current.left) {
+  let head = current
+  /** native code **/
+}
+```
+3.如何在本层横向切换到next node:
+``` javascript
+while (head) {
+  /** native code **/
+  head = head.next
+}
+```
+
+``` javascript
+/**
+ * @param {Node} root
+ * @return {Node}
+ */
+var connect = function(root) {
+  if (!root) { return null }
+  let current = root
+  while (current.left) {
+    let head = current
+    while (head) {
+      head.left.next = head.right
+      if (head.next) {
+        head.right.next = head.next.left
+      }
+      head = head.next
+    }
+    current = current.left
+  }
+  return root
+}
+```
+
+
+[backToCatalog](#catalog)

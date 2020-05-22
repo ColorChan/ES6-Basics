@@ -1,0 +1,45 @@
+{
+  "vue-common-jsx": {
+    "prefix": "vue-jsx",
+    "body": [
+      "export default {",
+        "\tprops: {},",
+        "\tdata () {",
+          "\t\treturn {}",
+        "\t},",
+        "\tcreated () {},",
+        "\tmounted () {},",
+        "\tbeforeDestroy () {},",
+        "\tmethods: {},",
+        "\tcomputed: {},",
+        "\twatch: {},",
+        "\trender () {",
+          "\t\treturn <div class=\"\"></div>",
+        "\t}",
+      "}\n"
+    ],
+    "description": ""
+  },
+  "react-common-jsx": {
+    "prefix": "react-jsx",
+    "body": [
+      "import React from 'react'\n",
+      "class name extends React.Component {",
+      "\tconstructor (props) {",
+      "\t\tsuper(props)",
+      "\t\tthis.state = {}",
+      "\t}",
+      "\tcomponentDidMount () {",
+      "\t\t// this.setState({})",
+      "\t}",
+      "\tcomponentDidUpdate () {}",
+      "\tcomponentWillUnmount () {}",
+      "\trender () {",
+      "\t\treturn (<div className=\"name\">name</div>)",
+      "\t}",
+      "}\n",
+      "export default name\n"
+    ],
+    "description": ""
+  }
+}

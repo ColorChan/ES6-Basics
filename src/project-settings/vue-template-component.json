@@ -1,6 +1,6 @@
 {
-  "vue-camelot-common-template": {
-    "prefix": "vue-camelot-template",
+  "vue-common-template": {
+    "prefix": "vue-common-template",
     "body": [
       "<template>",
       "\t<div class=\"\"></div>",

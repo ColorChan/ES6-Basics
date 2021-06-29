@@ -49,14 +49,15 @@ const makeHidden = (dom) => {
 const ngaHandler = () => {
   const hiddenList = [
     ...document.querySelectorAll('a.small_colored_text_btn'),
-    document.querySelectorAll('span.tac img'),
+    ...document.querySelectorAll('span.tac img'),
+    ...document.querySelectorAll('td.null'),
+    ...document.querySelectorAll('tr.topicrow a.replies img'),
     document.querySelector('#footer'),
     document.querySelector('#mainmenu'),
     document.querySelector('#custombg'),
     document.querySelector('#alertc0'),
     document.querySelector('#sub_forums'),
     document.querySelector('.collapse_btn'),
-    ...document.querySelectorAll('tr.topicrow a.replies img'),
   ]
   makeHidden(hiddenList)
 

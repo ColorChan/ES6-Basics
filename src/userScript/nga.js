@@ -76,7 +76,7 @@ const ngaHandler = () => {
   const block_txt_c0 = document.querySelectorAll('.block_txt_c0')
   const block_txt =document.querySelectorAll('b.block_txt')
   const quote = document.querySelectorAll('div.quote')
-  const pagebtop =  document.querySelectorAll('.stdbtn td a')
+  const pagebtopA =  document.querySelectorAll('.stdbtn td a')
   const comment_c_0 = document.querySelectorAll('.comment_c_0 tr td')
   const cLine = [
     ...document.querySelectorAll('td.c1'),
@@ -94,7 +94,7 @@ const ngaHandler = () => {
     ...block_txt_c0,
     ...block_txt,
     ...quote,
-    ...pagebtop,
+    ...pagebtopA,
     ...comment_c_0,
     ...cLine,
   ]
@@ -128,10 +128,17 @@ const ngaHandler = () => {
 (function() {
   'use strict';
 
+  const reLoad = () => {
+    const tac = document.querySelector('.tac img')
+    if (tac.style.display !== 'none') {
+      ngaHandler()
+    }
+  }
+
   const host = window.location.host
   console.log('current host: ', host)
   if (['bbs.nga.cn', 'nga.178.com'].includes(host)) {
     ngaHandler()
+    window.setInterval(reLoad, 3000)
   }
-  
 })();

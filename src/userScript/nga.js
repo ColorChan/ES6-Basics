@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Game
+// @name         NGA
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -47,6 +47,13 @@ const makeHidden = (dom) => {
 }
 
 const ngaHandler = () => {
+
+  // 增加css
+  const style = document.createElement('style')
+  style.innerText = '.red, .teal, .blue, .orangered, .orange, .purple, .darkred, .royalblue, .deeppink, .tomato, .green, .sienna { color: #333 !important; font-weight: normal !important; } .vertmod { background-color: #bbb !important; }'
+  document.head.appendChild(style)
+
+  // 隐藏元素
   const hiddenList = [
     ...document.querySelectorAll('a.small_colored_text_btn'),
     ...document.querySelectorAll('span.tac img'),
@@ -76,16 +83,6 @@ const ngaHandler = () => {
     ...document.querySelectorAll('td.c3'),
     ...document.querySelectorAll('td.c4')
   ]
-  const color = [
-    ...document.querySelectorAll('.red'),
-    ...document.querySelectorAll('.teal'),
-    ...document.querySelectorAll('.blue'),
-    ...document.querySelectorAll('.orangered'),
-    ...document.querySelectorAll('.orange'),
-    ...document.querySelectorAll('.purple'),
-    ...document.querySelectorAll('.darkred'),
-    ...document.querySelectorAll('.royalblue'),
-  ]
 
   const changeColorList = [
     document.body,
@@ -100,7 +97,6 @@ const ngaHandler = () => {
     ...pagebtop,
     ...comment_c_0,
     ...cLine,
-    ...color
   ]
   changeBackgroundFrontColor(changeColorList)
 
@@ -114,18 +110,12 @@ const ngaHandler = () => {
     Object.assign(item.style, { width: '30px' })
   }
 
-  const graynobr = document.querySelectorAll('span.gray.nobr')
-  for (const item of graynobr) {
-    if (item.innerHTML.includes('望') || item.innerHTML.includes('级别') || item.innerHTML.includes('徽章')) {
-      
-    }
-  }
-
   const replies = document.querySelectorAll('td.c1 a.replies')
   for (const item of replies) {
     Object.assign(item.style, { 'font-size': '1.2em', color: '#333', 'font-family': 'Arial' })
   }
 
+  // 去广告(吃性能)
   const allA = document.querySelectorAll('a')
   for (const a of allA) {
     if (a.href.includes('game.stargame.com')) {

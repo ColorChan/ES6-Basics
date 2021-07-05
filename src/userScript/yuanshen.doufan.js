@@ -46,6 +46,11 @@ const makeHidden = (dom) => {
 }
 
 const mapHandler = () => {
+  // 增加css
+  const style = document.createElement('style')
+  style.innerText = '.fixed-right-box { transform: scale(.75, .75) !important; left: 70px !important; bottom: 70px !important; }'
+  document.head.appendChild(style)
+
   const hiddenList = [
     document.querySelector('.search-point'),
     document.querySelector('.fixed-right-bottom'),
@@ -79,8 +84,6 @@ const mapHandler = () => {
   }
   const appName = selector.querySelector('.app-name')
   appName.appendChild(div)
-  console.log(4444, [appName])
-
 }
 
 (function() {

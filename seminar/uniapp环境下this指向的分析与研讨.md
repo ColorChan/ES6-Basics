@@ -39,7 +39,7 @@ tt小程序究竟与wx/ali存在多少鸿沟？
 
 #### 4.1 发现问题
 起步tt适配时，现有代码在通过uni编译为wx/ali均为正常，但通过tt时，tt控制台报类型错误，页面加载失败
-![this-img1.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img1.png)
+![this-img1.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img1.png)
 
 #### 4.2 寻找原因
 
@@ -69,13 +69,13 @@ computed: {
 }
 ```
 
-![this-img2.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img2.png)
+![this-img2.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img2.png)
 
 通过断点可以看出来，在computed运行的时候，本组件this加载成功，$parent: undefined
 
 同时，我们对比wx/ali端的控制台，此时都是正常的
-![this-img3.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img3.png)
-![this-img4.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img4.png)
+![this-img3.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img3.png)
+![this-img4.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img4.png)
 
 这样，我们分析原因，推测应该是因为tt的自定义组件跟wx自定义组件的生命周期执行机制有区别，。
 
@@ -89,7 +89,7 @@ created () {
 }
 ```
 然后查看tt log，
-![this-img5.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img5.png)
+![this-img5.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img5.png)
 我们发现，于H5版Vue不同的是，tt在beforeCreate中是有this的，。
 beforeCreate中this.$parent是undefined，在created中，两者皆存在。
 所以根据tt存在的两个特异性：
@@ -129,7 +129,7 @@ uniapp虽然使用Vue语法，但最后落地效果仍会受各端mp较大影响
 #### 4.5 延展讨论
 
 
-![this-img6.png](https://github.com/ColorChan/Basic/tree/master/seminar/source/vue-explore/this-img6.png)
+![this-img6.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img6.png)
 
 
 

@@ -74,7 +74,7 @@ computed: {
 
 这样，我们分析原因，推测应该是因为tt的自定义组件跟wx自定义组件的生命周期执行机制有区别，没有及时设置组件关系。
 
-我们从生命周期入手，在uni代码中加入以下两个周期
+我们从生命周期入手，在uni代码中加入以下两个周期(注意是vue生命周期，非tt原生生命周期)
 ```js
 beforeCreate () {
   console.log('beforeCreate', this, this.$parent)
@@ -124,7 +124,7 @@ computed: {
   }
 ```
 
-以上就是如何在tt中根据provide和injection时机，正确使用$parent的方式，。
+以上就是如何在tt中根据生命周期，正确使用$parent的方式，。
 <!-- 那么为什么会出现这种情况呢，我们如何对uni以及tt的生命周期知根知底呢，。 -->
 
 #### 5.5 延展讨论
@@ -134,24 +134,30 @@ computed: {
 ![this-img7.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img7.png)
 
 但是转折点在于，在wx中，子组件进行initLifecycle时是可以正确设立父子关系的，
-而tt将父子关系设立放置在了tt原生的attached生命周期，vendor.js:2142:parseComponent()<br>
-![this-img10.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img10.png)
-tt官方文档关于created和attached生命周期的解释：<br>
-![this-img9.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img9.png)
-
-uni经过这样一番操作使得在tt环境中，$parent与自定义的provide/inject需要在tt原生的attached生命周期后，才可以被正常使用，wx不受影响
+而tt进行initLifecycle时，父子关系并没有建立。
 
 ![this-img6.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img6.png)
 ![this-img8.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img8.png)
+
+tt将父子关系设立放置在了tt原生的attached生命周期，vendor.js:2142:parseComponent<br>
+![this-img10.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img10.png)
+
+tt官方文档关于created和attached生命周期的解释：<br>
+![this-img9.png](https://github.com/ColorChan/Basic/blob/master/seminar/source/this-img9.png)
+
+uni经过这样一番操作使得在tt环境中，$parent与自定义的provide/inject需要在tt原生的attached生命周期后，才可以被正常使用
 
 **uniapp虽然使用Vue语法，利用vue-runtime模仿了大部分功能，但最后落地效果仍会受各端mp较大影响，建议开发中父子组件传值多使用更通俗的props等通用方法，尽量避开Vue高级用法及技巧，注意各端特性，保证各平台运行的稳定性。**
 
 
 ### 6.总结
 
+简单总结:
 - uni-tt环境，父子组件传参尽量使用props
-- 如需使用$parent与provide/inject的情景，请在created的异步回调中调用即可
+- 如需使用$parent与provide/inject的情景，在created的异步回调中使用即可
 
+
+<br><br><br><br><br>
 
 ### 7.感谢
 
